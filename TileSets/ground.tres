@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://v2lckxcyaxua"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://v2lckxcyaxua"]
 
 [ext_resource type="Texture2D" uid="uid://cgsukj2jjfr6p" path="res://Assets/Terrain/Ground/Tilemap_Flat.png" id="1_qaa58"]
 [ext_resource type="Texture2D" uid="uid://ssaoxct86owc" path="res://Assets/Terrain/Ground/Tilemap_Elevation.png" id="2_n7rs3"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cytj0btjmiq4f" path="res://Assets/Terrain/Water/Water.png" id="5_danju"]
 [ext_resource type="Texture2D" uid="uid://bfrwspxo3he07" path="res://Assets/Terrain/Water/Foam/Foam.png" id="6_bl037"]
 [ext_resource type="Texture2D" uid="uid://bq0temhmf3l18" path="res://Assets/Terrain/Water/Rocks/Rocks_03.png" id="7_4igos"]
+[ext_resource type="Texture2D" uid="uid://c2hh8uueb837l" path="res://Assets/Deco/09.png" id="7_fp66p"]
+[ext_resource type="Texture2D" uid="uid://d2li5dlk0h83a" path="res://Assets/Deco/17.png" id="9_ajtvy"]
+[ext_resource type="Texture2D" uid="uid://bqgadxjco7b6f" path="res://Assets/Resources/Trees/Tree.png" id="10_ca15r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0synt"]
 texture = ExtResource("1_qaa58")
@@ -517,6 +520,12 @@ texture_region_size = Vector2i(192, 192)
 0:0/0/terrains_peering_bit/top_side = 10
 0:0/0/terrains_peering_bit/top_right_corner = 10
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tf3d7"]
+texture = ExtResource("7_fp66p")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/y_sort_origin = 14
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixh3m"]
 texture = ExtResource("7_4igos")
 texture_region_size = Vector2i(128, 128)
@@ -530,9 +539,32 @@ texture_region_size = Vector2i(128, 128)
 0:0/animation_frame_7/duration = 0.1
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bf4mo"]
+texture = ExtResource("9_ajtvy")
+texture_region_size = Vector2i(64, 128)
+0:0/0 = 0
+0:0/0/y_sort_origin = 27
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.1711, 21.6074, 4.91077, 20.2043, 19.2222, 22.7299, 19.5028, 32, 9.40061, 35.3576, -0.420929, 36.7606, -12.4874, 36.48, -17.2579, 28.9034)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vh23a"]
+texture = ExtResource("10_ca15r")
+texture_region_size = Vector2i(192, 192)
+0:0/animation_columns = 4
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+0:0/0/y_sort_origin = 72
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.5182, 65.5842, 11.9324, 64.8771, 14.7253, 69.1382, 15.6703, 71.973, 7.63827, 75.9102, -6.8059, 77.0746, -12.678, 72.7604, -13.9379, 69.2957)
+0:2/0 = 0
+0:2/0/y_sort_origin = 72
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.2605, 66.4608, 13.1504, 67.2483, 14.7253, 69.1382, 15.6703, 71.973, 7.63827, 75.9102, -7.48078, 76.2252, -12.678, 72.7604, -13.9379, 69.2957)
+
 [resource]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 2
+physics_layer_0/collision_layer = 4
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -563,3 +595,6 @@ sources/3 = SubResource("TileSetAtlasSource_d3drf")
 sources/4 = SubResource("TileSetAtlasSource_4b4gt")
 sources/5 = SubResource("TileSetAtlasSource_2lsbu")
 sources/7 = SubResource("TileSetAtlasSource_ixh3m")
+sources/6 = SubResource("TileSetAtlasSource_tf3d7")
+sources/8 = SubResource("TileSetAtlasSource_bf4mo")
+sources/9 = SubResource("TileSetAtlasSource_vh23a")

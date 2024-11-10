@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 @onready var animated_sprite_2d: AnimationController = $AnimatedSprite2D
 
-var SPEED = 30000
+var SPEED = 19000
 var direction : Vector2
 var canDash = true
 var dashing = false
@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 		$TimerDashing.start(0.1)
 		$TimerCanDash.start(1)
 	
+		
 	if velocity != Vector2.ZERO:
 		if is_on_wall() and velocity.y == 0:
 			animated_sprite_2d.play_idle_animation()
@@ -41,7 +42,7 @@ func _physics_process(delta: float) -> void:
 func _on_timer_dashing_timeout():
 	$TimerDashing.stop()
 	dashing = false
-	SPEED = 30000
+	SPEED = 19000
 
 func _on_timer_can_dash_timeout() -> void:
 	$TimerCanDash.stop()
