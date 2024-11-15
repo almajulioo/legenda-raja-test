@@ -2,8 +2,6 @@ extends AnimatedSprite2D
 
 class_name AnimationController
 
-
-
 func play_movement_animation(velocity:Vector2):
 	if velocity.x > 0:
 		flip_h = false
@@ -17,3 +15,14 @@ func play_movement_animation(velocity:Vector2):
 	
 func play_idle_animation():
 	play("idle")
+
+func play_attack_animation(velocity:Vector2):
+	if velocity.x > 0:
+		flip_h = false
+	elif velocity.x < 0:
+		flip_h = true
+	play("attack")
+	
+	
+
+	
