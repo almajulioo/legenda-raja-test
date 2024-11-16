@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://wekvrtqbsgyr"]
+[gd_scene load_steps=26 format=3 uid="uid://wekvrtqbsgyr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
 [ext_resource type="Texture2D" uid="uid://b4npk86pgweqa" path="res://Assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_pnore"]
 [ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_acs1y"]
 [ext_resource type="Script" path="res://Scripts/combat_system.gd" id="4_e1fdc"]
+[ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_6j51e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yad7j"]
 atlas = ExtResource("1_pnore")
@@ -186,6 +187,13 @@ disabled = true
 position = Vector2(0, -28.5)
 shape = SubResource("RectangleShape2D_u1lr4")
 
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("5_6j51e")
+
+[node name="Timer" type="Timer" parent="HealthSystem"]
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="TimerDashing" to="." method="_on_timer_dashing_timeout"]
 [connection signal="timeout" from="TimerCanDash" to="." method="_on_timer_can_dash_timeout"]
+[connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]
