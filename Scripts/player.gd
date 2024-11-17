@@ -5,8 +5,7 @@ class_name Player
 @onready var left_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/LeftCollision
 @onready var right_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/RightCollision
 @onready var body_hitbox_collision: CollisionShape2D = $CombatSystem/BodyHitbox/CollisionShape2D
-
-
+@onready var playerHealth : HealthSystem = $HealthSystem
 
 var SPEED = 19000
 var direction : Vector2
@@ -48,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		
 	elif velocity == Vector2.ZERO and not attacking:
 		animated_sprite_2d.play_idle_animation()
-	
 	move_and_slide()
 
 #func _input(event):

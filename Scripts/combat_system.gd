@@ -16,3 +16,10 @@ func _input(event):
 		else:
 			right_collision.disabled = false
 			
+
+
+func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
+	if body.name == "Boss":
+		var boss = get_node("../../Boss")
+		print("Darah Boss:")
+		boss.bossHealth.take_damage(1)

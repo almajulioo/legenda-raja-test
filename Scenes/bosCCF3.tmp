@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=3 uid="uid://bkfxssgytv2qs"]
+
+[ext_resource type="Script" path="res://Scripts/boss.gd" id="1_wl4ro"]
+[ext_resource type="Texture2D" uid="uid://cgp5aw18b25g4" path="res://Assets/Factions/Bosses/Golem/Attack/punch1.png" id="2_hd72d"]
+[ext_resource type="Texture2D" uid="uid://crpa8pg4ay23g" path="res://Assets/Factions/Bosses/Golem/Idle/normal.png" id="3_2rwha"]
+[ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_3do8d"]
+[ext_resource type="Texture2D" uid="uid://b2tcj8dwj7m6v" path="res://Assets/Factions/Bosses/Golem/Attack/punch2.png" id="3_q22ux"]
+[ext_resource type="Texture2D" uid="uid://ba8678i00ihi6" path="res://Assets/Factions/Bosses/Golem/Attack/punch3.png" id="4_dmfqr"]
+[ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_ahoiv"]
+[ext_resource type="Script" path="res://Scripts/boss_combat.gd" id="7_1qahh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pqgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hd72d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q22ux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dmfqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q22ux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hd72d")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2rwha")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1n23d"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qudo"]
+size = Vector2(87.5, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykgkh"]
+size = Vector2(87.5, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1lr4"]
+size = Vector2(40, 63)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0pof"]
+radius = 707.229
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yeuhs"]
+radius = 283.924
+
+[node name="Boss" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_mask = 6
+script = ExtResource("1_wl4ro")
+
+[node name="TimerCanAttack" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4pqgq")
+animation = &"attack"
+frame = 4
+frame_progress = 1.0
+offset = Vector2(0, -31)
+script = ExtResource("3_3do8d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_1n23d")
+
+[node name="CombatSystem" type="Node2D" parent="."]
+position = Vector2(8.00006, 59)
+scale = Vector2(2.48213, 2.48213)
+script = ExtResource("7_1qahh")
+
+[node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
+position = Vector2(-82.9931, -82.1873)
+scale = Vector2(0.592672, 0.690046)
+
+[node name="LeftCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
+position = Vector2(86.75, 77)
+shape = SubResource("RectangleShape2D_5qudo")
+disabled = true
+
+[node name="RightCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
+position = Vector2(193, 77)
+shape = SubResource("RectangleShape2D_ykgkh")
+disabled = true
+
+[node name="BodyHitbox" type="Area2D" parent="CombatSystem"]
+position = Vector2(-2.45898e-05, 5.23742)
+scale = Vector2(1.67684, 1.3223)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BodyHitbox"]
+position = Vector2(0, -28.5)
+shape = SubResource("RectangleShape2D_u1lr4")
+
+[node name="TimerAttacking" type="Timer" parent="CombatSystem"]
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("5_ahoiv")
+
+[node name="Timer" type="Timer" parent="HealthSystem"]
+one_shot = true
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(4, -24)
+shape = SubResource("CircleShape2D_g0pof")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(81, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-76, -6)
+shape = SubResource("CircleShape2D_yeuhs")
+
+[node name="TimerInRange" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerCanAttack" to="." method="_on_timer_can_attack_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="." method="_on_weapon_hitbox_body_entered"]
+[connection signal="body_exited" from="CombatSystem/WeaponHitbox" to="." method="_on_weapon_hitbox_body_exited"]
+[connection signal="body_entered" from="CombatSystem/BodyHitbox" to="." method="_on_body_hitbox_body_entered"]
+[connection signal="body_exited" from="CombatSystem/BodyHitbox" to="." method="_on_body_hitbox_body_exited"]
+[connection signal="timeout" from="CombatSystem/TimerAttacking" to="CombatSystem" method="_on_timer_attacking_timeout"]
+[connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerInRange" to="." method="_on_timer_in_range_timeout"]
