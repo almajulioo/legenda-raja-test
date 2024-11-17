@@ -1,5 +1,5 @@
 extends Node
-
+class_name HealthSystem
 var health: int = clamp(5, 0, 5)
 var heal_potion: int = 3
 var invulnerable = false
@@ -31,6 +31,9 @@ func invulnerable_time():
 	last_health = health
 	$Timer.start(1)
 
+func take_damage(damage : int):
+	health = clamp(health - damage, 0, 20)
+	print("Health = " + str(health))	
 
 func _on_timer_timeout() -> void:
 	invulnerable = false
