@@ -68,6 +68,3 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
 	left_collision.disabled = true
 	right_collision.disabled = true
-
-	
-	
