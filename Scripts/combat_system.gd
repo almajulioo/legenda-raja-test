@@ -18,8 +18,14 @@ func _input(event):
 			
 
 
-func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "Boss":
+#func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
+	#if body.name == "Boss":
+		
+
+func _on_weapon_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.name == "BossBodyHitbox":
 		var boss = get_node("../../Boss")
 		print("Darah Boss:")
 		boss.bossHealth.take_damage(1)
+		
+		

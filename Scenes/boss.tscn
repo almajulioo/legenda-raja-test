@@ -277,11 +277,11 @@ position = Vector2(193, 77)
 shape = SubResource("RectangleShape2D_ykgkh")
 disabled = true
 
-[node name="BodyHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-2.45898e-05, 5.23742)
-scale = Vector2(1.67684, 1.3223)
+[node name="BossBodyHitbox" type="Area2D" parent="CombatSystem"]
+position = Vector2(-3.22306, 4.83456)
+scale = Vector2(1.2095, 1.3223)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BodyHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BossBodyHitbox"]
 position = Vector2(-5.52601, -24.6792)
 scale = Vector2(1.0332, 0.670944)
 shape = SubResource("RectangleShape2D_u1lr4")
@@ -312,8 +312,8 @@ shape = SubResource("CircleShape2D_yeuhs")
 [connection signal="timeout" from="TimerCanAttack" to="." method="_on_timer_can_attack_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_body_entered"]
-[connection signal="body_entered" from="CombatSystem/BodyHitbox" to="." method="_on_body_hitbox_body_entered"]
-[connection signal="body_exited" from="CombatSystem/BodyHitbox" to="." method="_on_body_hitbox_body_exited"]
+[connection signal="body_entered" from="CombatSystem/BossBodyHitbox" to="." method="_on_body_hitbox_body_entered"]
+[connection signal="body_exited" from="CombatSystem/BossBodyHitbox" to="." method="_on_body_hitbox_body_exited"]
 [connection signal="timeout" from="CombatSystem/TimerAttacking" to="CombatSystem" method="_on_timer_attacking_timeout"]
 [connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
