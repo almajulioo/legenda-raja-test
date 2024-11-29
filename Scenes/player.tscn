@@ -3,9 +3,20 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
 [ext_resource type="Texture2D" uid="uid://b4npk86pgweqa" path="res://Assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_pnore"]
 [ext_resource type="PackedScene" uid="uid://c5o5fgskntesd" path="res://Scenes/health_system_ui.tscn" id="2_4urmp"]
+[ext_resource type="PackedScene" uid="uid://cwp5m1he55ll3" path="res://Scenes/projectile.tscn" id="2_23ubv"]
 [ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_acs1y"]
 [ext_resource type="Script" path="res://Scripts/combat_system.gd" id="4_e1fdc"]
+[ext_resource type="Texture2D" uid="uid://csuhrcuxkkqpc" path="res://Assets/Player/MainDash2.png" id="4_u71ee"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_6j51e"]
+[ext_resource type="Texture2D" uid="uid://d3fysddvqppvr" path="res://Assets/Player/MainIdle.png" id="5_qhhqy"]
+[ext_resource type="Texture2D" uid="uid://dbpo6x48nmwtc" path="res://Assets/Player/MainJalan1.png" id="6_shlhp"]
+[ext_resource type="Texture2D" uid="uid://cs62a6rfesmi6" path="res://Assets/Player/MainJalan2.png" id="7_2863n"]
+[ext_resource type="Texture2D" uid="uid://bubh0golm5rts" path="res://Assets/Senjata Rencong/Attack1.png" id="10_l28vs"]
+[ext_resource type="Texture2D" uid="uid://bc1w52v7th3uu" path="res://Assets/Senjata Rencong/Attack2.png" id="11_2n2yy"]
+[ext_resource type="Texture2D" uid="uid://cpeslytoyb11t" path="res://Assets/Senjata Rencong/Attack3.png" id="12_nl7mw"]
+[ext_resource type="Texture2D" uid="uid://bn3iu1bqcjr0g" path="res://Assets/Senjata Rencong/Attack4.png" id="13_4mrtl"]
+[ext_resource type="Texture2D" uid="uid://ci1fnasfwm6tg" path="res://Assets/Senjata Rencong/Attack5.png" id="14_lipla"]
+[ext_resource type="Texture2D" uid="uid://cwps6dc04aem7" path="res://Assets/Senjata Rencong/Attack6.png" id="15_qwwvw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yad7j"]
 atlas = ExtResource("1_pnore")
@@ -18,54 +29,6 @@ region = Rect2(768, 384, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_snho1"]
 atlas = ExtResource("1_pnore")
 region = Rect2(960, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ne56p"]
-atlas = ExtResource("1_pnore")
-region = Rect2(0, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_akonv"]
-atlas = ExtResource("1_pnore")
-region = Rect2(192, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rlyk"]
-atlas = ExtResource("1_pnore")
-region = Rect2(384, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3v0le"]
-atlas = ExtResource("1_pnore")
-region = Rect2(576, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lnm1o"]
-atlas = ExtResource("1_pnore")
-region = Rect2(768, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_er3cc"]
-atlas = ExtResource("1_pnore")
-region = Rect2(960, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2aob"]
-atlas = ExtResource("1_pnore")
-region = Rect2(0, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nc2n4"]
-atlas = ExtResource("1_pnore")
-region = Rect2(192, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0hyvt"]
-atlas = ExtResource("1_pnore")
-region = Rect2(384, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wkcpa"]
-atlas = ExtResource("1_pnore")
-region = Rect2(576, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyaty"]
-atlas = ExtResource("1_pnore")
-region = Rect2(768, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nggl"]
-atlas = ExtResource("1_pnore")
-region = Rect2(960, 192, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pqgq"]
 animations = [{
@@ -85,22 +48,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ne56p")
+"texture": ExtResource("4_u71ee")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 10.0
 }, {
+"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_akonv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0rlyk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3v0le")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lnm1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_er3cc")
+"texture": ExtResource("5_qhhqy")
 }],
 "loop": true,
 "name": &"idle",
@@ -108,22 +64,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u2aob")
+"texture": ExtResource("6_shlhp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nc2n4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0hyvt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wkcpa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iyaty")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2nggl")
+"texture": ExtResource("7_2863n")
 }],
 "loop": true,
 "name": &"walk",
@@ -131,61 +75,110 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1n23d"]
-radius = 16.0
+radius = 5.09902
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u4fpa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_l28vs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2n2yy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_nl7mw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4mrtl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lipla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qwwvw")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 50.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qudo"]
-size = Vector2(87.5, 142)
+size = Vector2(49.75, 78)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykgkh"]
-size = Vector2(87.5, 142)
+size = Vector2(49.75, 78)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1lr4"]
-size = Vector2(40, 63)
+size = Vector2(14, 25)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-y_sort_enabled = true
 collision_mask = 6
 script = ExtResource("1_7ko4b")
+projectile_node = ExtResource("2_23ubv")
 
 [node name="HealthSystemUI" parent="." instance=ExtResource("2_4urmp")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
 animation = &"walk"
-offset = Vector2(0, -31)
+offset = Vector2(0, -4)
 script = ExtResource("3_acs1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_1n23d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.7, 1.7)
 position_smoothing_enabled = true
 
 [node name="TimerDashing" type="Timer" parent="."]
+
+[node name="TimerCanAttack" type="Timer" parent="."]
 
 [node name="TimerCanDash" type="Timer" parent="."]
 
 [node name="CombatSystem" type="Node2D" parent="."]
 script = ExtResource("4_e1fdc")
 
+[node name="LeftWeaponSprite" type="AnimatedSprite2D" parent="CombatSystem"]
+visible = false
+position = Vector2(-36, -28)
+scale = Vector2(0.278667, 0.266)
+sprite_frames = SubResource("SpriteFrames_u4fpa")
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
+flip_h = true
+
+[node name="RightWeaponSprite" type="AnimatedSprite2D" parent="CombatSystem"]
+visible = false
+position = Vector2(36, -28)
+scale = Vector2(0.278667, 0.266)
+sprite_frames = SubResource("SpriteFrames_u4fpa")
+animation = &"attack"
+frame = 5
+frame_progress = 1.0
+
 [node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
 position = Vector2(-140, -110)
 
 [node name="LeftCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
-position = Vector2(86.75, 77)
+position = Vector2(108, 94)
 shape = SubResource("RectangleShape2D_5qudo")
 disabled = true
 
 [node name="RightCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
-position = Vector2(193, 77)
+position = Vector2(172.125, 94)
 shape = SubResource("RectangleShape2D_ykgkh")
 disabled = true
 
 [node name="BodyHitbox" type="Area2D" parent="CombatSystem"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BodyHitbox"]
-position = Vector2(0, -28.5)
+position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_u1lr4")
 
 [node name="HealthSystem" type="Node" parent="."]
@@ -197,6 +190,8 @@ one_shot = true
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="TimerDashing" to="." method="_on_timer_dashing_timeout"]
 [connection signal="timeout" from="TimerCanDash" to="." method="_on_timer_can_dash_timeout"]
+[connection signal="animation_finished" from="CombatSystem/LeftWeaponSprite" to="." method="_on_left_weapon_sprite_animation_finished"]
+[connection signal="animation_finished" from="CombatSystem/RightWeaponSprite" to="." method="_on_right_weapon_sprite_animation_finished"]
 [connection signal="area_shape_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_body_entered"]
 [connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]

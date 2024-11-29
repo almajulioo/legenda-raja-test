@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwp5m1he55ll3"]
+
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_dfn2t"]
+[ext_resource type="Texture2D" uid="uid://8hfaj3pj01ou" path="res://Assets/Artefak dan Efek/Efek/Laser1.png" id="2_oy8nd"]
+[ext_resource type="Texture2D" uid="uid://bikqw5w82weuw" path="res://Assets/Artefak dan Efek/Efek/Laser2.png" id="3_sluc8"]
+[ext_resource type="Texture2D" uid="uid://d2pt7jspbte4m" path="res://Assets/Artefak dan Efek/Efek/Laser3.png" id="4_5bj1k"]
+[ext_resource type="Texture2D" uid="uid://d003n3u2qarxg" path="res://Assets/Artefak dan Efek/Efek/Laser4.png" id="5_2dvw2"]
+[ext_resource type="Texture2D" uid="uid://hr6tlfrso488" path="res://Assets/Artefak dan Efek/Efek/Laser5.png" id="6_2lg40"]
+[ext_resource type="Texture2D" uid="uid://doj2hnxw8rit6" path="res://Assets/Artefak dan Efek/Efek/Laser6.png" id="7_4ptoh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jog3u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oy8nd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sluc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5bj1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2dvw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2lg40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ptoh")
+}],
+"loop": true,
+"name": &"Laser",
+"speed": 10.0
+}]
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_dfn2t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jog3u")
+animation = &"Laser"
+frame = 4
+frame_progress = 0.388208
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
