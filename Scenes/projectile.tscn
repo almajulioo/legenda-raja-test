@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwp5m1he55ll3"]
+[gd_scene load_steps=9 format=3 uid="uid://dqcsy7wvtykwy"]
 
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_dfn2t"]
 [ext_resource type="Texture2D" uid="uid://8hfaj3pj01ou" path="res://Assets/Artefak dan Efek/Efek/Laser1.png" id="2_oy8nd"]
@@ -40,8 +40,8 @@ script = ExtResource("1_dfn2t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jog3u")
 animation = &"Laser"
-frame = 4
-frame_progress = 0.388208
+frame = 3
+frame_progress = 0.26036
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

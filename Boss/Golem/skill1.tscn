@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://b57tyl5lof1m"]
+
+[ext_resource type="Texture2D" uid="uid://c4qx5ibbb3yad" path="res://Assets/Factions/Bosses/Golem/Attack/se1.png" id="1_hvu6l"]
+[ext_resource type="Script" path="res://Boss/Golem/skill_1.gd" id="1_w75mw"]
+[ext_resource type="Texture2D" uid="uid://b4v4temnhmh6k" path="res://Assets/Factions/Bosses/Golem/Attack/se1b.png" id="2_7ix4e"]
+[ext_resource type="Texture2D" uid="uid://dwcw15ccf3okb" path="res://Assets/Factions/Bosses/Golem/Attack/se1c.png" id="3_u31f3"]
+[ext_resource type="Texture2D" uid="uid://c46rno70tsfk8" path="res://Assets/Factions/Bosses/Golem/Attack/se1d.png" id="4_pugpf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b60ff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pugpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u31f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7ix4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_hvu6l")
+}],
+"loop": false,
+"name": &"break",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hvu6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7ix4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u31f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pugpf")
+}],
+"loop": false,
+"name": &"spike",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiilj"]
+size = Vector2(63, 35)
+
+[node name="Skill1" type="Node2D"]
+script = ExtResource("1_w75mw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b60ff")
+animation = &"break"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.5, 1.5)
+scale = Vector2(1, 1.36)
+shape = SubResource("RectangleShape2D_xiilj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

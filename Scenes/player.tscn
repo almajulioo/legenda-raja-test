@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://wekvrtqbsgyr"]
+[gd_scene load_steps=28 format=3 uid="uid://wekvrtqbsgyr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
-[ext_resource type="Texture2D" uid="uid://b4npk86pgweqa" path="res://Assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_pnore"]
 [ext_resource type="PackedScene" uid="uid://c5o5fgskntesd" path="res://Scenes/health_system_ui.tscn" id="2_4urmp"]
-[ext_resource type="PackedScene" uid="uid://cwp5m1he55ll3" path="res://Scenes/projectile.tscn" id="2_23ubv"]
+[ext_resource type="PackedScene" uid="uid://dqcsy7wvtykwy" path="res://Scenes/projectile.tscn" id="2_23ubv"]
 [ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_acs1y"]
 [ext_resource type="Script" path="res://Scripts/combat_system.gd" id="4_e1fdc"]
+[ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="4_ifv6p"]
 [ext_resource type="Texture2D" uid="uid://csuhrcuxkkqpc" path="res://Assets/Player/MainDash2.png" id="4_u71ee"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_6j51e"]
 [ext_resource type="Texture2D" uid="uid://d3fysddvqppvr" path="res://Assets/Player/MainIdle.png" id="5_qhhqy"]
@@ -18,34 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://ci1fnasfwm6tg" path="res://Assets/Senjata Rencong/Attack5.png" id="14_lipla"]
 [ext_resource type="Texture2D" uid="uid://cwps6dc04aem7" path="res://Assets/Senjata Rencong/Attack6.png" id="15_qwwvw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yad7j"]
-atlas = ExtResource("1_pnore")
-region = Rect2(576, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_htimk"]
-atlas = ExtResource("1_pnore")
-region = Rect2(768, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_snho1"]
-atlas = ExtResource("1_pnore")
-region = Rect2(960, 384, 192, 192)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvvfq"]
+shader = ExtResource("4_ifv6p")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pqgq"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yad7j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_htimk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_snho1")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_u71ee")
@@ -73,6 +52,43 @@ animations = [{
 "name": &"walk",
 "speed": 10.0
 }]
+
+[sub_resource type="Animation" id="Animation_sop3h"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3xwyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ejh7l"]
+_data = {
+"RESET": SubResource("Animation_3xwyi"),
+"flash": SubResource("Animation_sop3h")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1n23d"]
 radius = 5.09902
@@ -120,13 +136,18 @@ projectile_node = ExtResource("2_23ubv")
 [node name="HealthSystemUI" parent="." instance=ExtResource("2_4urmp")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_tvvfq")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"idle"
-offset = Vector2(0, -31)
 animation = &"walk"
+frame_progress = 0.302447
 offset = Vector2(0, -4)
 script = ExtResource("3_acs1y")
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ejh7l")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
