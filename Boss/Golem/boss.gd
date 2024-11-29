@@ -28,7 +28,7 @@ var isDead: bool = false
 var current_state: BossState = BossState.Idle
 var state_change_timer: float = 0.0
 var SPEED = 15000
-var startingHealth = 20
+var startingHealth = 30
 
 var punching : int = 0
 

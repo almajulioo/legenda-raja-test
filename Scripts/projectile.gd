@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var player : Player = get_node("../Player")
+
 var speed : float = 200
 var direction : Vector2 = Vector2.RIGHT:
 	set(value):
@@ -14,3 +16,12 @@ func play(animation_name = "Laser"):
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	var boss = $"../Node2D/Boss"
+	if area.name == "BossBodyHitbox":
+		print(boss)
+		boss.take_damage(1)
+		#print(player)
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqcsy7wvtykwy"]
+[gd_scene load_steps=10 format=3 uid="uid://cwp5m1he55ll3"]
 
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_dfn2t"]
 [ext_resource type="Texture2D" uid="uid://8hfaj3pj01ou" path="res://Assets/Artefak dan Efek/Efek/Laser1.png" id="2_oy8nd"]
@@ -34,6 +34,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebtbd"]
+size = Vector2(64, 48.5)
+
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_dfn2t")
 
@@ -45,4 +48,8 @@ frame_progress = 0.26036
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ebtbd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

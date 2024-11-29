@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://wekvrtqbsgyr"]
+[gd_scene load_steps=30 format=3 uid="uid://wekvrtqbsgyr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
 [ext_resource type="PackedScene" uid="uid://c5o5fgskntesd" path="res://Scenes/health_system_ui.tscn" id="2_4urmp"]
-[ext_resource type="PackedScene" uid="uid://dqcsy7wvtykwy" path="res://Scenes/projectile.tscn" id="2_23ubv"]
+[ext_resource type="PackedScene" uid="uid://cwp5m1he55ll3" path="res://Scenes/projectile.tscn" id="2_23ubv"]
 [ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_acs1y"]
 [ext_resource type="Script" path="res://Scripts/combat_system.gd" id="4_e1fdc"]
 [ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="4_ifv6p"]
@@ -55,6 +55,21 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_3xwyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_sop3h"]
 resource_name = "flash"
 length = 0.2
@@ -69,21 +84,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_3xwyi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ejh7l"]

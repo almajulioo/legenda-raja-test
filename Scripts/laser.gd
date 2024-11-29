@@ -2,7 +2,7 @@ extends Skill
 class_name Laser
 
 func _init(target):
-	cooldown = 5.0
+	cooldown = 15.0
 	animation_name = "Laser"
 	texture = preload("res://Assets/Artefak dan Efek/Artefak/Trisula.png")
 	
