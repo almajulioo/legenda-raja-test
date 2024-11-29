@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2p0gy8wls0q"
-path="res://.godot/imported/punch1.png-d618c2d60696708e81f4f85cf6ee75f6.ctex"
+uid="uid://b1m7mvp851ddq"
+path="res://.godot/imported/dash.png-b5c374d532e920026d62cf98cd9c0e89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Factions/Bosses/Golem/Attack/punch1.png"
-dest_files=["res://.godot/imported/punch1.png-d618c2d60696708e81f4f85cf6ee75f6.ctex"]
+source_file="res://Assets/Factions/Bosses/Golem/Attack/dash.png"
+dest_files=["res://.godot/imported/dash.png-b5c374d532e920026d62cf98cd9c0e89.ctex"]
 
 [params]
 

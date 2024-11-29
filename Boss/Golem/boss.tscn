@@ -1,22 +1,32 @@
-[gd_scene load_steps=41 format=3 uid="uid://bkfxssgytv2qs"]
+[gd_scene load_steps=53 format=3 uid="uid://bkfxssgytv2qs"]
 
-[ext_resource type="Script" path="res://Scripts/boss.gd" id="1_wl4ro"]
-[ext_resource type="Texture2D" uid="uid://cgp5aw18b25g4" path="res://Assets/Factions/Bosses/Golem/Attack/punch1.png" id="2_hd72d"]
-[ext_resource type="Texture2D" uid="uid://crpa8pg4ay23g" path="res://Assets/Factions/Bosses/Golem/Idle/normal.png" id="3_2rwha"]
-[ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_3do8d"]
-[ext_resource type="Texture2D" uid="uid://b2tcj8dwj7m6v" path="res://Assets/Factions/Bosses/Golem/Attack/punch2.png" id="3_q22ux"]
-[ext_resource type="Texture2D" uid="uid://ba8678i00ihi6" path="res://Assets/Factions/Bosses/Golem/Attack/punch3.png" id="4_dmfqr"]
+[ext_resource type="Script" path="res://Boss/Golem/boss.gd" id="1_wl4ro"]
+[ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="2_b444y"]
+[ext_resource type="Texture2D" uid="uid://2p0gy8wls0q" path="res://Assets/Factions/Bosses/Golem/Attack/punch1.png" id="2_hd72d"]
+[ext_resource type="Texture2D" uid="uid://06uibej2i2yk" path="res://Assets/Factions/Bosses/Golem/Attack/normal2.png" id="2_hwhtq"]
+[ext_resource type="Texture2D" uid="uid://80q8vapbjmno" path="res://Assets/Factions/Bosses/Golem/Attack/normal.png" id="3_eccr7"]
+[ext_resource type="Texture2D" uid="uid://e3paf1op6gvi" path="res://Assets/Factions/Bosses/Golem/Attack/punch2.png" id="3_q22ux"]
+[ext_resource type="Texture2D" uid="uid://c0c4mri1mhwjf" path="res://Assets/Factions/Bosses/Golem/Attack/punch3.png" id="4_dmfqr"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_ahoiv"]
-[ext_resource type="Script" path="res://Scripts/boss_combat.gd" id="7_1qahh"]
+[ext_resource type="Texture2D" uid="uid://blirhiflap5gj" path="res://Assets/Factions/Bosses/Golem/Attack/dash2 (1).png" id="6_lbw0j"]
 [ext_resource type="Texture2D" uid="uid://cm5ws5jwovqvh" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Bump.png" id="7_f6eem"]
+[ext_resource type="Texture2D" uid="uid://cfjqj6e8v3cwr" path="res://Assets/Factions/Bosses/Golem/Attack/dash3.png" id="7_lu535"]
+[ext_resource type="Texture2D" uid="uid://b1m7mvp851ddq" path="res://Assets/Factions/Bosses/Golem/Attack/dash.png" id="8_dwsrp"]
 [ext_resource type="Texture2D" uid="uid://byjp0164df8h4" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Wall.png" id="8_n6oo5"]
+[ext_resource type="Texture2D" uid="uid://d1s53cga40q7s" path="res://Assets/Factions/Bosses/Golem/Attack/dead (1).png" id="9_wj12a"]
+[ext_resource type="Texture2D" uid="uid://p6wwurh7fjhb" path="res://Assets/Factions/Bosses/Golem/Attack/skill1.png" id="10_vv5x6"]
+[ext_resource type="Texture2D" uid="uid://bf8chbyvvtg7s" path="res://Assets/Factions/Bosses/Golem/Attack/skill2.png" id="11_efc3q"]
+[ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
+[ext_resource type="PackedScene" uid="uid://bekp7jb0laluj" path="res://state_machine/state_machine.tscn" id="16_jmcbi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
+shader = ExtResource("2_b444y")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pqgq"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_hd72d")
-}, {
 "duration": 1.0,
 "texture": ExtResource("3_q22ux")
 }, {
@@ -35,17 +45,102 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_2rwha")
+"texture": ExtResource("3_eccr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lbw0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lu535")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dwsrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_eccr7")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_wj12a")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_eccr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hwhtq")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hd72d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vv5x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_efc3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hd72d")
+}],
+"loop": false,
+"name": &"skill1",
+"speed": 4.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"walk",
 "speed": 10.0
 }]
+
+[sub_resource type="Animation" id="Animation_spj0f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_if47o"]
+resource_name = "flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7s777"]
+_data = {
+"RESET": SubResource("Animation_spj0f"),
+"flash": SubResource("Animation_if47o")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lis0k"]
 atlas = ExtResource("7_f6eem")
@@ -234,18 +329,27 @@ radius = 283.924
 
 [node name="Boss" type="CharacterBody2D"]
 y_sort_enabled = true
+scale = Vector2(0.480001, 0.480001)
 collision_mask = 6
 script = ExtResource("1_wl4ro")
 
 [node name="TimerCanAttack" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_w2mge")
 sprite_frames = SubResource("SpriteFrames_4pqgq")
 animation = &"attack"
-frame = 4
+frame = 3
 frame_progress = 1.0
 offset = Vector2(0, -31)
-script = ExtResource("3_3do8d")
+script = ExtResource("12_hwnvt")
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_7s777")
+}
 
 [node name="Particle" type="AnimatedSprite2D" parent="."]
 position = Vector2(76, 54)
@@ -255,13 +359,12 @@ animation = &"bump"
 frame_progress = 0.604919
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, 57)
 shape = SubResource("CircleShape2D_1n23d")
 
 [node name="CombatSystem" type="Node2D" parent="."]
 position = Vector2(8.00006, 59)
 scale = Vector2(2.48213, 2.48213)
-script = ExtResource("7_1qahh")
 
 [node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
 position = Vector2(-74.9357, -53.583)
@@ -286,8 +389,6 @@ position = Vector2(-5.52601, -24.6792)
 scale = Vector2(1.0332, 0.670944)
 shape = SubResource("RectangleShape2D_u1lr4")
 
-[node name="TimerAttacking" type="Timer" parent="CombatSystem"]
-
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("5_ahoiv")
 
@@ -295,29 +396,50 @@ script = ExtResource("5_ahoiv")
 one_shot = true
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+scale = Vector2(1.48, 1.48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2(4, -24)
 shape = SubResource("CircleShape2D_g0pof")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(81, -10)
+[node name="AttackingArea" type="Area2D" parent="."]
+position = Vector2(102.083, -10)
+scale = Vector2(2.8156, 2.8156)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackingArea"]
 position = Vector2(-76, -6)
 shape = SubResource("CircleShape2D_yeuhs")
 
 [node name="TimerInRange" type="Timer" parent="."]
 
+[node name="state_machine" parent="." instance=ExtResource("16_jmcbi")]
+
+[node name="idle" type="Node" parent="state_machine"]
+
+[node name="TimerSkill1" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="TimerAttacking" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPreattack" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="TimerCanAttack" to="." method="_on_timer_can_attack_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="CombatSystem/WeaponHitbox" to="." method="_on_weapon_hitbox_area_entered"]
 [connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_body_entered"]
 [connection signal="body_entered" from="CombatSystem/BossBodyHitbox" to="." method="_on_body_hitbox_body_entered"]
 [connection signal="body_exited" from="CombatSystem/BossBodyHitbox" to="." method="_on_body_hitbox_body_exited"]
-[connection signal="timeout" from="CombatSystem/TimerAttacking" to="CombatSystem" method="_on_timer_attacking_timeout"]
 [connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="AttackingArea" to="." method="_on_attacking_area_body_entered"]
+[connection signal="body_exited" from="AttackingArea" to="." method="_on_attacking_area_body_exited"]
 [connection signal="timeout" from="TimerInRange" to="." method="_on_timer_in_range_timeout"]
+[connection signal="timeout" from="TimerSkill1" to="." method="_on_timer_skill_1_timeout"]
+[connection signal="timeout" from="TimerAttacking" to="." method="_on_timer_attacking_timeout"]
+[connection signal="timeout" from="TimerPreattack" to="." method="_on_timer_preattack_timeout"]
