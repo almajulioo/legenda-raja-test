@@ -30,6 +30,4 @@ func _on_weapon_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shap
 	if area.name == "BossBodyHitbox":
 		var boss = get_node("../../Boss")
 		print("Darah Boss:")
-		boss.bossHealth.take_damage(1)
-		
-		
+		boss.take_damage(1)

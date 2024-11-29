@@ -6,8 +6,11 @@ class_name Player
 @onready var right_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/RightCollision
 @onready var body_hitbox_collision: CollisionShape2D = $CombatSystem/BodyHitbox/CollisionShape2D
 @onready var playerHealth : HealthSystem = $HealthSystem
+@onready var flash_animation = $AnimatedSprite2D/FlashAnimation
+@onready var freeze_manager = $"../FreezeManager"
 @export var projectile_node : PackedScene
 
+var startingHealth = 5
 var DEF_SPEED = 10000
 var SPEED = DEF_SPEED
 var direction : Vector2
@@ -18,6 +21,12 @@ var walking = false
 var attacking = false
 
 func _physics_process(delta: float) -> void:
+	if freeze_manager.check_if_frozen():
+		return
+	
+	if playerHealth.is_dead():
+		get_tree().reload_current_scene()
+	
 	if not dashing:
 		direction = Input.get_vector("left", "right", "up", "down").normalized()
 		
@@ -67,11 +76,13 @@ func _on_timer_can_dash_timeout() -> void:
 	canDash = true
 	
 
-#func _on_animated_sprite_2d_animation_finished() -> void:
-	#attacking = false
-	#left_collision.disabled = true
-	#right_collision.disabled = true
-	
+func take_damage(damage : int):
+	if playerHealth.invulnerable == false:
+		flash_animation.play("flash")
+		animated_sprite_2d.play_idle_animation()
+		freeze_manager.apply_freeze()
+		playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
+		print("Health = " + str(playerHealth.health))	
 
 func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
@@ -84,5 +95,3 @@ func _on_right_weapon_sprite_animation_finished() -> void:
 	left_collision.disabled = true
 	right_collision.disabled = true
 	$CombatSystem/RightWeaponSprite.visible = false
-
-func single_shot

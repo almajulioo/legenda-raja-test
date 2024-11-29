@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://cc8w3e5qtpb34"]
+[gd_scene load_steps=4 format=4 uid="uid://cc8w3e5qtpb34"]
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_40y2v"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_j7id7"]
-[ext_resource type="PackedScene" uid="uid://bkfxssgytv2qs" path="res://Boss/Golem/boss.tscn" id="3_0iijp"]
-[ext_resource type="Script" path="res://Scenes/freeze_manager.gd" id="4_opa6i"]
+[ext_resource type="PackedScene" uid="uid://bkfxssgytv2qs" path="res://Boss/boss.tscn" id="3_0iijp"]
 
 [node name="Main" type="Node"]
 
@@ -40,6 +39,3 @@ tile_set = ExtResource("1_40y2v")
 
 [node name="Boss" parent="Node2D" instance=ExtResource("3_0iijp")]
 position = Vector2(1561, 820)
-
-[node name="FreezeManager" type="Node" parent="Node2D"]
-script = ExtResource("4_opa6i")
