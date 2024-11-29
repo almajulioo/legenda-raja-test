@@ -6,9 +6,12 @@ class_name Player
 @onready var right_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/RightCollision
 @onready var body_hitbox_collision: CollisionShape2D = $CombatSystem/BodyHitbox/CollisionShape2D
 @onready var playerHealth : HealthSystem = $HealthSystem
+@export var projectile_node : PackedScene
 
 var startingHealth = 5
 var SPEED = 19000
+var DEF_SPEED = 10000
+var SPEED = DEF_SPEED
 var direction : Vector2
 var canDash = true
 var dashing = false
@@ -33,6 +36,7 @@ func _physics_process(delta: float) -> void:
 		dashing = true
 		canDash = false
 		SPEED = SPEED * 8
+		animated_sprite_2d.play_dash_animation()
 		$TimerDashing.start(0.1)
 		$TimerCanDash.start(1)
 	
@@ -61,14 +65,29 @@ func _physics_process(delta: float) -> void:
 func _on_timer_dashing_timeout():
 	$TimerDashing.stop()
 	dashing = false
-	SPEED = 19000
+	SPEED = DEF_SPEED
 
 func _on_timer_can_dash_timeout() -> void:
 	$TimerCanDash.stop()
 	canDash = true
 	
 
-func _on_animated_sprite_2d_animation_finished() -> void:
+#func _on_animated_sprite_2d_animation_finished() -> void:
+	#attacking = false
+	#left_collision.disabled = true
+	#right_collision.disabled = true
+	
+
+func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
 	left_collision.disabled = true
 	right_collision.disabled = true
+	$CombatSystem/LeftWeaponSprite.visible = false
+
+func _on_right_weapon_sprite_animation_finished() -> void:
+	attacking = false
+	left_collision.disabled = true
+	right_collision.disabled = true
+	$CombatSystem/RightWeaponSprite.visible = false
+
+func single_shot

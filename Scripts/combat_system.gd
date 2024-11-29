@@ -6,16 +6,20 @@ class_name CombatSystem
 @onready var player: Player = $".."
 @onready var left_collision: CollisionShape2D = $WeaponHitbox/LeftCollision
 @onready var right_collision: CollisionShape2D = $WeaponHitbox/RightCollision
+@onready var left_weapon_sprite: AnimatedSprite2D = $LeftWeaponSprite
+@onready var right_weapon_sprite: AnimatedSprite2D = $RightWeaponSprite
 
 func _input(event):
 	if Input.is_action_just_pressed("basic_attack"):
 		player.attacking = true
-		animated_sprite_2d.play_attack_animation(player.velocity)
 		if animated_sprite_2d.flip_h:
+			left_weapon_sprite.play("attack")
+			left_weapon_sprite.visible = true
 			left_collision.disabled = false
 		else:
+			right_weapon_sprite.play("attack")
+			right_weapon_sprite.visible =true
 			right_collision.disabled = false
-			
 
 
 #func _on_weapon_hitbox_body_entered(body: Node2D) -> void:

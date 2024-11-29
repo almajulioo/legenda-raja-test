@@ -1,9 +1,11 @@
 extends Node
 class_name HealthSystem
-var health: int
+var max_health: int = 5
+var health: int = clamp(max_health, 0, max_health)
 var heal_potion: int = 3
 var invulnerable = false
 var last_health : int
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +16,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("heal") and heal_potion > 0:
 		heal_potion -= 1
-		health = clamp(health + 1, 0, 5)
+		health = clamp(health + 3, 0, max_health)
 		last_health = health
 		print("Health = " + str(health))
 	#if Input.is_action_just_pressed("decrease_health") and not invulnerable:
