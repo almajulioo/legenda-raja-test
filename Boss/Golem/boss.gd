@@ -6,6 +6,7 @@ enum BossState {
 	Idle,
 	Attacking,
 	Chasing,
+	Dash,
 	Skill1,
 	Dead,
 }
@@ -23,9 +24,10 @@ var canAttack : bool = true
 var attacking : bool = false
 var canUseSkillOne : bool = false
 var isDead: bool = false
+var dashing: bool = false
+var canDash: bool = true
 
-
-var current_state: BossState = BossState.Idle
+var current_state: BossState = BossState.Chasing
 var state_change_timer: float = 0.0
 var SPEED = 15000
 var startingHealth = 30
@@ -58,6 +60,15 @@ func _process(delta: float) -> void:
 			animated_sprite_2d.play('idle')
 		BossState.Chasing:
 			animated_sprite_2d.play('idle')
+			if canDash:
+				change_state(BossState.Dash)
+		BossState.Dash:
+			if canDash:
+				animated_sprite_2d.play("dash")
+				$TimerCanDash.start()
+				dashing = true
+				canDash = false
+				SPEED = 300000
 		BossState.Attacking:
 			if canUseSkillOne == true:
 				change_state(BossState.Skill1)
@@ -113,7 +124,6 @@ func effect():
 	await get_tree().create_timer(1.2).timeout	
 	fang.free()
 
-
 func take_damage(damage : int):
 	flash_animation.play("flash")
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
@@ -124,7 +134,7 @@ func _on_player_detector_body_entered(body: Node2D) -> void:
 		change_state(BossState.Chasing)
 
 func _on_attacking_area_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and not dashing:
 		change_state(BossState.Attacking)
 
 func _on_attacking_area_body_exited(body: Node2D) -> void:
@@ -150,8 +160,14 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "skill1":
 		change_state(BossState.Attacking)
 		effect()
+	if animated_sprite_2d.animation == "dash":
+		dashing = false
+		SPEED = 15000
+		change_state(BossState.Attacking)
 
 func _on_weapon_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "BodyHitbox":
 		player.take_damage(1)
-		
+
+func _on_timer_can_dash_timeout() -> void:
+	canDash = true

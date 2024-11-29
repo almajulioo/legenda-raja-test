@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
 [ext_resource type="PackedScene" uid="uid://c5o5fgskntesd" path="res://Scenes/health_system_ui.tscn" id="2_4urmp"]
-[ext_resource type="PackedScene" uid="uid://cwp5m1he55ll3" path="res://Scenes/projectile.tscn" id="2_23ubv"]
+[ext_resource type="PackedScene" uid="uid://dqcsy7wvtykwy" path="res://Scenes/projectile.tscn" id="2_23ubv"]
 [ext_resource type="Script" path="res://Scripts/animation_controller.gd" id="3_acs1y"]
 [ext_resource type="Script" path="res://Scripts/combat_system.gd" id="4_e1fdc"]
 [ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="4_ifv6p"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ci1fnasfwm6tg" path="res://Assets/Senjata Rencong/Attack5.png" id="14_lipla"]
 [ext_resource type="Texture2D" uid="uid://cwps6dc04aem7" path="res://Assets/Senjata Rencong/Attack6.png" id="15_qwwvw"]
 [ext_resource type="Script" path="res://Scripts/skill_bar.gd" id="18_1rw7k"]
-[ext_resource type="PackedScene" uid="uid://eso200huv5dh" path="res://Scenes/skill_button.tscn" id="19_hwwhf"]
+[ext_resource type="PackedScene" path="res://Scenes/skill_button.tscn" id="19_hwwhf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvvfq"]
 shader = ExtResource("4_ifv6p")

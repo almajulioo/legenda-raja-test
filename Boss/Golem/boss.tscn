@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bkfxssgytv2qs"]
+[gd_scene load_steps=52 format=3 uid="uid://bkfxssgytv2qs"]
 
 [ext_resource type="Script" path="res://Boss/Golem/boss.gd" id="1_wl4ro"]
 [ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="2_b444y"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://p6wwurh7fjhb" path="res://Assets/Factions/Bosses/Golem/Attack/skill1.png" id="10_vv5x6"]
 [ext_resource type="Texture2D" uid="uid://bf8chbyvvtg7s" path="res://Assets/Factions/Bosses/Golem/Attack/skill2.png" id="11_efc3q"]
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
-[ext_resource type="PackedScene" uid="uid://bekp7jb0laluj" path="res://state_machine/state_machine.tscn" id="16_jmcbi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_b444y")
@@ -45,7 +44,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_eccr7")
+"texture": ExtResource("2_hd72d")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_lbw0j")
@@ -57,11 +56,11 @@ animations = [{
 "texture": ExtResource("8_dwsrp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_eccr7")
+"texture": ExtResource("2_hd72d")
 }],
-"loop": true,
+"loop": false,
 "name": &"dash",
-"speed": 5.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -340,8 +339,8 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_w2mge")
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"attack"
-frame = 3
+animation = &"dash"
+frame = 4
 frame_progress = 1.0
 offset = Vector2(0, -31)
 script = ExtResource("12_hwnvt")
@@ -396,14 +395,15 @@ script = ExtResource("5_ahoiv")
 one_shot = true
 
 [node name="PlayerDetector" type="Area2D" parent="."]
-scale = Vector2(1.48, 1.48)
+position = Vector2(-35.4166, 0)
+scale = Vector2(2.71536, 2.71536)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2(4, -24)
 shape = SubResource("CircleShape2D_g0pof")
 
 [node name="AttackingArea" type="Area2D" parent="."]
-position = Vector2(102.083, -10)
+position = Vector2(168.75, -10.4166)
 scale = Vector2(2.8156, 2.8156)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackingArea"]
@@ -411,10 +411,6 @@ position = Vector2(-76, -6)
 shape = SubResource("CircleShape2D_yeuhs")
 
 [node name="TimerInRange" type="Timer" parent="."]
-
-[node name="state_machine" parent="." instance=ExtResource("16_jmcbi")]
-
-[node name="idle" type="Node" parent="state_machine"]
 
 [node name="TimerSkill1" type="Timer" parent="."]
 wait_time = 6.0
@@ -426,6 +422,10 @@ one_shot = true
 
 [node name="TimerPreattack" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="TimerCanDash" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [connection signal="timeout" from="TimerCanAttack" to="." method="_on_timer_can_attack_timeout"]
@@ -443,3 +443,4 @@ one_shot = true
 [connection signal="timeout" from="TimerSkill1" to="." method="_on_timer_skill_1_timeout"]
 [connection signal="timeout" from="TimerAttacking" to="." method="_on_timer_attacking_timeout"]
 [connection signal="timeout" from="TimerPreattack" to="." method="_on_timer_preattack_timeout"]
+[connection signal="timeout" from="TimerCanDash" to="." method="_on_timer_can_dash_timeout"]
