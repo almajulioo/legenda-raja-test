@@ -40,8 +40,6 @@ script = ExtResource("1_dfn2t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jog3u")
 animation = &"Laser"
-frame = 4
-frame_progress = 0.388208
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

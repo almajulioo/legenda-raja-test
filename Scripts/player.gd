@@ -52,11 +52,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play_idle_animation()
 	move_and_slide()
 
-#func _input(event):
-	#if Input.is_action_just_pressed("basic_attack"):
-		#attacking = true
-		#animated_sprite_2d.play_attack_animation(direction)
-	
+
 func _on_timer_dashing_timeout():
 	$TimerDashing.stop()
 	dashing = false
@@ -65,13 +61,6 @@ func _on_timer_dashing_timeout():
 func _on_timer_can_dash_timeout() -> void:
 	$TimerCanDash.stop()
 	canDash = true
-	
-
-#func _on_animated_sprite_2d_animation_finished() -> void:
-	#attacking = false
-	#left_collision.disabled = true
-	#right_collision.disabled = true
-	
 
 func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
@@ -85,4 +74,35 @@ func _on_right_weapon_sprite_animation_finished() -> void:
 	right_collision.disabled = true
 	$CombatSystem/RightWeaponSprite.visible = false
 
-func single_shot
+func single_shot(animation_name = "Laser"):
+	var projectile = projectile_node.instantiate()
+	
+	projectile.play(animation_name)
+	
+	projectile.position = global_position
+	projectile.direction = (get_global_mouse_position() - global_position).normalized()
+	
+	get_tree().current_scene.call_deferred("add_child", projectile)
+
+func active_shield():
+	var shield = 3
+	print(shield)
+
+func multi_shot(count: int = 3, delay: float = 0.3, animation_name = "Laser"):
+	for i in range(count):
+		single_shot(animation_name)
+		await get_tree().create_timer(delay).timeout
+		
+#func angled_shot(angle):
+	#var projectile = projectile_node.instantiate()
+	#
+	#projectile.play("Laser")
+	#
+	#projectile.position = global_position
+	#projectile.direciton = Vector2(cos(angle), sin(angle))
+	#
+	#get_tree().current_scene.call_deferred("add_child", projectile)
+	#
+#func radial(count):
+	#for i in range(count):
+		#angled_shot((float(i) / count) * 2.0 * PI)
