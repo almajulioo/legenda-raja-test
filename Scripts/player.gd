@@ -7,6 +7,7 @@ class_name Player
 @onready var body_hitbox_collision: CollisionShape2D = $CombatSystem/BodyHitbox/CollisionShape2D
 @onready var playerHealth : HealthSystem = $HealthSystem
 
+var startingHealth = 5
 var SPEED = 19000
 var direction : Vector2
 var canDash = true
@@ -16,6 +17,9 @@ var walking = false
 var attacking = false
 
 func _physics_process(delta: float) -> void:
+	if playerHealth.is_dead():
+		get_tree().reload_current_scene()
+	
 	if not dashing:
 		direction = Input.get_vector("left", "right", "up", "down").normalized()
 		
