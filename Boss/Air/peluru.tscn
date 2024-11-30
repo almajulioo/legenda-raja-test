@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxicpno8oq328"]
+
+[ext_resource type="Texture2D" uid="uid://b03t2p4oortsy" path="res://Assets/Factions/Bosses/Air/Peluru.png" id="1_47alc"]
+[ext_resource type="Script" path="res://Boss/Air/peluru.gd" id="1_c1qiw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phudv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_47alc")
+}],
+"loop": true,
+"name": &"peluru",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty6m4"]
+size = Vector2(49, 37)
+
+[node name="Peluru" type="Area2D"]
+script = ExtResource("1_c1qiw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.6875, 1.6875)
+sprite_frames = SubResource("SpriteFrames_phudv")
+animation = &"peluru"
+
+[node name="CollisionPeluru" type="CollisionShape2D" parent="."]
+position = Vector2(-6.5, -0.5)
+shape = SubResource("RectangleShape2D_ty6m4")
+
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D2" to="." method="_on_visible_on_screen_notifier_2d_2_screen_exited"]

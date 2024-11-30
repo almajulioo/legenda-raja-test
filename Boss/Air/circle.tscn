@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0ijf0aahm5ao"]
+
+[ext_resource type="Texture2D" uid="uid://blulxdu0opbyc" path="res://Assets/Factions/Bosses/Air/Air1.png" id="1_pmjdx"]
+[ext_resource type="Script" path="res://Boss/Air/circle.gd" id="1_rvxbd"]
+[ext_resource type="Texture2D" uid="uid://h86ciscsf7so" path="res://Assets/Factions/Bosses/Air/Air2.png" id="2_qgp0m"]
+[ext_resource type="Texture2D" uid="uid://bx0fddy71sn2e" path="res://Assets/Factions/Bosses/Air/Air3.png" id="3_kentm"]
+[ext_resource type="Texture2D" uid="uid://d282wm8j14hx2" path="res://Assets/Factions/Bosses/Air/Air4.png" id="4_m47gh"]
+[ext_resource type="Texture2D" uid="uid://vpcabshh7fxg" path="res://Assets/Factions/Bosses/Air/Air5.png" id="5_lff8b"]
+[ext_resource type="Texture2D" uid="uid://croqmjgrjm1s4" path="res://Assets/Factions/Bosses/Air/Air6.png" id="6_ypieh"]
+[ext_resource type="Texture2D" uid="uid://b0euvi6b7d74s" path="res://Assets/Factions/Bosses/Air/Air7.png" id="7_ofxps"]
+[ext_resource type="Texture2D" uid="uid://bdf8vmak03jce" path="res://Assets/Factions/Bosses/Air/Air8.png" id="8_0yvpu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yqgjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pmjdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qgp0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kentm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m47gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lff8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ypieh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ofxps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0yvpu")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"air",
+"speed": 7.0
+}]
+
+[node name="Circle" type="Node2D"]
+script = ExtResource("1_rvxbd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(12.3535, 12.3535)
+sprite_frames = SubResource("SpriteFrames_yqgjq")
+animation = &"air"
+frame = 8
+frame_progress = 1.0

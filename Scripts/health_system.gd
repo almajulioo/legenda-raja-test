@@ -16,7 +16,7 @@ func _ready() -> void:
 	print("Starting health = " + str(health))
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("heal") and heal_potion > 0:
+	if Input.is_action_just_pressed("heal") and heal_potion > 0 and health < 5:
 		heal_potion -= 1
 		health = clamp(health + 3, 0, max_health)
 		last_health = health
