@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_j7id7"]
 [ext_resource type="PackedScene" path="res://freeze_manager.tscn" id="3_ylu7l"]
 [ext_resource type="Script" path="res://Scripts/freeze_manager.gd" id="4_opa6i"]
-[ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="6_naiva"]
-[ext_resource type="AudioStream" uid="uid://jqf17ade7e7m" path="res://Assets/Sound/BGM/musik lobby legenda raja.mp3" id="6_4fbrs"]
+[ext_resource type="AudioStream" uid="uid://b5pi8r5jowqkn" path="res://Assets/Sound/BGM/musik lobby legenda raja.mp3" id="6_4fbrs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlxm6"]
 
@@ -68,9 +67,6 @@ shape = SubResource("RectangleShape2D_dlxm6")
 position = Vector2(736, 357)
 shape = SubResource("RectangleShape2D_dlxm6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Node2D"]
-
-[node name="Control" parent="Node2D/CanvasLayer" instance=ExtResource("6_naiva")]
 [node name="BGM" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("6_4fbrs")
 autoplay = true
@@ -78,5 +74,3 @@ autoplay = true
 [connection signal="body_entered" from="Node2D/LevelBatu" to="Node2D" method="_on_level_batu_body_entered"]
 [connection signal="body_entered" from="Node2D/LevelAir" to="Node2D" method="_on_level_air_body_entered"]
 [connection signal="body_entered" from="Node2D/LevelBayangan" to="Node2D" method="_on_level_bayangan_body_entered"]
-[connection signal="finished" from="Node2D/BGM" to="Node2D" method="_on_bgm_finished"]
-[connection signal="finished" from="Node2D/BGM" to="Node2D/Player" method="_on_bgm_finished"]

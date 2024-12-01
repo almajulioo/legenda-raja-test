@@ -1,10 +1,11 @@
 [gd_scene load_steps=6 format=4 uid="uid://bw7ieiodnsv0r"]
 
-[ext_resource type="TileSet" uid="uid://dhv152py2ktph" path="res://level_bayangan.tres" id="1_8jfr1"]
+[ext_resource type="TileSet" uid="uid://jnqbv8p5orvg" path="res://level_bayangan.tres" id="1_8jfr1"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_e3sng"]
-[ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_a57kg"]
+[ext_resource type="PackedScene" path="res://freeze_manager.tscn" id="3_a57kg"]
 [ext_resource type="PackedScene" uid="uid://crpvb1bdbp6p3" path="res://Boss/Bayangan/boss_bayangan.tscn" id="4_7a8vs"]
 [ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="5_l4yng"]
+[ext_resource type="AudioStream" uid="uid://dopq06rmw2wvv" path="res://Assets/Sound/BGM/bgm boss bayang.mp3" id="5_nyqy1"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -32,3 +33,8 @@ position = Vector2(931, 298)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_l4yng")]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nyqy1")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="Player" method="_on_audio_stream_player_2d_finished"]

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 class_name Player
+@onready var game_over_scene = preload("res://Scenes/game_over.tscn")
 @onready var animated_sprite_2d: AnimationController = $AnimatedSprite2D
 @onready var left_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/LeftCollision
 @onready var right_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/RightCollision
@@ -9,6 +10,7 @@ class_name Player
 @onready var flash_animation = $AnimatedSprite2D/FlashAnimation
 @onready var freeze_manager = $"../FreezeManager"
 @export var projectile_node : PackedScene
+
 
 var startingHealth = 5
 var DEF_SPEED = 10000
@@ -21,50 +23,50 @@ var walking = false
 var attacking = false
 var healing = false
 
+
 func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
 	
 	if playerHealth.is_dead():
 		animated_sprite_2d.play_die_animation()
-		get_tree().reload_current_scene()
-	
-	if not dashing:
-		direction = Input.get_vector("left", "right", "up", "down").normalized()
-		
-	if direction: 
-		velocity = direction * SPEED * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
-		velocity.y = move_toward(velocity.y, 0, SPEED * delta)
-	
-	if not dashing and Input.is_action_just_pressed("dash") and direction != Vector2.ZERO and canDash:
-		dashing = true
-		canDash = false
-		SPEED = SPEED * 8
-		animated_sprite_2d.play_dash_animation()
-		$TimerDashing.start(0.1)
-		$TimerCanDash.start(1)
-	
-	if healing:
-		$HealingEffectAnimation.play("HealingEffect")
-	
-	if dashing:
-		body_hitbox_collision.disabled = true
-	else:
-		body_hitbox_collision.disabled = false
-		
-	if velocity != Vector2.ZERO and not attacking:
-		if is_on_wall() and velocity.y == 0:
-			animated_sprite_2d.play_idle_animation()
-		elif (is_on_ceiling() or is_on_floor()) and velocity.x == 0:
-			animated_sprite_2d.play_idle_animation()	
+		if not dashing:
+			direction = Input.get_vector("left", "right", "up", "down").normalized()
+			
+		if direction: 
+			velocity = direction * SPEED * delta
 		else:
-			animated_sprite_2d.play_movement_animation(velocity)
+			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+			velocity.y = move_toward(velocity.y, 0, SPEED * delta)
 		
-	elif velocity == Vector2.ZERO and not attacking:
-		animated_sprite_2d.play_idle_animation()
-	move_and_slide()
+		if not dashing and Input.is_action_just_pressed("dash") and direction != Vector2.ZERO and canDash:
+			dashing = true
+			canDash = false
+			SPEED = SPEED * 8
+			animated_sprite_2d.play_dash_animation()
+			$TimerDashing.start(0.1)
+			$TimerCanDash.start(1)
+		
+		if healing:
+			$HealingEffectAnimation.play("HealingEffect")
+		
+		if dashing:
+			body_hitbox_collision.disabled = true
+		else:
+			body_hitbox_collision.disabled = false
+			
+		if velocity != Vector2.ZERO and not attacking:
+			if is_on_wall() and velocity.y == 0:
+				animated_sprite_2d.play_idle_animation()
+			elif (is_on_ceiling() or is_on_floor()) and velocity.x == 0:
+				animated_sprite_2d.play_idle_animation()	
+			else:
+				animated_sprite_2d.play_movement_animation(velocity)
+			
+		elif velocity == Vector2.ZERO and not attacking:
+			animated_sprite_2d.play_idle_animation()
+		move_and_slide()
 
 func _process(delta: float) -> void:
 	if healing:
@@ -83,6 +85,8 @@ func _on_timer_can_dash_timeout() -> void:
 	
 
 func take_damage(damage : int):
+	if playerHealth.is_dead():
+		return
 	if playerHealth.invulnerable == false:
 		flash_animation.play("flash")
 		animated_sprite_2d.play_hurt_animation()
@@ -160,3 +164,18 @@ func _on_healing_effect_animation_animation_finished() -> void:
 	healing = false
 	$HealingEffectAnimation.visible = false
 	
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "die":
+		var game_over = game_over_scene.instantiate()
+		game_over.position = position
+		$SkillUI.visible = false
+		$HealthSystemUI.visible = false
+		get_tree().current_scene.add_child(game_over)
+
+
+func _on_bgm_finished() -> void:
+	$"../BGM".play()
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	pass # Replace with function body.

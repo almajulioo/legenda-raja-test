@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_1m87v"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_0nwmu"]
-[ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_mrpau"]
+[ext_resource type="PackedScene" path="res://freeze_manager.tscn" id="3_mrpau"]
 [ext_resource type="PackedScene" uid="uid://bkfxssgytv2qs" path="res://Boss/Golem/boss.tscn" id="4_yo8l3"]
 [ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="5_o1yju"]
 

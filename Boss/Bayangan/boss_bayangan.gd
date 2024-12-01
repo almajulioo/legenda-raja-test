@@ -23,7 +23,7 @@ var canTangan:bool = false
 
 var current_state: BossState = BossState.Walking
 var state_change_timer: float = 0.0
-var SPEED = 20000
+var SPEED = 10000
 var startingHealth = 30
 var direction = Vector2()
 var random_move_time = 1 # Time in seconds to pick a new random direction
@@ -32,11 +32,9 @@ var move_timer = 0.0
 func change_state(new_state: BossState) -> void:
 	current_state = new_state
 	
-func _physics_process(delta: float) -> void:
-	pass
 	
 # Count down the timers and transition states when appropriate
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
 	
