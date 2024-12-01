@@ -30,7 +30,7 @@ var canDash: bool = true
 var current_state: BossState = BossState.Chasing
 var state_change_timer: float = 0.0
 var SPEED = 15000
-var startingHealth = 30
+var startingHealth = 50
 
 var punching : int = 0
 
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 				$TimerCanDash.start()
 				dashing = true
 				canDash = false
-				SPEED = 300000
+				SPEED = 140000
 		BossState.Attacking:
 			if canUseSkillOne == true:
 				change_state(BossState.Skill1)

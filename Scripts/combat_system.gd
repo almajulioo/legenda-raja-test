@@ -9,8 +9,12 @@ class_name CombatSystem
 @onready var left_weapon_sprite: AnimatedSprite2D = $LeftWeaponSprite
 @onready var right_weapon_sprite: AnimatedSprite2D = $RightWeaponSprite
 
+var canAttack = true
+
 func _input(event):
-	if Input.is_action_just_pressed("basic_attack"):
+	if Input.is_action_just_pressed("basic_attack") and canAttack:
+		$"../TimerCanAttack".start()
+		canAttack = false
 		player.attacking = true
 		if animated_sprite_2d.flip_h:
 			left_weapon_sprite.play("attack")
@@ -31,3 +35,7 @@ func _on_weapon_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shap
 		var boss = get_node("../../Boss")
 		print("Darah Boss:")
 		boss.take_damage(1)
+
+
+func _on_timer_can_attack_timeout() -> void:
+	canAttack = true

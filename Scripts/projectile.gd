@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var player : Player = get_node("../Player")
 
-var speed : float = 200
+var speed : float = 300
 var direction : Vector2 = Vector2.RIGHT:
 	set(value):
 		direction = value

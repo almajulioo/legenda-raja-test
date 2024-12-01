@@ -54,13 +54,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_dwsrp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_hd72d")
 }],
 "loop": false,
 "name": &"dash",
-"speed": 40.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -340,7 +337,7 @@ one_shot = true
 material = SubResource("ShaderMaterial_w2mge")
 sprite_frames = SubResource("SpriteFrames_4pqgq")
 animation = &"dash"
-frame = 4
+frame = 3
 frame_progress = 1.0
 offset = Vector2(0, -31)
 script = ExtResource("12_hwnvt")
@@ -366,8 +363,8 @@ position = Vector2(8.00006, 59)
 scale = Vector2(2.48213, 2.48213)
 
 [node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-74.9357, -53.583)
-scale = Vector2(0.495981, 0.333333)
+position = Vector2(-74.5662, -87.5591)
+scale = Vector2(0.495981, 0.702639)
 
 [node name="LeftCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
 position = Vector2(86.75, 77)

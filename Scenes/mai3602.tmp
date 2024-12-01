@@ -39,7 +39,7 @@ tile_map_data = PackedByteArray("AAAJAAkAAAABAAEAAAALAAkAAAABAAEAAAAKAAkAAAABAAE
 tile_set = ExtResource("1_40y2v")
 
 [node name="Boss" parent="Node2D" instance=ExtResource("3_0iijp")]
-position = Vector2(1126, 654)
+position = Vector2(1042, 636)
 
 [node name="FreezeManager" type="Node" parent="Node2D"]
 script = ExtResource("4_opa6i")
