@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b38drfhd6b03f"]
+
+[ext_resource type="Shader" path="res://Scenes/pause_menu.gdshader" id="1_ik7t6"]
+
+[resource]
+shader = ExtResource("1_ik7t6")
+shader_parameter/lod = 0.0

@@ -1,41 +1,91 @@
-[gd_scene load_steps=8 format=3 uid="uid://dscr837g0sw8b"]
+[gd_scene load_steps=9 format=3 uid="uid://dscr837g0sw8b"]
 
-[ext_resource type="StyleBox" uid="uid://cjb12vsy05mlx" path="res://Resources/hover_button.tres" id="1_omhcb"]
-[ext_resource type="StyleBox" uid="uid://dex6iprylb8jv" path="res://Resources/normal_button.tres" id="2_yy8nm"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="1_tu06i"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="3_tgang"]
 [ext_resource type="Texture2D" uid="uid://ca41v2q0fsti8" path="res://Assets/LEGENDA TIGA RAJA.png" id="4_lp0jy"]
 [ext_resource type="Texture2D" uid="uid://bg0nri6iewqjb" path="res://Assets/UI/Banners/Banner_Vertical.png" id="4_m8tx7"]
+[ext_resource type="Material" uid="uid://b38drfhd6b03f" path="res://Resources/pause_menu.tres" id="5_sopv1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsprd"]
+[sub_resource type="Animation" id="Animation_25203"]
+resource_name = "credits"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="Theme" id="Theme_78bce"]
-Button/colors/font_color = Color(0.0519484, 0.0519484, 0.0519484, 1)
-Button/font_sizes/font_size = 38
-Button/styles/focus = SubResource("StyleBoxEmpty_hsprd")
-Button/styles/hover = ExtResource("1_omhcb")
-Button/styles/normal = ExtResource("2_yy8nm")
+[sub_resource type="Animation" id="Animation_yc460"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqthf"]
+_data = {
+"RESET": SubResource("Animation_yc460"),
+"credits": SubResource("Animation_25203")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_78bce")
+theme = ExtResource("1_tu06i")
 script = ExtResource("3_tgang")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-offset_left = -587.0
-offset_top = -328.0
-offset_right = 584.0
-offset_bottom = 344.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_lp0jy")
 expand_mode = 1
-stretch_mode = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -85,6 +135,49 @@ text = "Credits"
 layout_mode = 2
 text = "Exit"
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("5_sopv1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits
+Ashoka Tatang Solihin - Game Director and Programmer
+Muhammad Narendra Budi Utomo - Progammer
+Alma Julio Isnansyah - Programmer
+Marchel Karuna Kwee - Artist
+Pricelia Putri Sudirman Zulkarnain - Composer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hqthf")
+}
+
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/CreditsButton" to="." method="_on_credits_button_button_up"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/ExitButton" to="." method="_on_exit_button_button_up"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
