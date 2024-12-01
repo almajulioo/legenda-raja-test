@@ -10,8 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-
 func _on_level_batu_body_entered(body: Node2D) -> void:
 	if body is Player:
 		get_tree().change_scene_to_file("res://level_batu.tscn")
@@ -20,7 +18,7 @@ func _on_level_batu_body_entered(body: Node2D) -> void:
 func _on_level_air_body_entered(body: Node2D) -> void:
 	if body is Player:
 		get_tree().change_scene_to_file("res://level_air.tscn")
-
+ 
 
 func _on_level_bayangan_body_entered(body: Node2D) -> void:
 	if body is Player:

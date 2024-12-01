@@ -1,11 +1,48 @@
-[gd_scene load_steps=6 format=4 uid="uid://cyoc111vda42j"]
+[gd_scene load_steps=10 format=4 uid="uid://cyoc111vda42j"]
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_3e2mh"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_m6a65"]
-[ext_resource type="PackedScene" path="res://freeze_manager.tscn" id="3_lak18"]
+[ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_lak18"]
 [ext_resource type="PackedScene" uid="uid://bfqo6stej1puk" path="res://Boss/Air/boss_air.tscn" id="4_5a8jx"]
 [ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="5_2a68x"]
 [ext_resource type="AudioStream" uid="uid://cqsnkk1wsrwuw" path="res://Assets/Sound/BGM/bgm boss air.mp3" id="5_jv3kr"]
+
+[sub_resource type="Animation" id="Animation_xxppx"]
+resource_name = "text_lokasi"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rotox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xia17"]
+_data = {
+"RESET": SubResource("Animation_rotox"),
+"text_lokasi": SubResource("Animation_xxppx")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -44,8 +81,34 @@ position = Vector2(1257, 285)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_2a68x")]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -183.0
+offset_right = 88.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 47
+text = "Pulau Samosir - Sumatera Utara
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_jv3kr")
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xia17")
+}
+autoplay = "text_lokasi"
 
 [connection signal="finished" from="BGM" to="Player" method="_on_bgm_finished"]

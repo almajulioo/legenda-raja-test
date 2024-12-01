@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bkfxssgytv2qs"]
+[gd_scene load_steps=54 format=3 uid="uid://bkfxssgytv2qs"]
 
 [ext_resource type="Script" path="res://Boss/Golem/boss.gd" id="1_wl4ro"]
 [ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="2_b444y"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://bf8chbyvvtg7s" path="res://Assets/Factions/Bosses/Golem/Attack/skill2.png" id="11_efc3q"]
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
 [ext_resource type="Script" path="res://Scripts/boss_health_system.gd" id="17_vruaw"]
+[ext_resource type="PackedScene" uid="uid://3b55casibbeg" path="res://Scenes/healthbar.tscn" id="18_w135q"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="19_bu3ik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_b444y")
@@ -417,6 +419,21 @@ one_shot = true
 [node name="TimerCanDash" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("18_w135q")]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 386.0
+offset_top = 541.0
+offset_right = 527.0
+offset_bottom = 578.0
+theme = ExtResource("19_bu3ik")
+theme_override_font_sizes/font_size = 27
+text = "Siboru Mardomu
+"
+vertical_alignment = 1
 
 [connection signal="timeout" from="TimerCanAttack" to="." method="_on_timer_can_attack_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

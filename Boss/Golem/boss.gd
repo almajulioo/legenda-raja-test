@@ -15,6 +15,7 @@ enum BossState {
 @onready var bossHealth : BossHealthSystem = $HealthSystem
 @onready var flash_animation = $AnimatedSprite2D/FlashAnimation
 @onready var freeze_manager = $"../FreezeManager"
+@onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
 
 # Preload fang projectile or attack animation
 var fang_attack_scene = preload("res://Boss/Golem/skill1.tscn")  
@@ -33,6 +34,9 @@ var SPEED = 7000
 var startingHealth = 50
 
 var punching : int = 0
+
+func _ready() -> void:
+	healthbar.init_health(startingHealth)
 
 
 func change_state(new_state: BossState) -> void:
@@ -129,6 +133,7 @@ func effect():
 func take_damage(damage : int):
 	flash_animation.play("flash")
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
+	healthbar.health = bossHealth.health
 	print("Health = " + str(bossHealth.health))		
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
