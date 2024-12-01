@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Boss_Airw
+class_name Boss_Air
 
 # What state the turret is in
 enum BossState {
@@ -28,7 +28,7 @@ var canRoar: bool = false
 var current_state: BossState = BossState.Walking
 var state_change_timer: float = 0.0
 var SPEED = 30000
-var startingHealth = 30
+var startingHealth = 50
 var random_move_time = 1 # Time in seconds to pick a new random direction
 var move_timer = 0.0
 var punching : int = 0
@@ -49,13 +49,11 @@ func _process(delta: float) -> void:
 	if bossHealth.is_dead():
 		change_state(BossState.Dead)
 	
-	if bossHealth.health == 20 and transformed == false:
-		freeze_manager.apply_freeze()
-		take_damage(1)
-		change_state(BossState.Transform)
+
 	
-	if circleShootCount == 3 and transformed == true:
+	if circleShootCount == 5 and transformed == true:
 		change_state(BossState.Transform)
+		circleShootCount = 0
 	
 	if is_on_wall():
 		move_timer = 0.0
@@ -111,8 +109,12 @@ func _process(delta: float) -> void:
 
 func take_damage(damage : int):
 	flash_animation.play("flash")
-	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
-	print("Health = " + str(bossHealth.health))		
+	for i in (damage):
+		bossHealth.health = clamp(bossHealth.health - 1, 0, bossHealth.max_health)
+		if bossHealth.health == 20 or bossHealth.health == 35 and transformed == false:
+			freeze_manager.apply_freeze()
+			change_state(BossState.Transform)
+	print("Health = " + str(bossHealth.health))
 
 func shoot_projectile():
 	var freq = 2
@@ -133,21 +135,24 @@ func spawn_circle():
 
 func shoot_projectile_circle():
 	var start_angle = 0.0  # Optional: Use an offset to rotate the whole pattern
-	var num_projectiles = 8
-	var angle_step = 2 * PI / num_projectiles  # Divide the circle into equal parts
-	# Shoot 8 projectiles in a circle
+	var base_num_projectiles = 8  # Base number of projectiles (can adjust based on circleShootCount)
+	var angle_step
+	var num_projectiles
+	if circleShootCount % 2 == 0:
+		num_projectiles = base_num_projectiles
+	else:
+		num_projectiles = base_num_projectiles + 6  # Add more projectiles to fill gaps in odd circles
+	angle_step = 2 * PI / num_projectiles  
+	
 	for i in range(num_projectiles):
 		var angle = start_angle + (i * angle_step)  # Calculate the angle for each projectile
 		var projectile = projectile_scene.instantiate()  # Create the projectile instance
 		get_parent().add_child(projectile)  # Add the projectile to the scene
-
 		# Set the direction of the projectile to point in the calculated angle
 		var dir = Vector2(cos(angle), sin(angle))  # Convert angle to a direction vector
 		projectile.direction = dir  # Set the direction of the projectile
-
 		# Set the projectile's position slightly in front of the boss
 		projectile.global_position = global_position + direction * 10  # Offset position slightly
-		
 	circleShootCount += 1
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
@@ -175,4 +180,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		spawn_circle()
 		player.slowed()
 		change_state(BossState.Walking)
+		
+	if animated_sprite_2d.animation == "dead":
+		queue_free()
 	

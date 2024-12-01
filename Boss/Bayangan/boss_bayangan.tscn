@@ -1,28 +1,19 @@
-[gd_scene load_steps=62 format=3 uid="uid://crpvb1bdbp6p3"]
+[gd_scene load_steps=51 format=3 uid="uid://crpvb1bdbp6p3"]
 
-[ext_resource type="Script" path="res://Boss/Air/boss_air.gd" id="1_8lu0n"]
+[ext_resource type="Script" path="res://Boss/Bayangan/boss_bayangan.gd" id="1_ybt8k"]
 [ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="2_juj0v"]
-[ext_resource type="Texture2D" uid="uid://bqbgc5h3mdrue" path="res://Assets/Factions/Bosses/Air/mati1.png" id="3_83pen"]
-[ext_resource type="Texture2D" uid="uid://yti0033sw2aw" path="res://Assets/Factions/Bosses/Air/mati2.png" id="4_xejst"]
-[ext_resource type="Texture2D" uid="uid://yr2hfh1g1j0n" path="res://Assets/Factions/Bosses/Air/mati3.png" id="5_h04c7"]
-[ext_resource type="Texture2D" uid="uid://bbu75ql5nphu0" path="res://Assets/Factions/Bosses/Air/mati4.png" id="6_1xyfm"]
-[ext_resource type="Texture2D" uid="uid://cqxijhysrwt8m" path="res://Assets/Factions/Bosses/Air/mati5.png" id="7_iukdr"]
-[ext_resource type="Texture2D" uid="uid://pdd5q6pch2pl" path="res://Assets/Factions/Bosses/Air/mati6.png" id="8_myidc"]
-[ext_resource type="Texture2D" uid="uid://bem86vdh1u0rn" path="res://Assets/Factions/Bosses/Air/mati7.png" id="9_p7uus"]
-[ext_resource type="Texture2D" uid="uid://lhwsan6s86h4" path="res://Assets/Factions/Bosses/Air/mati8.png" id="10_kw704"]
-[ext_resource type="Texture2D" uid="uid://c0xnvh31ji6ck" path="res://Assets/Factions/Bosses/Air/idle1 (2).png" id="11_a0a87"]
-[ext_resource type="Texture2D" uid="uid://rcdfpeco13n6" path="res://Assets/Factions/Bosses/Air/idle2 (1).png" id="12_c38ra"]
-[ext_resource type="Texture2D" uid="uid://dwhu5w5c33qaf" path="res://Assets/Factions/Bosses/Air/roar1.png" id="13_5uil3"]
-[ext_resource type="Texture2D" uid="uid://bur6nf3n4ye4o" path="res://Assets/Factions/Bosses/Air/roar.png" id="14_k6rpy"]
-[ext_resource type="Texture2D" uid="uid://s10de4s11tsq" path="res://Assets/Factions/Bosses/Air/tornado1 (1).png" id="15_euuwg"]
-[ext_resource type="Texture2D" uid="uid://k2a6t3ocolnj" path="res://Assets/Factions/Bosses/Air/tornado2 (1).png" id="16_lj77w"]
-[ext_resource type="Texture2D" uid="uid://cyqewccbtpvj1" path="res://Assets/Factions/Bosses/Air/tornado3 (1).png" id="17_7l6me"]
-[ext_resource type="Texture2D" uid="uid://ovqsy7gsrfw1" path="res://Assets/Factions/Bosses/Air/transform1 (1).png" id="18_3nte6"]
-[ext_resource type="Texture2D" uid="uid://cxpcjfpe5ew7k" path="res://Assets/Factions/Bosses/Air/transform2 (1).png" id="19_1bk7d"]
-[ext_resource type="Texture2D" uid="uid://cn00srwnhj7gl" path="res://Assets/Factions/Bosses/Air/transform3 (2).png" id="20_5kw4e"]
-[ext_resource type="Texture2D" uid="uid://cdovn81psocv1" path="res://Assets/Factions/Bosses/Air/tranform4.png" id="21_d0jhr"]
-[ext_resource type="Texture2D" uid="uid://bfl1jqm2ismh6" path="res://Assets/Factions/Bosses/Air/tranform5.png" id="22_rqs0t"]
-[ext_resource type="Texture2D" uid="uid://bcrbl066oyjop" path="res://Assets/Factions/Bosses/Air/transform6.png" id="23_we5rd"]
+[ext_resource type="Texture2D" uid="uid://cqv5rrbx4eo12" path="res://Assets/Factions/Bosses/Bayangan/Kesedot1.png" id="3_b4i5l"]
+[ext_resource type="Texture2D" uid="uid://bcjbe2gmgcswp" path="res://Assets/Factions/Bosses/Bayangan/Kesedot 2.png" id="4_r31ua"]
+[ext_resource type="Texture2D" uid="uid://djspt3dq3lxph" path="res://Assets/Factions/Bosses/Bayangan/Kesedot 3.png" id="5_31mhx"]
+[ext_resource type="Texture2D" uid="uid://q1xkcshfihbd" path="res://Assets/Factions/Bosses/Bayangan/Kesedot 4.png" id="6_3tctm"]
+[ext_resource type="Texture2D" uid="uid://bdujr7pt1coeh" path="res://Assets/Factions/Bosses/Bayangan/Kesedot 5.png" id="7_m835x"]
+[ext_resource type="Texture2D" uid="uid://hphi4k20k36w" path="res://Assets/Factions/Bosses/Bayangan/Kesedot 6.png" id="8_xmykg"]
+[ext_resource type="Texture2D" uid="uid://bibyb5sdxl6cf" path="res://Assets/Factions/Bosses/Bayangan/Kesedot 7.png" id="9_jll0l"]
+[ext_resource type="Texture2D" uid="uid://cbno3pgiqgd6p" path="res://Assets/Factions/Bosses/Bayangan/Skill21.png" id="10_hndlt"]
+[ext_resource type="Texture2D" uid="uid://c6b768ru4jtgj" path="res://Assets/Factions/Bosses/Bayangan/Skill22.png" id="11_637ue"]
+[ext_resource type="Texture2D" uid="uid://caaak1gx2ba20" path="res://Assets/Factions/Bosses/Bayangan/Skill23.png" id="12_1new6"]
+[ext_resource type="Texture2D" uid="uid://bxwn62xiiearc" path="res://Assets/Factions/Bosses/Bayangan/Skill24.png" id="13_u3coc"]
+[ext_resource type="Texture2D" uid="uid://ctnmy2e0t2kcs" path="res://Assets/Factions/Bosses/Bayangan/Skill25.png" id="14_uq2kt"]
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="24_q8h8n"]
 [ext_resource type="Texture2D" uid="uid://cm5ws5jwovqvh" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Bump.png" id="25_b0lby"]
 [ext_resource type="Texture2D" uid="uid://byjp0164df8h4" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Wall.png" id="26_0iynu"]
@@ -35,49 +26,38 @@ shader_parameter/flash_value = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pqgq"]
 animations = [{
-"frames": [],
-"loop": false,
-"name": &"dash",
-"speed": 40.0
-}, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_83pen")
+"texture": ExtResource("3_b4i5l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_xejst")
+"texture": ExtResource("4_r31ua")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_h04c7")
+"texture": ExtResource("5_31mhx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_1xyfm")
+"texture": ExtResource("6_3tctm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_iukdr")
+"texture": ExtResource("7_m835x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_myidc")
+"texture": ExtResource("8_xmykg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_p7uus")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_kw704")
-}, {
-"duration": 1.0,
-"texture": null
+"texture": ExtResource("9_jll0l")
 }],
 "loop": false,
 "name": &"dead",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_a0a87")
+"texture": ExtResource("10_hndlt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_c38ra")
+"texture": ExtResource("3_b4i5l")
 }],
 "loop": true,
 "name": &"idle",
@@ -85,91 +65,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_a0a87")
+"texture": ExtResource("10_hndlt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_5uil3")
+"texture": ExtResource("11_637ue")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_k6rpy")
+"texture": ExtResource("12_1new6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_u3coc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_uq2kt")
 }],
 "loop": false,
-"name": &"roar",
-"speed": 3.0
-}, {
-"frames": [],
-"loop": false,
-"name": &"skill1",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_euuwg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_lj77w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_7l6me")
-}],
-"loop": true,
-"name": &"tornado",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_3nte6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_1bk7d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_5kw4e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_d0jhr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_rqs0t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_we5rd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_euuwg")
-}],
-"loop": false,
-"name": &"transform",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_euuwg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_we5rd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_rqs0t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_d0jhr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_5kw4e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_1bk7d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_3nte6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_a0a87")
-}],
-"loop": false,
-"name": &"transform_back",
-"speed": 7.0
+"name": &"tongkat",
+"speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_spj0f"]
@@ -379,12 +291,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1n23d"]
 radius = 16.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qudo"]
-size = Vector2(87.5, 142)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykgkh"]
-size = Vector2(87.5, 142)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1lr4"]
 size = Vector2(40, 63)
 
@@ -394,20 +300,19 @@ radius = 707.229
 [sub_resource type="CircleShape2D" id="CircleShape2D_yeuhs"]
 radius = 283.924
 
-[node name="Boss_Air" type="CharacterBody2D"]
+[node name="Boss_Bayangan" type="CharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.480001, 0.480001)
 collision_mask = 6
-script = ExtResource("1_8lu0n")
+script = ExtResource("1_ybt8k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_w2mge")
-position = Vector2(2.08333, 91.6665)
-scale = Vector2(3.45537, 3.45537)
+position = Vector2(10.4166, 39.5833)
+scale = Vector2(2.33586, 2.33586)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"roar"
-frame = 2
-frame_progress = 1.0
+animation = &"idle"
+frame_progress = 0.93064
 offset = Vector2(0, -31)
 script = ExtResource("24_q8h8n")
 
@@ -424,30 +329,20 @@ animation = &"bump"
 frame_progress = 0.604919
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 57)
+position = Vector2(0, 33.3333)
 shape = SubResource("CircleShape2D_1n23d")
 
 [node name="CombatSystem" type="Node2D" parent="."]
-position = Vector2(8.00006, 59)
+position = Vector2(8.33332, 41.6666)
 scale = Vector2(2.48213, 2.48213)
 
 [node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
 position = Vector2(-74.9357, -53.583)
 scale = Vector2(0.495981, 0.333333)
 
-[node name="LeftCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
-position = Vector2(86.75, 77)
-shape = SubResource("RectangleShape2D_5qudo")
-disabled = true
-
-[node name="RightCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
-position = Vector2(193, 77)
-shape = SubResource("RectangleShape2D_ykgkh")
-disabled = true
-
 [node name="BossBodyHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(0.134262, 4.76735)
-scale = Vector2(1.2095, 1.3223)
+position = Vector2(2.65226, 4.76735)
+scale = Vector2(0.994082, 1.02404)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BossBodyHitbox"]
 position = Vector2(-5.52601, -24.6792)
@@ -476,16 +371,17 @@ scale = Vector2(2.8156, 2.8156)
 position = Vector2(-76, -6)
 shape = SubResource("CircleShape2D_yeuhs")
 
-[node name="TimerCanShoot" type="Timer" parent="."]
+[node name="TimerCanTongkat" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="TimerCanTangan" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+autostart = true
 
-[node name="TimerCanShootCircle" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
-[node name="TimerCanRoar" type="Timer" parent="."]
-wait_time = 10.0
+[node name="TimerTangan" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
@@ -499,6 +395,6 @@ autostart = true
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 [connection signal="body_entered" from="AttackingArea" to="." method="_on_attacking_area_body_entered"]
 [connection signal="body_exited" from="AttackingArea" to="." method="_on_attacking_area_body_exited"]
-[connection signal="timeout" from="TimerCanShoot" to="." method="_on_timer_can_shoot_timeout"]
-[connection signal="timeout" from="TimerCanShootCircle" to="." method="_on_timer_can_shoot_circle_timeout"]
-[connection signal="timeout" from="TimerCanRoar" to="." method="_on_timer_can_roar_timeout"]
+[connection signal="timeout" from="TimerCanTongkat" to="." method="_on_timer_can_tongkat_timeout"]
+[connection signal="timeout" from="TimerCanTangan" to="." method="_on_timer_can_tangan_timeout"]
+[connection signal="timeout" from="TimerTangan" to="." method="_on_timer_tangan_timeout"]
