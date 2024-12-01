@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dscr837g0sw8b"]
+[gd_scene load_steps=8 format=3 uid="uid://dscr837g0sw8b"]
 
 [ext_resource type="StyleBox" uid="uid://cjb12vsy05mlx" path="res://Resources/hover_button.tres" id="1_omhcb"]
 [ext_resource type="StyleBox" uid="uid://dex6iprylb8jv" path="res://Resources/normal_button.tres" id="2_yy8nm"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="3_tgang"]
+[ext_resource type="Texture2D" uid="uid://ca41v2q0fsti8" path="res://Assets/LEGENDA TIGA RAJA.png" id="4_lp0jy"]
 [ext_resource type="Texture2D" uid="uid://bg0nri6iewqjb" path="res://Assets/UI/Banners/Banner_Vertical.png" id="4_m8tx7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsprd"]
@@ -26,6 +27,16 @@ grow_vertical = 2
 theme = SubResource("Theme_78bce")
 script = ExtResource("3_tgang")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = -587.0
+offset_top = -328.0
+offset_right = 584.0
+offset_bottom = 344.0
+texture = ExtResource("4_lp0jy")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -33,10 +44,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -126.0
-offset_top = 2.0
-offset_right = 114.0
-offset_bottom = 245.0
+offset_left = -120.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 251.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_m8tx7")
