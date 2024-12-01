@@ -1,5 +1,5 @@
 extends Node
-class_name HealthSystem
+class_name BossHealthSystem
 #@onready var player: Player = $".."
 
 var max_health: int 
@@ -19,16 +19,6 @@ func _ready() -> void:
 	onShield = false
 	print("Starting health = " + str(health))
 	
-func _input(event: InputEvent) -> void:
-	if health < 5 and Input.is_action_just_pressed("heal") and heal_potion > 0 :
-		heal_potion -= 1
-		health = clamp(health + 3, 0, max_health)
-		last_health = health
-		print("Health = " + str(health))
-	#if Input.is_action_just_pressed("decrease_health") and not invulnerable:
-		#health = clamp(health - 1, 0, 5)
-		#print("Health = " + str(health))
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if shield == 0:
