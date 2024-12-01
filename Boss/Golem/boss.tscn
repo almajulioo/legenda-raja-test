@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://80q8vapbjmno" path="res://Assets/Factions/Bosses/Golem/Attack/normal.png" id="3_eccr7"]
 [ext_resource type="Texture2D" uid="uid://e3paf1op6gvi" path="res://Assets/Factions/Bosses/Golem/Attack/punch2.png" id="3_q22ux"]
 [ext_resource type="Texture2D" uid="uid://c0c4mri1mhwjf" path="res://Assets/Factions/Bosses/Golem/Attack/punch3.png" id="4_dmfqr"]
-[ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_ahoiv"]
 [ext_resource type="Texture2D" uid="uid://blirhiflap5gj" path="res://Assets/Factions/Bosses/Golem/Attack/dash2 (1).png" id="6_lbw0j"]
 [ext_resource type="Texture2D" uid="uid://cm5ws5jwovqvh" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Bump.png" id="7_f6eem"]
 [ext_resource type="Texture2D" uid="uid://cfjqj6e8v3cwr" path="res://Assets/Factions/Bosses/Golem/Attack/dash3.png" id="7_lu535"]
@@ -17,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://p6wwurh7fjhb" path="res://Assets/Factions/Bosses/Golem/Attack/skill1.png" id="10_vv5x6"]
 [ext_resource type="Texture2D" uid="uid://bf8chbyvvtg7s" path="res://Assets/Factions/Bosses/Golem/Attack/skill2.png" id="11_efc3q"]
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
+[ext_resource type="Script" path="res://Scripts/boss_health_system.gd" id="17_vruaw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_b444y")
@@ -379,7 +379,7 @@ scale = Vector2(1.0332, 0.670944)
 shape = SubResource("RectangleShape2D_u1lr4")
 
 [node name="HealthSystem" type="Node" parent="."]
-script = ExtResource("5_ahoiv")
+script = ExtResource("17_vruaw")
 
 [node name="Timer" type="Timer" parent="HealthSystem"]
 one_shot = true

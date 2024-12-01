@@ -12,7 +12,7 @@ enum BossState {
 }
 @onready var animated_sprite_2d: BossAnimationController = $AnimatedSprite2D
 @onready var player : Player = get_node("../Player")
-@onready var bossHealth : HealthSystem = $HealthSystem
+@onready var bossHealth : BossHealthSystem = $HealthSystem
 @onready var flash_animation = $AnimatedSprite2D/FlashAnimation
 @onready var freeze_manager = $"../FreezeManager"
 @onready var projectile_scene = preload("res://Boss/Air/peluru.tscn")
@@ -92,6 +92,7 @@ func _process(delta: float) -> void:
 			else:
 				animated_sprite_2d.play("transform_back")
 		BossState.Tornado:
+			$CombatSystem/BossBodyHitbox/CollisionShape2D.disabled = true
 			animated_sprite_2d.play("tornado")
 			velocity = Vector2.ZERO
 			if canShootCircle:
@@ -134,7 +135,6 @@ func shoot_projectile_circle():
 	var start_angle = 0.0  # Optional: Use an offset to rotate the whole pattern
 	var num_projectiles = 8
 	var angle_step = 2 * PI / num_projectiles  # Divide the circle into equal parts
-	var delay = 0.2
 	# Shoot 8 projectiles in a circle
 	for i in range(num_projectiles):
 		var angle = start_angle + (i * angle_step)  # Calculate the angle for each projectile
@@ -147,7 +147,6 @@ func shoot_projectile_circle():
 
 		# Set the projectile's position slightly in front of the boss
 		projectile.global_position = global_position + direction * 10  # Offset position slightly
-		await get_tree().create_timer(delay).timeout
 		
 	circleShootCount += 1
 
@@ -170,6 +169,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		change_state(BossState.Tornado)
 	if animated_sprite_2d.animation == "transform_back":
 		transformed = false
+		$CombatSystem/BossBodyHitbox/CollisionShape2D.disabled = false
 		change_state(BossState.Walking)
 	if animated_sprite_2d.animation == "roar":
 		spawn_circle()

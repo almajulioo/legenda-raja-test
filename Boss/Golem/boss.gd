@@ -12,7 +12,7 @@ enum BossState {
 }
 @onready var animated_sprite_2d: BossAnimationController = $AnimatedSprite2D
 @onready var player : Player = get_node("../Player")
-@onready var bossHealth : HealthSystem = $HealthSystem
+@onready var bossHealth : BossHealthSystem = $HealthSystem
 @onready var flash_animation = $AnimatedSprite2D/FlashAnimation
 @onready var freeze_manager = $"../FreezeManager"
 
