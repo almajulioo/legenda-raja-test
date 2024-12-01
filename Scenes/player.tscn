@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://wekvrtqbsgyr"]
+[gd_scene load_steps=48 format=3 uid="uid://wekvrtqbsgyr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
 [ext_resource type="PackedScene" uid="uid://c5o5fgskntesd" path="res://Scenes/health_system_ui.tscn" id="2_4urmp"]
@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://csuhrcuxkkqpc" path="res://Assets/Player/MainDash2.png" id="4_u71ee"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_6j51e"]
 [ext_resource type="Texture2D" uid="uid://d3fysddvqppvr" path="res://Assets/Player/MainIdle.png" id="5_qhhqy"]
+[ext_resource type="Texture2D" uid="uid://x7vb2y6btvi5" path="res://Assets/Player/MainKO.png" id="6_rdv1c"]
 [ext_resource type="Texture2D" uid="uid://dbpo6x48nmwtc" path="res://Assets/Player/MainJalan1.png" id="6_shlhp"]
 [ext_resource type="Texture2D" uid="uid://cs62a6rfesmi6" path="res://Assets/Player/MainJalan2.png" id="7_2863n"]
+[ext_resource type="Texture2D" uid="uid://bi1knrkxsbki" path="res://Assets/Player/MainHurt.png" id="7_guwg2"]
 [ext_resource type="Texture2D" uid="uid://bubh0golm5rts" path="res://Assets/Senjata Rencong/Attack1.png" id="10_l28vs"]
 [ext_resource type="Texture2D" uid="uid://bc1w52v7th3uu" path="res://Assets/Senjata Rencong/Attack2.png" id="11_2n2yy"]
 [ext_resource type="Texture2D" uid="uid://cpeslytoyb11t" path="res://Assets/Senjata Rencong/Attack3.png" id="12_nl7mw"]
@@ -19,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cwps6dc04aem7" path="res://Assets/Senjata Rencong/Attack6.png" id="15_qwwvw"]
 [ext_resource type="Script" path="res://Scripts/skill_bar.gd" id="18_1rw7k"]
 [ext_resource type="PackedScene" uid="uid://eso200huv5dh" path="res://Scenes/skill_button.tscn" id="19_hwwhf"]
+[ext_resource type="Texture2D" uid="uid://bx7to16q3jqtd" path="res://Assets/Artefak dan Efek/Efek/Heal Effect.png" id="22_uabpe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvvfq"]
 shader = ExtResource("4_ifv6p")
@@ -34,6 +37,22 @@ animations = [{
 "loop": true,
 "name": &"dash",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_rdv1c")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_guwg2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -130,6 +149,112 @@ size = Vector2(49.75, 78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1lr4"]
 size = Vector2(14, 25)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_83u7l"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isdgp"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u58us"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vxxr"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goqak"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aowyb"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5dix"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(128, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsntd"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_schmk"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jjxi"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpdxu"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(256, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wxo1"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y161s"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heexs"]
+atlas = ExtResource("22_uabpe")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lt34h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83u7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isdgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u58us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vxxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goqak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aowyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5dix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsntd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_schmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jjxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpdxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wxo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y161s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heexs")
+}],
+"loop": false,
+"name": &"HealingEffect",
+"speed": 10.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_7ko4b")
@@ -141,8 +266,7 @@ projectile_node = ExtResource("2_23ubv")
 material = SubResource("ShaderMaterial_tvvfq")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"dash"
-frame_progress = 0.391777
+animation = &"idle"
 offset = Vector2(0, -4)
 script = ExtResource("3_acs1y")
 
@@ -222,9 +346,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -42.0
+offset_left = -64.0
 offset_top = -40.0
-offset_right = 42.0
+offset_right = 64.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("18_1rw7k")
@@ -233,11 +357,21 @@ script = ExtResource("18_1rw7k")
 layout_mode = 2
 
 [node name="SkillButton2" parent="SkillUI/SkillBar" instance=ExtResource("19_hwwhf")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="SkillButton3" parent="SkillUI/SkillBar" instance=ExtResource("19_hwwhf")]
 layout_mode = 2
 
 [node name="TimerSlowed" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="HealingEffectAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_lt34h")
+animation = &"HealingEffect"
+frame_progress = 0.704948
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="TimerDashing" to="." method="_on_timer_dashing_timeout"]
@@ -249,3 +383,4 @@ one_shot = true
 [connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_body_entered"]
 [connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerSlowed" to="." method="_on_timer_slowed_timeout"]
+[connection signal="animation_finished" from="HealingEffectAnimation" to="." method="_on_healing_effect_animation_animation_finished"]

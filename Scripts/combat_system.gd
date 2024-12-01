@@ -11,8 +11,8 @@ class_name CombatSystem
 
 var canAttack = true
 
-func _input(event):
-	if Input.is_action_just_pressed("basic_attack") and canAttack:
+func _input(_event):
+	if Input.is_action_just_pressed("basic_attack") and canAttack and not player.dashing:
 		$"../TimerCanAttack".start()
 		canAttack = false
 		player.attacking = true

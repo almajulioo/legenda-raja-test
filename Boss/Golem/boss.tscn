@@ -331,9 +331,6 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_w2mge")
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"dash"
-frame = 3
-frame_progress = 1.0
 animation = &"attack"
 offset = Vector2(0, -31)
 script = ExtResource("12_hwnvt")

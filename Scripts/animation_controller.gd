@@ -19,7 +19,8 @@ func play_idle_animation():
 func play_dash_animation():
 	play("dash")	
 
-	
-	
+func play_hurt_animation():
+	play("hurt")
 
-	
+func play_die_animation():
+	play("die")

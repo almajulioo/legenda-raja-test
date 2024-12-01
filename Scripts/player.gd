@@ -19,12 +19,14 @@ var dashing = false
 var idle = true
 var walking = false
 var attacking = false
+var healing = false
 
 func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
 	
 	if playerHealth.is_dead():
+		animated_sprite_2d.play_die_animation()
 		get_tree().reload_current_scene()
 	
 	if not dashing:
@@ -43,6 +45,9 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play_dash_animation()
 		$TimerDashing.start(0.1)
 		$TimerCanDash.start(1)
+	
+	if healing:
+		$HealingEffectAnimation.play("HealingEffect")
 	
 	if dashing:
 		body_hitbox_collision.disabled = true
@@ -75,10 +80,13 @@ func _on_timer_can_dash_timeout() -> void:
 func take_damage(damage : int):
 	if playerHealth.invulnerable == false:
 		flash_animation.play("flash")
-		animated_sprite_2d.play_idle_animation()
+		animated_sprite_2d.play_hurt_animation()
 		freeze_manager.apply_freeze()
-		playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
-		print("Health = " + str(playerHealth.health))	
+		if playerHealth.onShield:
+			playerHealth.shield -= 1
+		else:
+			playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
+	
 
 func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
@@ -102,15 +110,25 @@ func single_shot(animation_name = "Laser"):
 	
 	get_tree().current_scene.call_deferred("add_child", projectile)
 
+
 func active_shield():
-	var shield = 3
-	print(shield)
+	playerHealth.add_shield()
+
+#func area_shot(animation_name = "GroundCrack"):
+	#var projectile = projectile_node.instantiate()
+	#
+	#projectile.play(animation_name)
+	#
+	#projectile.position = global_position
+	#projectile.direction = (get_global_mouse_position() - global_position).normalized()
+	#
+	#get_tree().current_scene.call_deferred("add_child", projectile)
 
 func multi_shot(count: int = 3, delay: float = 0.3, animation_name = "Laser"):
 	for i in range(count):
 		single_shot(animation_name)
 		await get_tree().create_timer(delay).timeout
-		
+
 func slowed():
 	SPEED = DEF_SPEED / 2
 	$TimerSlowed.start()
@@ -131,3 +149,7 @@ func _on_timer_slowed_timeout() -> void:
 #func radial(count):
 	#for i in range(count):
 		#angled_shot((float(i) / count) * 2.0 * PI)
+
+
+func _on_healing_effect_animation_animation_finished() -> void:
+	healing = false
