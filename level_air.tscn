@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cyoc111vda42j"]
+[gd_scene load_steps=6 format=4 uid="uid://b3ltv454inwg4"]
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_3e2mh"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_m6a65"]
-[ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_lak18"]
+[ext_resource type="PackedScene" path="res://freeze_manager.tscn" id="3_lak18"]
 [ext_resource type="PackedScene" uid="uid://bfqo6stej1puk" path="res://Boss/Air/boss_air.tscn" id="4_5a8jx"]
+[ext_resource type="AudioStream" uid="uid://cqsnkk1wsrwuw" path="res://Assets/Sound/BGM/bgm boss air.mp3" id="5_jv3kr"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -38,3 +39,9 @@ position = Vector2(262, 119)
 
 [node name="Boss_Air" parent="." instance=ExtResource("4_5a8jx")]
 position = Vector2(1257, 285)
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jv3kr")
+autoplay = true
+
+[connection signal="finished" from="BGM" to="Player" method="_on_bgm_finished"]
