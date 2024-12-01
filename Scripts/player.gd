@@ -111,6 +111,13 @@ func multi_shot(count: int = 3, delay: float = 0.3, animation_name = "Laser"):
 		single_shot(animation_name)
 		await get_tree().create_timer(delay).timeout
 		
+func slowed():
+	SPEED = DEF_SPEED / 2
+	$TimerSlowed.start()
+	
+func _on_timer_slowed_timeout() -> void:
+	SPEED = DEF_SPEED
+	
 #func angled_shot(angle):
 	#var projectile = projectile_node.instantiate()
 	#

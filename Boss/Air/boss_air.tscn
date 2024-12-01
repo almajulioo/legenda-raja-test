@@ -1,78 +1,83 @@
-[gd_scene load_steps=52 format=3 uid="uid://bkfxssgytv2qs"]
+[gd_scene load_steps=62 format=3 uid="uid://bfqo6stej1puk"]
 
-[ext_resource type="Script" path="res://Boss/Golem/boss.gd" id="1_wl4ro"]
-[ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="2_b444y"]
-[ext_resource type="Texture2D" uid="uid://2p0gy8wls0q" path="res://Assets/Factions/Bosses/Golem/Attack/punch1.png" id="2_hd72d"]
-[ext_resource type="Texture2D" uid="uid://06uibej2i2yk" path="res://Assets/Factions/Bosses/Golem/Attack/normal2.png" id="2_hwhtq"]
-[ext_resource type="Texture2D" uid="uid://80q8vapbjmno" path="res://Assets/Factions/Bosses/Golem/Attack/normal.png" id="3_eccr7"]
-[ext_resource type="Texture2D" uid="uid://e3paf1op6gvi" path="res://Assets/Factions/Bosses/Golem/Attack/punch2.png" id="3_q22ux"]
-[ext_resource type="Texture2D" uid="uid://c0c4mri1mhwjf" path="res://Assets/Factions/Bosses/Golem/Attack/punch3.png" id="4_dmfqr"]
-[ext_resource type="Script" path="res://Scripts/health_system.gd" id="5_ahoiv"]
-[ext_resource type="Texture2D" uid="uid://blirhiflap5gj" path="res://Assets/Factions/Bosses/Golem/Attack/dash2 (1).png" id="6_lbw0j"]
-[ext_resource type="Texture2D" uid="uid://cm5ws5jwovqvh" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Bump.png" id="7_f6eem"]
-[ext_resource type="Texture2D" uid="uid://cfjqj6e8v3cwr" path="res://Assets/Factions/Bosses/Golem/Attack/dash3.png" id="7_lu535"]
-[ext_resource type="Texture2D" uid="uid://b1m7mvp851ddq" path="res://Assets/Factions/Bosses/Golem/Attack/dash.png" id="8_dwsrp"]
-[ext_resource type="Texture2D" uid="uid://byjp0164df8h4" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Wall.png" id="8_n6oo5"]
-[ext_resource type="Texture2D" uid="uid://d1s53cga40q7s" path="res://Assets/Factions/Bosses/Golem/Attack/dead (1).png" id="9_wj12a"]
-[ext_resource type="Texture2D" uid="uid://p6wwurh7fjhb" path="res://Assets/Factions/Bosses/Golem/Attack/skill1.png" id="10_vv5x6"]
-[ext_resource type="Texture2D" uid="uid://bf8chbyvvtg7s" path="res://Assets/Factions/Bosses/Golem/Attack/skill2.png" id="11_efc3q"]
-[ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
+[ext_resource type="Script" path="res://Boss/Air/boss_air.gd" id="1_eo68x"]
+[ext_resource type="Shader" path="res://Scenes/takedamage.gdshader" id="2_l3bmx"]
+[ext_resource type="Texture2D" uid="uid://c0xnvh31ji6ck" path="res://Assets/Factions/Bosses/Air/idle1 (2).png" id="3_5np0h"]
+[ext_resource type="Texture2D" uid="uid://bqbgc5h3mdrue" path="res://Assets/Factions/Bosses/Air/mati1.png" id="3_kdqob"]
+[ext_resource type="Texture2D" uid="uid://rcdfpeco13n6" path="res://Assets/Factions/Bosses/Air/idle2 (1).png" id="4_c6l5j"]
+[ext_resource type="Texture2D" uid="uid://yti0033sw2aw" path="res://Assets/Factions/Bosses/Air/mati2.png" id="4_tbkus"]
+[ext_resource type="Texture2D" uid="uid://yr2hfh1g1j0n" path="res://Assets/Factions/Bosses/Air/mati3.png" id="5_8m8wf"]
+[ext_resource type="Texture2D" uid="uid://bbu75ql5nphu0" path="res://Assets/Factions/Bosses/Air/mati4.png" id="6_smf4a"]
+[ext_resource type="Texture2D" uid="uid://cqxijhysrwt8m" path="res://Assets/Factions/Bosses/Air/mati5.png" id="7_q1c6b"]
+[ext_resource type="Texture2D" uid="uid://pdd5q6pch2pl" path="res://Assets/Factions/Bosses/Air/mati6.png" id="8_5cd6r"]
+[ext_resource type="Texture2D" uid="uid://bem86vdh1u0rn" path="res://Assets/Factions/Bosses/Air/mati7.png" id="9_rtid8"]
+[ext_resource type="Texture2D" uid="uid://lhwsan6s86h4" path="res://Assets/Factions/Bosses/Air/mati8.png" id="10_51q38"]
+[ext_resource type="Texture2D" uid="uid://dwhu5w5c33qaf" path="res://Assets/Factions/Bosses/Air/roar1.png" id="13_ph23o"]
+[ext_resource type="Texture2D" uid="uid://ovqsy7gsrfw1" path="res://Assets/Factions/Bosses/Air/transform1 (1).png" id="13_t5b4h"]
+[ext_resource type="Texture2D" uid="uid://cxpcjfpe5ew7k" path="res://Assets/Factions/Bosses/Air/transform2 (1).png" id="14_83vwb"]
+[ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="14_l5u6e"]
+[ext_resource type="Texture2D" uid="uid://bur6nf3n4ye4o" path="res://Assets/Factions/Bosses/Air/roar.png" id="14_oynuv"]
+[ext_resource type="Texture2D" uid="uid://cm5ws5jwovqvh" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Bump.png" id="15_02l83"]
+[ext_resource type="Texture2D" uid="uid://cn00srwnhj7gl" path="res://Assets/Factions/Bosses/Air/transform3 (2).png" id="15_brkkb"]
+[ext_resource type="Texture2D" uid="uid://k2a6t3ocolnj" path="res://Assets/Factions/Bosses/Air/tornado2 (1).png" id="16_6ift7"]
+[ext_resource type="Texture2D" uid="uid://byjp0164df8h4" path="res://Assets/Factions/Bosses/Golem/Particle/Earth Wall.png" id="16_iqu16"]
+[ext_resource type="Texture2D" uid="uid://cdovn81psocv1" path="res://Assets/Factions/Bosses/Air/tranform4.png" id="16_pwsdv"]
+[ext_resource type="Script" path="res://Scripts/health_system.gd" id="17_rvbcd"]
+[ext_resource type="Texture2D" uid="uid://bfl1jqm2ismh6" path="res://Assets/Factions/Bosses/Air/tranform5.png" id="17_vik3x"]
+[ext_resource type="Texture2D" uid="uid://cyqewccbtpvj1" path="res://Assets/Factions/Bosses/Air/tornado3 (1).png" id="17_xein7"]
+[ext_resource type="Texture2D" uid="uid://bcrbl066oyjop" path="res://Assets/Factions/Bosses/Air/transform6.png" id="18_7dfyd"]
+[ext_resource type="Texture2D" uid="uid://s10de4s11tsq" path="res://Assets/Factions/Bosses/Air/tornado1 (1).png" id="19_47pnw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
-shader = ExtResource("2_b444y")
+shader = ExtResource("2_l3bmx")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pqgq"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_q22ux")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_dmfqr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_q22ux")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_hd72d")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_hd72d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_lbw0j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_lu535")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_dwsrp")
-}],
+"frames": [],
 "loop": false,
 "name": &"dash",
-"speed": 10.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_wj12a")
+"texture": ExtResource("3_kdqob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tbkus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8m8wf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_smf4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_q1c6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5cd6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rtid8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_51q38")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"dead",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_eccr7")
+"texture": ExtResource("3_5np0h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_hwhtq")
+"texture": ExtResource("4_c6l5j")
 }],
 "loop": true,
 "name": &"idle",
@@ -80,20 +85,91 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hd72d")
+"texture": ExtResource("3_5np0h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_vv5x6")
+"texture": ExtResource("13_ph23o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_efc3q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_hd72d")
+"texture": ExtResource("14_oynuv")
 }],
+"loop": false,
+"name": &"roar",
+"speed": 3.0
+}, {
+"frames": [],
 "loop": false,
 "name": &"skill1",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_47pnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6ift7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_xein7")
+}],
+"loop": true,
+"name": &"tornado",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_t5b4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_83vwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_brkkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pwsdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vik3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7dfyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_47pnw")
+}],
+"loop": false,
+"name": &"transform",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_47pnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7dfyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vik3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pwsdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_brkkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_83vwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t5b4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5np0h")
+}],
+"loop": false,
+"name": &"transform_back",
+"speed": 7.0
 }]
 
 [sub_resource type="Animation" id="Animation_spj0f"]
@@ -134,91 +210,91 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lis0k"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c67xg"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6fdp"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gj1g7"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4aa5t"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(0, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knrsc"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(48, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tky5h"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(96, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cy1tj"]
-atlas = ExtResource("7_f6eem")
+atlas = ExtResource("15_02l83")
 region = Rect2(144, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ivfp"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7smud"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtvcv"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5q46"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6lpd"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(0, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qx5g2"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(48, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2uasj"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(96, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gadhg"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(144, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gal3"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(0, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nhljq"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(48, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1ktd"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(96, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mg8ei"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(144, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8q3s5"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(0, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5m74"]
-atlas = ExtResource("8_n6oo5")
+atlas = ExtResource("16_iqu16")
 region = Rect2(48, 144, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_obrv0"]
@@ -318,25 +394,22 @@ radius = 707.229
 [sub_resource type="CircleShape2D" id="CircleShape2D_yeuhs"]
 radius = 283.924
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss_Air" type="CharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.480001, 0.480001)
 collision_mask = 6
-script = ExtResource("1_wl4ro")
-
-[node name="TimerCanAttack" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
+script = ExtResource("1_eo68x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_w2mge")
+position = Vector2(2.08333, 91.6665)
+scale = Vector2(3.45537, 3.45537)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"dash"
-frame = 3
+animation = &"roar"
+frame = 2
 frame_progress = 1.0
-animation = &"attack"
 offset = Vector2(0, -31)
-script = ExtResource("12_hwnvt")
+script = ExtResource("14_l5u6e")
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D"]
 libraries = {
@@ -359,8 +432,8 @@ position = Vector2(8.00006, 59)
 scale = Vector2(2.48213, 2.48213)
 
 [node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-74.5662, -87.5591)
-scale = Vector2(0.495981, 0.702639)
+position = Vector2(-74.9357, -53.583)
+scale = Vector2(0.495981, 0.333333)
 
 [node name="LeftCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
 position = Vector2(86.75, 77)
@@ -373,7 +446,7 @@ shape = SubResource("RectangleShape2D_ykgkh")
 disabled = true
 
 [node name="BossBodyHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-3.22306, 4.83456)
+position = Vector2(0.134262, 4.76735)
 scale = Vector2(1.2095, 1.3223)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BossBodyHitbox"]
@@ -382,7 +455,7 @@ scale = Vector2(1.0332, 0.670944)
 shape = SubResource("RectangleShape2D_u1lr4")
 
 [node name="HealthSystem" type="Node" parent="."]
-script = ExtResource("5_ahoiv")
+script = ExtResource("17_rvbcd")
 
 [node name="Timer" type="Timer" parent="HealthSystem"]
 one_shot = true
@@ -403,25 +476,19 @@ scale = Vector2(2.8156, 2.8156)
 position = Vector2(-76, -6)
 shape = SubResource("CircleShape2D_yeuhs")
 
-[node name="TimerInRange" type="Timer" parent="."]
-
-[node name="TimerSkill1" type="Timer" parent="."]
-wait_time = 6.0
-one_shot = true
-autostart = true
-
-[node name="TimerAttacking" type="Timer" parent="."]
-one_shot = true
-
-[node name="TimerPreattack" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="TimerCanDash" type="Timer" parent="."]
+[node name="TimerCanShoot" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
-[connection signal="timeout" from="TimerCanAttack" to="." method="_on_timer_can_attack_timeout"]
+[node name="TimerCanShootCircle" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerCanRoar" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="CombatSystem/WeaponHitbox" to="." method="_on_weapon_hitbox_area_entered"]
 [connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_body_entered"]
@@ -432,8 +499,6 @@ one_shot = true
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 [connection signal="body_entered" from="AttackingArea" to="." method="_on_attacking_area_body_entered"]
 [connection signal="body_exited" from="AttackingArea" to="." method="_on_attacking_area_body_exited"]
-[connection signal="timeout" from="TimerInRange" to="." method="_on_timer_in_range_timeout"]
-[connection signal="timeout" from="TimerSkill1" to="." method="_on_timer_skill_1_timeout"]
-[connection signal="timeout" from="TimerAttacking" to="." method="_on_timer_attacking_timeout"]
-[connection signal="timeout" from="TimerPreattack" to="." method="_on_timer_preattack_timeout"]
-[connection signal="timeout" from="TimerCanDash" to="." method="_on_timer_can_dash_timeout"]
+[connection signal="timeout" from="TimerCanShoot" to="." method="_on_timer_can_shoot_timeout"]
+[connection signal="timeout" from="TimerCanShootCircle" to="." method="_on_timer_can_shoot_circle_timeout"]
+[connection signal="timeout" from="TimerCanRoar" to="." method="_on_timer_can_roar_timeout"]
