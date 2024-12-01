@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://oofve5t2sn1r"]
+
+[ext_resource type="Script" path="res://Boss/Bayangan/crack.gd" id="1_hvplq"]
+[ext_resource type="Texture2D" uid="uid://ugekj1ihsldu" path="res://Assets/Artefak dan Efek/Efek/Crack1.png" id="2_ht1fy"]
+[ext_resource type="Texture2D" uid="uid://bf5iv276frg11" path="res://Assets/Artefak dan Efek/Efek/Crack2.png" id="3_60y0r"]
+[ext_resource type="Texture2D" uid="uid://cl83anxemk401" path="res://Assets/Artefak dan Efek/Efek/Crack3.png" id="4_lhmcb"]
+[ext_resource type="Texture2D" uid="uid://bqlbem2xekk5o" path="res://Assets/Artefak dan Efek/Efek/Crack4.png" id="5_j3c7s"]
+[ext_resource type="Texture2D" uid="uid://d0gd43wclwm4e" path="res://Assets/Artefak dan Efek/Efek/Crack5.png" id="6_gsfe1"]
+[ext_resource type="Texture2D" uid="uid://dl8xg6d080jj" path="res://Assets/Artefak dan Efek/Efek/Crack6.png" id="7_iqh4g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phudv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_iqh4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gsfe1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j3c7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lhmcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_60y0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ht1fy")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"clear",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ht1fy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_60y0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lhmcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j3c7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gsfe1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_iqh4g")
+}],
+"loop": false,
+"name": &"crack",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty6m4"]
+size = Vector2(40.9819, 37)
+
+[node name="Crack" type="Area2D"]
+scale = Vector2(3.56, 3.56)
+script = ExtResource("1_hvplq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.6875, 1.6875)
+sprite_frames = SubResource("SpriteFrames_phudv")
+animation = &"crack"
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionCrack" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9.26966)
+scale = Vector2(2.60806, 2.42794)
+shape = SubResource("RectangleShape2D_ty6m4")
+
+[node name="TimerCrackStill" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="TimerCrackStill" to="." method="_on_timer_crack_still_timeout"]

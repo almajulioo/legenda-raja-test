@@ -90,6 +90,8 @@ func _process(delta: float) -> void:
 				canUseSkillOne = false
 				animated_sprite_2d.play("skill1")
 		BossState.Dead:
+			$CombatSystem/WeaponHitbox/RightCollision.disabled = true
+			$CombatSystem/WeaponHitbox/LeftCollision.disabled = true
 			isDead = true
 			animated_sprite_2d.play("dead")
 	

@@ -58,7 +58,9 @@ script = ExtResource("1_dfn2t")
 position = Vector2(8, 50)
 scale = Vector2(4.04688, 3.82813)
 sprite_frames = SubResource("SpriteFrames_jog3u")
-animation = &"Laser"
+animation = &"GroundCrack"
+frame = 5
+frame_progress = 1.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
