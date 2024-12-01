@@ -1,6 +1,6 @@
 extends Node
 class_name HealthSystem
-#@onready var player: Player = $".."
+@onready var player: Player = $".."
 
 var max_health: int 
 var health: int = clamp(max_health, 0, max_health)
@@ -20,7 +20,8 @@ func _ready() -> void:
 	print("Starting health = " + str(health))
 	
 func _input(event: InputEvent) -> void:
-	if health < 5 and Input.is_action_just_pressed("heal") and heal_potion > 0 :
+	if Input.is_action_just_pressed("heal") and heal_potion > 0 :
+		player.healing = true
 		heal_potion -= 1
 		health = clamp(health + 3, 0, max_health)
 		last_health = health

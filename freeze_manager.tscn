@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwf6l2g5js3t2"]
+
+[ext_resource type="Script" path="res://Scripts/freeze_manager.gd" id="1_cpu7k"]
+
+[node name="FreezeManager" type="Node"]
+script = ExtResource("1_cpu7k")
