@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dopq06rmw2wvv"
+path="res://.godot/imported/bgm boss bayang.mp3-3c0ef9149e9c496f7373432c9b58e66a.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/bgm boss bayang.mp3"
+dest_files=["res://.godot/imported/bgm boss bayang.mp3-3c0ef9149e9c496f7373432c9b58e66a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

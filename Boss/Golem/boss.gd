@@ -29,7 +29,7 @@ var canDash: bool = true
 
 var current_state: BossState = BossState.Chasing
 var state_change_timer: float = 0.0
-var SPEED = 15000
+var SPEED = 7000
 var startingHealth = 50
 
 var punching : int = 0
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 				$TimerCanDash.start()
 				dashing = true
 				canDash = false
-				SPEED = 140000
+				SPEED = 30000
 		BossState.Attacking:
 			if canUseSkillOne == true:
 				change_state(BossState.Skill1)
@@ -164,7 +164,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		effect()
 	if animated_sprite_2d.animation == "dash":
 		dashing = false
-		SPEED = 15000
+		SPEED = 7000
 		change_state(BossState.Attacking)
 
 func _on_weapon_hitbox_area_entered(area: Area2D) -> void:

@@ -20,7 +20,7 @@ func _ready() -> void:
 	print("Starting health = " + str(health))
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("heal") and heal_potion > 0 :
+	if not is_dead() and Input.is_action_just_pressed("heal") and heal_potion > 0 :
 		player.healing = true
 		heal_potion -= 1
 		health = clamp(health + 3, 0, max_health)
