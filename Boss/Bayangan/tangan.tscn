@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dd0fl313ffm5h"]
+
+[ext_resource type="Script" path="res://Boss/Bayangan/tangan.gd" id="1_jio1b"]
+[ext_resource type="Texture2D" uid="uid://b3ufylic5ncok" path="res://Assets/Factions/Bosses/Bayangan/Skill13.png" id="2_i408e"]
+[ext_resource type="Texture2D" uid="uid://b61asv7iuhoh0" path="res://Assets/Factions/Bosses/Bayangan/Skill14.png" id="3_wdi05"]
+[ext_resource type="Texture2D" uid="uid://d3bk0b21ioliw" path="res://Assets/Factions/Bosses/Bayangan/Skill15.png" id="4_7l8h2"]
+[ext_resource type="Texture2D" uid="uid://csr7n10uqj3r0" path="res://Assets/Factions/Bosses/Bayangan/Tangan.png" id="5_re8dv"]
+[ext_resource type="Texture2D" uid="uid://dunrp00fo7ava" path="res://Assets/Factions/Bosses/Bayangan/Skill12.png" id="5_t1cwt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phudv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7l8h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wdi05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i408e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t1cwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_re8dv")
+}],
+"loop": false,
+"name": &"tangan",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty6m4"]
+size = Vector2(42.6875, 33.2023)
+
+[node name="Tangan" type="Area2D"]
+script = ExtResource("1_jio1b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.6875, 1.6875)
+sprite_frames = SubResource("SpriteFrames_phudv")
+animation = &"tangan"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionTangan" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -32.5)
+scale = Vector2(2.694, 2.13841)
+shape = SubResource("RectangleShape2D_ty6m4")
+
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D2" to="." method="_on_visible_on_screen_notifier_2d_2_screen_exited"]

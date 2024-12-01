@@ -2,8 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_40y2v"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_j7id7"]
-[ext_resource type="PackedScene" uid="uid://bfqo6stej1puk" path="res://Boss/Air/boss_air.tscn" id="4_6smg7"]
 [ext_resource type="Script" path="res://Scripts/freeze_manager.gd" id="4_opa6i"]
+[ext_resource type="PackedScene" uid="uid://crpvb1bdbp6p3" path="res://Boss/Bayangan/boss_bayangan.tscn" id="4_xl8ii"]
 
 [node name="Main" type="Node"]
 
@@ -42,5 +42,5 @@ tile_set = ExtResource("1_40y2v")
 [node name="FreezeManager" type="Node" parent="Node2D"]
 script = ExtResource("4_opa6i")
 
-[node name="Boss_Air" parent="Node2D" instance=ExtResource("4_6smg7")]
-position = Vector2(1100, 674)
+[node name="Boss_Air" parent="Node2D" instance=ExtResource("4_xl8ii")]
+position = Vector2(916, 506)
