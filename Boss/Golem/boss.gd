@@ -38,11 +38,11 @@ var punching : int = 0
 func change_state(new_state: BossState) -> void:
 	current_state = new_state
 	
-func _physics_process(delta: float) -> void:
-	pass
+#func _physics_process(delta: float) -> void:
+	#pass
 	
 # Count down the timers and transition states when appropriate
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
 	
