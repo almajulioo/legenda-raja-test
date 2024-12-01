@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Global="*res://Scenes/global.tscn"
 
+[gui]
+
+theme/custom_font="res://Assets/Fonts/Silver.ttf"
+
 [input]
 
 left={
