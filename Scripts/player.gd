@@ -66,6 +66,11 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play_idle_animation()
 	move_and_slide()
 
+func _process(delta: float) -> void:
+	if healing:
+		$HealingEffectAnimation.visible = true
+		$HealingEffectAnimation.play("HealingEffect")
+
 
 func _on_timer_dashing_timeout():
 	$TimerDashing.stop()
@@ -153,3 +158,5 @@ func _on_timer_slowed_timeout() -> void:
 
 func _on_healing_effect_animation_animation_finished() -> void:
 	healing = false
+	$HealingEffectAnimation.visible = false
+	
