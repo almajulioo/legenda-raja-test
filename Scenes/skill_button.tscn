@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce1xksuo0pau0"]
+[gd_scene load_steps=5 format=3 uid="uid://eso200huv5dh"]
 
 [ext_resource type="Script" path="res://Scripts/skill_button.gd" id="2_lsyhx"]
 [ext_resource type="Texture2D" uid="uid://c4xb0b1k0mv5y" path="res://Assets/Artefak dan Efek/white blank.png" id="2_nvc6r"]
