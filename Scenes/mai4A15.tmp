@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cc8w3e5qtpb34"]
+[gd_scene load_steps=6 format=4 uid="uid://cc8w3e5qtpb34"]
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_40y2v"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_j7id7"]
 [ext_resource type="PackedScene" uid="uid://bfqo6stej1puk" path="res://Boss/Air/boss_air.tscn" id="4_6smg7"]
 [ext_resource type="Script" path="res://Scripts/freeze_manager.gd" id="4_opa6i"]
+[ext_resource type="PackedScene" uid="uid://bkfxssgytv2qs" path="res://Boss/Golem/boss.tscn" id="5_uoc37"]
 
 [node name="Main" type="Node"]
 
@@ -43,3 +44,6 @@ script = ExtResource("4_opa6i")
 
 [node name="Boss_Air" parent="Node2D" instance=ExtResource("4_6smg7")]
 position = Vector2(1306, 659)
+
+[node name="Boss" parent="Node2D" instance=ExtResource("5_uoc37")]
+position = Vector2(376, 753)
