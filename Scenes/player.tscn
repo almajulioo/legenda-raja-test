@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://wekvrtqbsgyr"]
+[gd_scene load_steps=49 format=3 uid="uid://wekvrtqbsgyr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7ko4b"]
 [ext_resource type="PackedScene" uid="uid://c5o5fgskntesd" path="res://Scenes/health_system_ui.tscn" id="2_4urmp"]
@@ -255,6 +255,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_tq68w"]
+font_size = 357
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_7ko4b")
@@ -266,7 +269,7 @@ projectile_node = ExtResource("2_23ubv")
 material = SubResource("ShaderMaterial_tvvfq")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"die"
+animation = &"idle"
 offset = Vector2(0, -4)
 script = ExtResource("3_acs1y")
 
@@ -373,6 +376,16 @@ position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_lt34h")
 animation = &"HealingEffect"
 frame_progress = 0.704948
+
+[node name="PressF" type="Label" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -48.0
+offset_right = 1890.0
+offset_bottom = 348.0
+scale = Vector2(0.0713395, 0.0713395)
+text = "Press F to go back"
+label_settings = SubResource("LabelSettings_tq68w")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="TimerDashing" to="." method="_on_timer_dashing_timeout"]

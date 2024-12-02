@@ -35,7 +35,7 @@ var canDash: bool = true
 
 var current_state: BossState = BossState.Chasing
 var state_change_timer: float = 0.0
-var SPEED = 7000
+var SPEED = 12000
 var startingHealth = 70
 
 var punching : int = 0
@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 				$TimerCanDash.start()
 				dashing = true
 				canDash = false
-				SPEED = 30000
+				SPEED = 40000
 		BossState.Attacking:
 			if canUseSkillOne == true:
 				change_state(BossState.Skill1)
@@ -100,10 +100,13 @@ func _physics_process(delta: float) -> void:
 				canUseSkillOne = false
 				animated_sprite_2d.play("skill1")
 		BossState.Dead:
+			if Global.is_boss_batu_defeated == false:
+				Global.is_boss_batu_defeated = true
 			$CombatSystem/WeaponHitbox/RightCollision.disabled = true
 			$CombatSystem/WeaponHitbox/LeftCollision.disabled = true
 			isDead = true
 			animated_sprite_2d.play("dead")
+			f_visible_on()
 			play_sound(load(hancur_sound))
 	
 	if attacking:
@@ -130,7 +133,7 @@ func effect():
 
 	for i in range(spawn_count):
 		fang.position = position + Vector2(i * spawn_gap, 0)  # Offset position by 'spawn_gap'
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.1).timeout
 		
 	await get_tree().create_timer(1).timeout	
 	fang_sprite.play("break")
@@ -141,15 +144,19 @@ func take_damage(damage : int):
 	flash_animation.play("flash")
 	play_sound(load(kena_damage))
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
-	healthbar.health = bossHealth.health
+	if bossHealth.health > 0:
+		healthbar.health = bossHealth.health
 	print("Health = " + str(bossHealth.health))		
 
 func play_sound(sound : AudioStream):
 	audio_player.stream = sound
-	audio_player.max_distance = 10000
+	audio_player.max_distance = 12000
 	audio_player.attenuation = 0
 	get_tree().current_scene.add_child(audio_player)
 	audio_player.play()
+
+func f_visible_on():
+	player.press_f_label.visible = true
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
@@ -185,7 +192,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		play_sound(load(skill1_sound))
 	if animated_sprite_2d.animation == "dash":
 		dashing = false
-		SPEED = 7000
+		SPEED = 10000
 		change_state(BossState.Attacking)
 
 func _on_weapon_hitbox_area_entered(area: Area2D) -> void:

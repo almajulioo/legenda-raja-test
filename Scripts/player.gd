@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 @onready var game_over_scene = preload("res://Scenes/game_over.tscn")
+@onready var ending_scene = preload("res://Scenes/ending_scene.tscn")
 @onready var animated_sprite_2d: AnimationController = $AnimatedSprite2D
 @onready var left_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/LeftCollision
 @onready var right_collision: CollisionShape2D = $CombatSystem/WeaponHitbox/RightCollision
@@ -9,6 +10,7 @@ class_name Player
 @onready var playerHealth : HealthSystem = $HealthSystem
 @onready var flash_animation = $AnimatedSprite2D/FlashAnimation
 @onready var freeze_manager = $"../FreezeManager"
+@onready var press_f_label = $PressF
 @export var projectile_node : PackedScene
 
 #SFX
@@ -35,7 +37,19 @@ var playDeadAnim = false
 func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
+	if press_f_label.visible and Input.is_action_just_pressed("goback"):
+		press_f_label.visible = false
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
 	
+	if Global.is_boss_air_defeated and Global.is_boss_batu_defeated and Global.is_boss_bayangan_defeated:
+		var ending = ending_scene.instantiate()
+		$SkillUI.visible = false
+		$HealthSystemUI.visible = false
+		for i in range(get_tree().current_scene.get_child_count()):
+			if get_tree().current_scene.get_child(i).name == "CanvasLayer1":
+				get_tree().current_scene.get_child(i).add_child(ending)
+				
+				
 	if playerHealth.is_dead():
 		if playDeadAnim == false:
 			animated_sprite_2d.play_die_animation()
@@ -105,7 +119,7 @@ func take_damage(damage : int):
 		animated_sprite_2d.play_hurt_animation()
 		freeze_manager.apply_freeze()
 		if playerHealth.onShield:
-			playerHealth.shield -= 1
+			playerHealth.shield -= damage
 		else:
 			playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
 

@@ -49,7 +49,6 @@ func _ready():
 func change_state(new_state: BossState) -> void:
 	current_state = new_state
 	
-	
 # Count down the timers and transition states when appropriate
 func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
@@ -58,9 +57,7 @@ func _physics_process(delta: float) -> void:
 	if bossHealth.is_dead():
 		change_state(BossState.Dead)
 	
-
-	
-	if circleShootCount == 5 and transformed == true:
+	if circleShootCount == 8 and transformed == true:
 		change_state(BossState.Transform)
 		circleShootCount = 0
 	
@@ -102,15 +99,18 @@ func _physics_process(delta: float) -> void:
 		BossState.Tornado:
 			$CombatSystem/BossBodyHitbox/CollisionShape2D.disabled = true
 			animated_sprite_2d.play("tornado")
-			velocity = Vector2.ZERO
+			direction = (player.position - position).normalized()
 			if canShootCircle:
 				shoot_projectile_circle()
 				canShootCircle = false
 				$TimerCanShootCircle.start()
 		BossState.Dead:
+			if Global.is_boss_air_defeated == false:
+				Global.is_boss_air_defeated = true
 			if isDead == false:
 				isDead = true
 				animated_sprite_2d.play("dead")
+				f_visible_on()
 				play_sound(load(dead_sound))
 				velocity = Vector2.ZERO
 	
@@ -125,8 +125,6 @@ func take_damage(damage : int):
 		bossHealth.health = clamp(bossHealth.health - 1, 0, bossHealth.max_health)
 		if bossHealth.health > 0:
 			healthbar.health = bossHealth.health
-		elif bossHealth.health == 0:
-			healthbar.health = 0
 		if bossHealth.health == 20 or bossHealth.health == 35 and transformed == false:
 			freeze_manager.apply_freeze()
 			change_state(BossState.Transform)
@@ -145,6 +143,9 @@ func shoot_projectile():
 		projectile.direction = dir_to_player.normalized() # Set the projectile's direction
 		await get_tree().create_timer(delay).timeout
 
+func f_visible_on():
+	player.press_f_label.visible = true
+
 func spawn_circle():
 	var circle = circle_scene.instantiate()
 	get_parent().add_child(circle)
@@ -153,26 +154,25 @@ func spawn_circle():
 	circle.animation_player.play("air")
 
 func shoot_projectile_circle():
-	var start_angle = 0.0  # Optional: Use an offset to rotate the whole pattern
-	var base_num_projectiles = 8  # Base number of projectiles (can adjust based on circleShootCount)
+	var start_angle = 0.0  
+	var base_num_projectiles = 8  
 	var angle_step
 	var num_projectiles
 	if circleShootCount % 2 == 0:
 		num_projectiles = base_num_projectiles
 	else:
-		num_projectiles = base_num_projectiles + 6  # Add more projectiles to fill gaps in odd circles
+		num_projectiles = base_num_projectiles + 8  
 	angle_step = 2 * PI / num_projectiles  
 	play_sound(load(proyektil_air_sound))
 	
 	for i in range(num_projectiles):
-		var angle = start_angle + (i * angle_step)  # Calculate the angle for each projectile
-		var projectile = projectile_scene.instantiate()  # Create the projectile instance
-		get_parent().add_child(projectile)  # Add the projectile to the scene
-		# Set the direction of the projectile to point in the calculated angle
-		var dir = Vector2(cos(angle), sin(angle))  # Convert angle to a direction vector
-		projectile.direction = dir  # Set the direction of the projectile
-		# Set the projectile's position slightly in front of the boss
-		projectile.global_position = global_position + direction * 10  # Offset position slightly
+		var angle = start_angle + (i * angle_step)  
+		var projectile = projectile_scene.instantiate() 
+		get_parent().add_child(projectile) 
+	
+		var dir = Vector2(cos(angle), sin(angle))  
+		projectile.direction = dir  
+		projectile.global_position = global_position + direction * 10  
 	circleShootCount += 1
 
 func play_sound(sound : AudioStream):

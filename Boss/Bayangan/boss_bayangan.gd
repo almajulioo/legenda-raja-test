@@ -31,7 +31,7 @@ var canTangan:bool = false
 var current_state: BossState = BossState.Walking
 var state_change_timer: float = 0.0
 var SPEED = 10000
-var startingHealth = 30
+var startingHealth = 40
 var direction = Vector2()
 var random_move_time = 1 # Time in seconds to pick a new random direction
 var move_timer = 0.0
@@ -60,8 +60,6 @@ func _physics_process(delta: float) -> void:
 		direction = dir_to_player.rotated(random_angle).normalized()  # Move away from player with random variation
 		move_timer = random_move_time
 	
-	
-	
 	velocity = direction * SPEED * delta
 	if velocity.x > 0 and isDead == false:
 		animated_sprite_2d.flip_h = false
@@ -75,9 +73,13 @@ func _physics_process(delta: float) -> void:
 			elif canTangan:
 				change_state(BossState.Tangan)
 		BossState.Dead:
+			if not Global.is_boss_bayangan_defeated:
+				Global.is_boss_bayangan_defeated = true
+			
 			if isDead == false:
 				isDead = true
 				animated_sprite_2d.play("dead")
+				f_visible_on()
 				play_sound(load(dead_sound))
 				velocity = Vector2.ZERO
 		BossState.Tongkat:
@@ -101,9 +103,10 @@ func take_damage(damage : int):
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
 	if bossHealth.health > 0:
 		healthbar.health = bossHealth.health
-	elif bossHealth.health == 0:
-		healthbar.health = 0
 	print("Health = " + str(bossHealth.health))		
+
+func f_visible_on():
+	player.press_f_label.visible = true
 
 func crack_ground():
 	var crack = crack_scene.instantiate()

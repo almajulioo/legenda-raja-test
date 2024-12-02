@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
 [ext_resource type="Script" path="res://Scripts/boss_health_system.gd" id="17_vruaw"]
 [ext_resource type="PackedScene" uid="uid://3b55casibbeg" path="res://Scenes/healthbar.tscn" id="18_w135q"]
-[ext_resource type="Theme" path="res://Resources/main_menu.tres" id="19_bu3ik"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="19_bu3ik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_b444y")
@@ -334,7 +334,7 @@ one_shot = true
 material = SubResource("ShaderMaterial_w2mge")
 sprite_frames = SubResource("SpriteFrames_4pqgq")
 animation = &"attack"
-offset = Vector2(0, -31)
+offset = Vector2(0, -86)
 script = ExtResource("12_hwnvt")
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D"]
@@ -350,7 +350,7 @@ animation = &"bump"
 frame_progress = 0.604919
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 57)
+position = Vector2(-8.33332, -4.16666)
 shape = SubResource("CircleShape2D_1n23d")
 
 [node name="CombatSystem" type="Node2D" parent="."]
@@ -358,7 +358,7 @@ position = Vector2(8.00006, 59)
 scale = Vector2(2.48213, 2.48213)
 
 [node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-74.5662, -87.5591)
+position = Vector2(-74.5662, -111.06)
 scale = Vector2(0.495981, 0.702639)
 
 [node name="LeftCollision" type="CollisionShape2D" parent="CombatSystem/WeaponHitbox"]
@@ -372,7 +372,7 @@ shape = SubResource("RectangleShape2D_ykgkh")
 disabled = true
 
 [node name="BossBodyHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-3.22306, 4.83456)
+position = Vector2(-0.705069, -23.7699)
 scale = Vector2(1.2095, 1.3223)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/BossBodyHitbox"]
