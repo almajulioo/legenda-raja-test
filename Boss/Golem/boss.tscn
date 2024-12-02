@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
 [ext_resource type="Script" path="res://Scripts/boss_health_system.gd" id="17_vruaw"]
 [ext_resource type="PackedScene" uid="uid://3b55casibbeg" path="res://Scenes/healthbar.tscn" id="18_w135q"]
-[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="19_bu3ik"]
+[ext_resource type="Theme" path="res://Resources/main_menu.tres" id="19_bu3ik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_b444y")
