@@ -123,7 +123,10 @@ func take_damage(damage : int):
 	play_sound(load(kena_hit_sound))
 	for i in (damage):
 		bossHealth.health = clamp(bossHealth.health - 1, 0, bossHealth.max_health)
-		healthbar.health = bossHealth.health
+		if bossHealth.health > 0:
+			healthbar.health = bossHealth.health
+		elif bossHealth.health == 0:
+			healthbar.health = 0
 		if bossHealth.health == 20 or bossHealth.health == 35 and transformed == false:
 			freeze_manager.apply_freeze()
 			change_state(BossState.Transform)

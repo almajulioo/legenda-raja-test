@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_ylu7l"]
 [ext_resource type="Script" path="res://Scripts/freeze_manager.gd" id="4_opa6i"]
 [ext_resource type="AudioStream" uid="uid://jqf17ade7e7m" path="res://Assets/Sound/BGM/musik lobby legenda raja.mp3" id="6_4fbrs"]
-[ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="6_naiva"]
+[ext_resource type="PackedScene" uid="uid://cpoxw1t06oygi" path="res://Scenes/pause_menu.tscn" id="6_naiva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlxm6"]
 
@@ -73,7 +73,6 @@ shape = SubResource("RectangleShape2D_dlxm6")
 [node name="Control" parent="Node2D/CanvasLayer" instance=ExtResource("6_naiva")]
 
 [node name="CanvasLayer1" type="CanvasLayer" parent="Node2D"]
-
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("6_4fbrs")

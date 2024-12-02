@@ -99,7 +99,10 @@ func take_damage(damage : int):
 	flash_animation.play("flash")
 	play_sound(load(kena_hit_sound))
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
-	healthbar.health = bossHealth.health
+	if bossHealth.health > 0:
+		healthbar.health = bossHealth.health
+	elif bossHealth.health == 0:
+		healthbar.health = 0
 	print("Health = " + str(bossHealth.health))		
 
 func crack_ground():
