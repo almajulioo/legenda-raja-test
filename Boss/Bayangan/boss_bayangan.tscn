@@ -336,10 +336,6 @@ shape = SubResource("CircleShape2D_1n23d")
 position = Vector2(8.33332, 41.6666)
 scale = Vector2(2.48213, 2.48213)
 
-[node name="WeaponHitbox" type="Area2D" parent="CombatSystem"]
-position = Vector2(-74.9357, -53.583)
-scale = Vector2(0.495981, 0.333333)
-
 [node name="BossBodyHitbox" type="Area2D" parent="CombatSystem"]
 position = Vector2(2.65226, 4.76735)
 scale = Vector2(0.994082, 1.02404)
@@ -386,8 +382,6 @@ one_shot = true
 autostart = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="CombatSystem/WeaponHitbox" to="." method="_on_weapon_hitbox_area_entered"]
-[connection signal="body_entered" from="CombatSystem/WeaponHitbox" to="CombatSystem" method="_on_weapon_hitbox_body_entered"]
 [connection signal="body_entered" from="CombatSystem/BossBodyHitbox" to="." method="_on_body_hitbox_body_entered"]
 [connection signal="body_exited" from="CombatSystem/BossBodyHitbox" to="." method="_on_body_hitbox_body_exited"]
 [connection signal="timeout" from="HealthSystem/Timer" to="HealthSystem" method="_on_timer_timeout"]

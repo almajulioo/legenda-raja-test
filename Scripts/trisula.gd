@@ -5,7 +5,7 @@ func _init(target):
 	cooldown = 1
 	animation_name = "Laser"
 	texture = preload("res://Assets/Artefak dan Efek/Artefak/Trisula.png")
-	
+	sound = preload("res://Assets/Sound/SFX PLAYER-HERO/laser hero.mp3")
 	super._init(target)
 	
 func cast_spell(target):

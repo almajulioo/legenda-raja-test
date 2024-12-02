@@ -15,9 +15,10 @@ Button/styles/hover = ExtResource("1_xjn0y")
 Button/styles/normal = ExtResource("2_dw7hp")
 
 [sub_resource type="LabelSettings" id="LabelSettings_agw3f"]
-font_size = 129
+font_size = 164
 
 [node name="GameOver" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +37,7 @@ offset_top = -328.0
 offset_right = -547.0
 offset_bottom = -288.0
 scale = Vector2(29.2677, 16.4883)
-color = Color(0.991, 0.197, 0.146, 0.064)
+color = Color(0.991, 0.197, 0.146, 0.384)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -45,13 +46,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = 20.0
-offset_right = 171.0
-offset_bottom = 263.0
+offset_left = -120.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.673225, 0.673225)
+scale = Vector2(0.99344, 0.99344)
 texture = ExtResource("5_lfsbw")
 region_rect = Rect2(32, 29, 128, 136)
 patch_margin_left = 24
@@ -84,11 +85,17 @@ layout_mode = 2
 text = "Exit"
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_left = -1333.0
-offset_top = -171.0
-offset_right = 1328.0
-offset_bottom = 461.0
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -470.0
+offset_top = -183.0
+offset_right = 470.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.01799, 1.01799)
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_agw3f")

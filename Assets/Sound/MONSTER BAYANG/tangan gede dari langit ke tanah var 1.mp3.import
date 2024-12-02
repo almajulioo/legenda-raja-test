@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://byhweiyeahlsf"
+path="res://.godot/imported/tangan gede dari langit ke tanah var 1.mp3-3ecc9af72ae815638bed5b6ebe6d54a6.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/MONSTER BAYANG/tangan gede dari langit ke tanah var 1.mp3"
+dest_files=["res://.godot/imported/tangan gede dari langit ke tanah var 1.mp3-3ecc9af72ae815638bed5b6ebe6d54a6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

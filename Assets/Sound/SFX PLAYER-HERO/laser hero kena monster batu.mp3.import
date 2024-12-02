@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blxqojui8qkxl"
+path="res://.godot/imported/laser hero kena monster batu.mp3-ed99e5a47c77af3f63d1b11e8b91feee.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/SFX PLAYER-HERO/laser hero kena monster batu.mp3"
+dest_files=["res://.godot/imported/laser hero kena monster batu.mp3-ed99e5a47c77af3f63d1b11e8b91feee.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

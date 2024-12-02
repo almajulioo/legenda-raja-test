@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djiv34mao55l4"
+path="res://.godot/imported/shield.mp3-fd64e42cb2e55861a58bb349a5ff1567.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/SFX PLAYER-HERO/shield.mp3"
+dest_files=["res://.godot/imported/shield.mp3-fd64e42cb2e55861a58bb349a5ff1567.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

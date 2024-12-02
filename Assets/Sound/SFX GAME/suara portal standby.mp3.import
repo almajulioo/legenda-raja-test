@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://by0p8idpwn65h"
+path="res://.godot/imported/suara portal standby.mp3-dd53f429af416b907b55d313d2ae95e2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/SFX GAME/suara portal standby.mp3"
+dest_files=["res://.godot/imported/suara portal standby.mp3-dd53f429af416b907b55d313d2ae95e2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

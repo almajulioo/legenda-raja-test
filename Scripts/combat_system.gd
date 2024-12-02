@@ -9,6 +9,12 @@ class_name CombatSystem
 @onready var left_weapon_sprite: AnimatedSprite2D = $LeftWeaponSprite
 @onready var right_weapon_sprite: AnimatedSprite2D = $RightWeaponSprite
 
+var suaraTebasan = [
+	"res://Assets/Sound/SFX PLAYER-HERO/new tebasan kena 1.mp3",
+	"res://Assets/Sound/SFX PLAYER-HERO/new tebasan kena 2.mp3",
+	"res://Assets/Sound/SFX PLAYER-HERO/new tebasan kena 3.mp3",
+]
+var currentTebasan = 0
 var canAttack = true
 
 func _input(_event):
@@ -16,6 +22,11 @@ func _input(_event):
 		$"../TimerCanAttack".start()
 		canAttack = false
 		player.attacking = true
+		player.play_sound(load(suaraTebasan[currentTebasan]))
+		currentTebasan += 1
+		if currentTebasan == 3:
+			currentTebasan = 0
+			
 		if animated_sprite_2d.flip_h:
 			left_weapon_sprite.play("attack")
 			left_weapon_sprite.visible = true

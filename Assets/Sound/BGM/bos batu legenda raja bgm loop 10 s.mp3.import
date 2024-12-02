@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kapkmw3g7mlp"
+path="res://.godot/imported/bos batu legenda raja bgm loop 10 s.mp3-1e7502f1bafe5b2dd9deed078f60ec25.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/bos batu legenda raja bgm loop 10 s.mp3"
+dest_files=["res://.godot/imported/bos batu legenda raja bgm loop 10 s.mp3-1e7502f1bafe5b2dd9deed078f60ec25.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

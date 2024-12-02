@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkumbl7rb6mrg"
+path="res://.godot/imported/instrumen song ori legenda raja.mp3-b201f8a7af55ac0e39c57a32a80e5eff.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/instrumen song ori legenda raja.mp3"
+dest_files=["res://.godot/imported/instrumen song ori legenda raja.mp3-b201f8a7af55ac0e39c57a32a80e5eff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
