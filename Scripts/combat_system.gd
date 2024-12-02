@@ -26,7 +26,13 @@ func _input(_event):
 		currentTebasan += 1
 		if currentTebasan == 3:
 			currentTebasan = 0
-			
+		
+		var left_or_right = get_global_mouse_position() - player.position 
+		if left_or_right.x > 0:
+			animated_sprite_2d.flip_h = false
+		elif left_or_right.x < 0:
+			animated_sprite_2d.flip_h = true
+		print(left_or_right.x)
 		if animated_sprite_2d.flip_h:
 			left_weapon_sprite.play("attack")
 			left_weapon_sprite.visible = true

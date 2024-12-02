@@ -126,6 +126,7 @@ func effect():
 	var fang = fang_attack_scene.instantiate()  
 	var fang_sprite = fang.get_node("AnimatedSprite2D")  # Assuming AnimatedSprite2D is a child of the fang node
 	get_parent().add_child(fang)  # Add fang to the scene
+	fang.position.y = position.y - 20
 	fang_sprite.play("spike")  # Play the "spike" animation
 	if velocity.x > 0:
 		spawn_gap = 80
@@ -133,9 +134,15 @@ func effect():
 	elif velocity.x < 0:
 		spawn_gap = -80
 		fang_sprite.flip_h = true
-
+	
+	var up_or_down = player.position.y - position.y  
 	for i in range(spawn_count):
-		fang.position = position + Vector2(i * spawn_gap, 0)  # Offset position by 'spawn_gap'
+		if up_or_down > 0:
+			fang.position = position + Vector2(i * spawn_gap,(i * up_or_down / spawn_count) + 15)
+		elif up_or_down < 0:
+			fang.position = position + Vector2(i * spawn_gap,(i * up_or_down / spawn_count) + 15)
+		else:
+			fang.position = position + Vector2(i * spawn_gap,i * fang.position.y)
 		await get_tree().create_timer(0.1).timeout
 		
 	await get_tree().create_timer(1).timeout	

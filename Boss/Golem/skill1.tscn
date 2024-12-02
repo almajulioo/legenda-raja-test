@@ -50,10 +50,12 @@ size = Vector2(63, 35)
 script = ExtResource("1_w75mw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.49077, 1.49077)
 sprite_frames = SubResource("SpriteFrames_b60ff")
 animation = &"break"
 
 [node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.43101, 1.24457)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3.5, 1.5)

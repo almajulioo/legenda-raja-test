@@ -388,7 +388,7 @@ one_shot = true
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 position = Vector2(-35.4166, 0)
-scale = Vector2(2.71536, 2.71536)
+scale = Vector2(6.01269, 6.01269)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2(4, -24)

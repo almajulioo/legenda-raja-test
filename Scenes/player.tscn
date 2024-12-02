@@ -285,6 +285,7 @@ shape = SubResource("CircleShape2D_1n23d")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.7, 1.7)
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="TimerDashing" type="Timer" parent="."]
 
