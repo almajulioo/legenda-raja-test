@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://cyoc111vda42j"]
+[gd_scene load_steps=10 format=4 uid="uid://b3ltv454inwg4"]
 
 [ext_resource type="TileSet" uid="uid://v2lckxcyaxua" path="res://TileSets/ground.tres" id="1_3e2mh"]
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_m6a65"]
-[ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_lak18"]
+[ext_resource type="PackedScene" path="res://freeze_manager.tscn" id="3_lak18"]
 [ext_resource type="PackedScene" uid="uid://bfqo6stej1puk" path="res://Boss/Air/boss_air.tscn" id="4_5a8jx"]
 [ext_resource type="PackedScene" uid="uid://cpoxw1t06oygi" path="res://Scenes/pause_menu.tscn" id="5_2a68x"]
 [ext_resource type="AudioStream" uid="uid://cqsnkk1wsrwuw" path="res://Assets/Sound/BGM/bgm boss air.mp3" id="5_jv3kr"]
@@ -44,7 +44,7 @@ _data = {
 "text_lokasi": SubResource("Animation_xxppx")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="DecorationLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAEAAIABgAAAAAAAAARAAIABgAAAAAAAAAHAAgABgAAAAAAAAACAAIABgAAAAAAAAAGAAYABgAAAAAAAAAKAAkABgAAAAAAAAAcAAYABgAAAAAAAAAeAAgABgAAAAAAAAAdAAUABgAAAAAAAAA=")
