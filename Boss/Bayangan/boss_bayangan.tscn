@@ -313,9 +313,7 @@ material = SubResource("ShaderMaterial_w2mge")
 position = Vector2(10.4166, 39.5833)
 scale = Vector2(2.33586, 2.33586)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"dead"
-frame = 6
-frame_progress = 1.0
+animation = &"idle"
 offset = Vector2(0, -31)
 script = ExtResource("24_q8h8n")
 
