@@ -17,6 +17,7 @@ enum BossState {
 @onready var freeze_manager = $"../FreezeManager"
 @onready var projectile_scene = preload("res://Boss/Air/peluru.tscn")
 @onready var circle_scene = preload("res://Boss/Air/circle.tscn")
+@onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
 
 
 var audio_player = AudioStreamPlayer2D.new()
@@ -41,6 +42,9 @@ var move_timer = 0.0
 var punching : int = 0
 var direction = Vector2()
 var circleShootCount = 0
+
+func _ready():
+	healthbar.init_health(startingHealth)
 
 func change_state(new_state: BossState) -> void:
 	current_state = new_state
@@ -119,6 +123,7 @@ func take_damage(damage : int):
 	play_sound(load(kena_hit_sound))
 	for i in (damage):
 		bossHealth.health = clamp(bossHealth.health - 1, 0, bossHealth.max_health)
+		healthbar.health = bossHealth.health
 		if bossHealth.health == 20 or bossHealth.health == 35 and transformed == false:
 			freeze_manager.apply_freeze()
 			change_state(BossState.Transform)

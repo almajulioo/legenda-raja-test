@@ -10,8 +10,9 @@ func resume():
 	if options:
 		$AnimationPlayer2.play_backwards("options")
 		options = false
-	
+
 func pause():
+	$".".visible = true
 	get_tree().paused = true
 	$AnimationPlayer.play("blur")
 	
@@ -41,3 +42,8 @@ func _on_options_button_up() -> void:
 func _on_quit_button_up() -> void:
 	resume()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if get_tree().paused == false:
+		$".".visible = false

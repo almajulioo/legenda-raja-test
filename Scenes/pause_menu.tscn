@@ -3,7 +3,7 @@
 [ext_resource type="Theme" path="res://Resources/main_menu.tres" id="1_qr86y"]
 [ext_resource type="Texture2D" uid="uid://d2ios3c2wcqh3" path="res://Assets/UI/Banners/Carved_9Slides.png" id="1_sndhv"]
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="2_spw4c"]
-[ext_resource type="Material" uid="uid://cbimllpm0m8lc" path="res://Resources/pause_menu.tres" id="3_cthl5"]
+[ext_resource type="Material" uid="uid://b38drfhd6b03f" path="res://Resources/pause_menu.tres" id="3_cthl5"]
 
 [sub_resource type="Animation" id="Animation_p1r4o"]
 length = 0.001
@@ -97,6 +97,7 @@ _data = {
 
 [node name="Control" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,3 +223,4 @@ vertical_alignment = 1
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/Resume" to="." method="_on_resume_button_up"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/Options" to="." method="_on_options_button_up"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

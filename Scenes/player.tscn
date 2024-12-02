@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ci1fnasfwm6tg" path="res://Assets/Senjata Rencong/Attack5.png" id="14_lipla"]
 [ext_resource type="Texture2D" uid="uid://cwps6dc04aem7" path="res://Assets/Senjata Rencong/Attack6.png" id="15_qwwvw"]
 [ext_resource type="Script" path="res://Scripts/skill_bar.gd" id="18_1rw7k"]
-[ext_resource type="PackedScene" uid="uid://ce1xksuo0pau0" path="res://Scenes/skill_button.tscn" id="19_hwwhf"]
+[ext_resource type="PackedScene" uid="uid://eso200huv5dh" path="res://Scenes/skill_button.tscn" id="19_hwwhf"]
 [ext_resource type="Texture2D" uid="uid://bx7to16q3jqtd" path="res://Assets/Artefak dan Efek/Efek/Heal Effect.png" id="22_uabpe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvvfq"]

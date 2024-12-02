@@ -16,6 +16,7 @@ enum BossState {
 @onready var crack_scene = preload("res://Boss/Bayangan/crack.tscn")
 @onready var punch_scene = preload("res://Boss/Bayangan/punch_ground.tscn")
 @onready var tangan_scene = preload("res://Boss/Bayangan/tangan.tscn")
+@onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
 
 var audio_player = AudioStreamPlayer2D.new()
 var kena_hit_sound = "res://Assets/Sound/MONSTER BAYANG/boss kena hit var.mp3"
@@ -34,6 +35,9 @@ var startingHealth = 30
 var direction = Vector2()
 var random_move_time = 1 # Time in seconds to pick a new random direction
 var move_timer = 0.0
+
+func _ready() -> void:
+	healthbar.init_health(startingHealth)
 
 func change_state(new_state: BossState) -> void:
 	current_state = new_state
@@ -95,6 +99,7 @@ func take_damage(damage : int):
 	flash_animation.play("flash")
 	play_sound(load(kena_hit_sound))
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
+	healthbar.health = bossHealth.health
 	print("Health = " + str(bossHealth.health))		
 
 func crack_ground():
