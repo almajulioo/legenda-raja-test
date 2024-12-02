@@ -20,6 +20,13 @@ enum BossState {
 @onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
 
 
+var audio_player = AudioStreamPlayer2D.new()
+var kena_hit_sound = "res://Assets/Sound/SFX MONSTER AIR/boss air kena hit khusus.mp3"
+var proyektil_air_sound = "res://Assets/Sound/SFX MONSTER AIR/Proyektil air.mp3"
+var roar_sound = "res://Assets/Sound/SFX MONSTER AIR/skill slow hempasan air.mp3"
+var transform_sound = "res://Assets/Sound/SFX MONSTER AIR/revisi perubahan pusaran.mp3"
+var dead_sound = "res://Assets/Sound/SFX MONSTER AIR/revisi boss air mati.mp3"
+
 var isDead: bool = false
 var canShoot: bool = true
 var transformed: bool = false
@@ -89,6 +96,7 @@ func _physics_process(delta: float) -> void:
 		BossState.Transform:
 			if transformed == false: 
 				animated_sprite_2d.play("transform")
+				play_sound(load(transform_sound))
 			else:
 				animated_sprite_2d.play("transform_back")
 		BossState.Tornado:
@@ -103,6 +111,7 @@ func _physics_process(delta: float) -> void:
 			if isDead == false:
 				isDead = true
 				animated_sprite_2d.play("dead")
+				play_sound(load(dead_sound))
 				velocity = Vector2.ZERO
 	
 	
@@ -111,6 +120,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(damage : int):
 	flash_animation.play("flash")
+	play_sound(load(kena_hit_sound))
 	for i in (damage):
 		bossHealth.health = clamp(bossHealth.health - 1, 0, bossHealth.max_health)
 		healthbar.health = bossHealth.health
@@ -122,7 +132,9 @@ func take_damage(damage : int):
 func shoot_projectile():
 	var freq = 2
 	var delay = 0.2
+	
 	for i in range(freq):
+		play_sound(load(proyektil_air_sound))
 		var projectile = projectile_scene.instantiate()  # Create the projectile instance
 		get_parent().add_child(projectile)  # Add the projectile to the scene
 		projectile.position = position + direction * 10  # Shoot from the boss's current position
@@ -133,6 +145,7 @@ func shoot_projectile():
 func spawn_circle():
 	var circle = circle_scene.instantiate()
 	get_parent().add_child(circle)
+	play_sound(load(roar_sound))
 	circle.position = position + direction * 10
 	circle.animation_player.play("air")
 
@@ -146,6 +159,7 @@ func shoot_projectile_circle():
 	else:
 		num_projectiles = base_num_projectiles + 6  # Add more projectiles to fill gaps in odd circles
 	angle_step = 2 * PI / num_projectiles  
+	play_sound(load(proyektil_air_sound))
 	
 	for i in range(num_projectiles):
 		var angle = start_angle + (i * angle_step)  # Calculate the angle for each projectile
@@ -157,6 +171,13 @@ func shoot_projectile_circle():
 		# Set the projectile's position slightly in front of the boss
 		projectile.global_position = global_position + direction * 10  # Offset position slightly
 	circleShootCount += 1
+
+func play_sound(sound : AudioStream):
+	audio_player.stream = sound
+	audio_player.max_distance = 10000
+	audio_player.attenuation = 0
+	get_tree().current_scene.add_child(audio_player)
+	audio_player.play()
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body.name == "Player":

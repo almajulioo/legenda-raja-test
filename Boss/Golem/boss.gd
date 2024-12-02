@@ -17,9 +17,14 @@ enum BossState {
 @onready var freeze_manager = $"../FreezeManager"
 @onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
 
+var kena_damage = "res://Assets/Sound/SFX MONSTER BATU/new new monster kena dmg.mp3"
+var tinju_sound = "res://Assets/Sound/SFX MONSTER BATU/new new tinjuan monster .mp3"
+var skill1_sound = "res://Assets/Sound/SFX MONSTER BATU/newest monster jurus batu dari tanah.mp3"
+var hancur_sound = "res://Assets/Sound/SFX MONSTER BATU/boss hancur.mp3"
+var audio_player = AudioStreamPlayer2D.new()
+
 # Preload fang projectile or attack animation
 var fang_attack_scene = preload("res://Boss/Golem/skill1.tscn")  
-
 
 var canAttack : bool = true
 var attacking : bool = false
@@ -31,7 +36,7 @@ var canDash: bool = true
 var current_state: BossState = BossState.Chasing
 var state_change_timer: float = 0.0
 var SPEED = 7000
-var startingHealth = 50
+var startingHealth = 10
 
 var punching : int = 0
 
@@ -82,6 +87,7 @@ func _physics_process(delta: float) -> void:
 				attacking = true
 				canAttack = false
 				animated_sprite_2d.play("attack")
+				play_sound(load(tinju_sound))
 				if velocity.x > 0:
 					$CombatSystem/WeaponHitbox/RightCollision.disabled = false
 				elif velocity.x < 0:
@@ -98,6 +104,7 @@ func _physics_process(delta: float) -> void:
 			$CombatSystem/WeaponHitbox/LeftCollision.disabled = true
 			isDead = true
 			animated_sprite_2d.play("dead")
+			play_sound(load(hancur_sound))
 	
 	if attacking:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
@@ -132,9 +139,17 @@ func effect():
 
 func take_damage(damage : int):
 	flash_animation.play("flash")
+	play_sound(load(kena_damage))
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
 	healthbar.health = bossHealth.health
 	print("Health = " + str(bossHealth.health))		
+
+func play_sound(sound : AudioStream):
+	audio_player.stream = sound
+	audio_player.max_distance = 10000
+	audio_player.attenuation = 0
+	get_tree().current_scene.add_child(audio_player)
+	audio_player.play()
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
@@ -167,6 +182,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "skill1":
 		change_state(BossState.Attacking)
 		effect()
+		play_sound(load(skill1_sound))
 	if animated_sprite_2d.animation == "dash":
 		dashing = false
 		SPEED = 7000

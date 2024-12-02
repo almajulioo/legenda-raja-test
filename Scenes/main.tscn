@@ -72,9 +72,13 @@ shape = SubResource("RectangleShape2D_dlxm6")
 
 [node name="Control" parent="Node2D/CanvasLayer" instance=ExtResource("6_naiva")]
 
+[node name="CanvasLayer1" type="CanvasLayer" parent="Node2D"]
+
+
 [node name="BGM" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("6_4fbrs")
 autoplay = true
+attenuation = 1e-05
 
 [connection signal="body_entered" from="Node2D/LevelBatu" to="Node2D" method="_on_level_batu_body_entered"]
 [connection signal="body_entered" from="Node2D/LevelAir" to="Node2D" method="_on_level_air_body_entered"]

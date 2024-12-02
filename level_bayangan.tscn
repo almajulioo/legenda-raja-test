@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_e3sng"]
 [ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_a57kg"]
 [ext_resource type="PackedScene" uid="uid://crpvb1bdbp6p3" path="res://Boss/Bayangan/boss_bayangan.tscn" id="4_7a8vs"]
-[ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="5_l4yng"]
+[ext_resource type="PackedScene" uid="uid://cpoxw1t06oygi" path="res://Scenes/pause_menu.tscn" id="5_l4yng"]
 [ext_resource type="AudioStream" uid="uid://dopq06rmw2wvv" path="res://Assets/Sound/BGM/bgm boss bayang.mp3" id="5_nyqy1"]
 
 [sub_resource type="Animation" id="Animation_xxppx"]
@@ -71,6 +71,9 @@ position = Vector2(931, 298)
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_l4yng")]
 
+[node name="CanvasLayer1" type="CanvasLayer" parent="."]
+
+
 [node name="Label" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
@@ -90,14 +93,15 @@ text = "Benteng Marlborough - Bengkulu
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_nyqy1")
 autoplay = true
-
+max_distance = 10000.0
+attenuation = 1e-05
+[connection signal="finished" from="BGM" to="Player" method="_on_bgm_finished"]
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_xia17")
 }
 autoplay = "text_lokasi"
 
-[connection signal="finished" from="AudioStreamPlayer2D" to="Player" method="_on_audio_stream_player_2d_finished"]

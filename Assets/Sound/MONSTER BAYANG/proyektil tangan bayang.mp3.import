@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx786wks0bky5"
+path="res://.godot/imported/proyektil tangan bayang.mp3-4255f591a6c3c33cd69f7c6f09bb8a36.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/MONSTER BAYANG/proyektil tangan bayang.mp3"
+dest_files=["res://.godot/imported/proyektil tangan bayang.mp3-4255f591a6c3c33cd69f7c6f09bb8a36.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

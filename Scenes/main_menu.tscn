@@ -1,10 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://dscr837g0sw8b"]
+[gd_scene load_steps=10 format=3 uid="uid://dscr837g0sw8b"]
 
-[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="1_tu06i"]
+[ext_resource type="Theme" path="res://Resources/main_menu.tres" id="1_tu06i"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="3_tgang"]
 [ext_resource type="Texture2D" uid="uid://ca41v2q0fsti8" path="res://Assets/LEGENDA TIGA RAJA.png" id="4_lp0jy"]
 [ext_resource type="Texture2D" uid="uid://bg0nri6iewqjb" path="res://Assets/UI/Banners/Banner_Vertical.png" id="4_m8tx7"]
-[ext_resource type="Material" uid="uid://b38drfhd6b03f" path="res://Resources/pause_menu.tres" id="5_sopv1"]
+[ext_resource type="Material" uid="uid://cbimllpm0m8lc" path="res://Resources/pause_menu.tres" id="5_sopv1"]
+[ext_resource type="AudioStream" uid="uid://dkumbl7rb6mrg" path="res://Assets/Sound/BGM/instrumen song ori legenda raja.mp3" id="6_ln066"]
+
+[sub_resource type="Animation" id="Animation_yc460"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_yc460"]
 length = 0.001
@@ -177,7 +205,12 @@ libraries = {
 "": SubResource("AnimationLibrary_hqthf")
 }
 
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ln066")
+autoplay = true
+
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/CreditsButton" to="." method="_on_credits_button_button_up"]
 [connection signal="button_up" from="NinePatchRect/VBoxContainer/ExitButton" to="." method="_on_exit_button_button_up"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

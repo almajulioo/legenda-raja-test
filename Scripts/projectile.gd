@@ -10,6 +10,8 @@ var direction : Vector2 = Vector2.RIGHT:
 	set(value):
 		direction = value
 		rotation = direction.angle()
+var crack_kena_sound = "res://Assets/Sound/SFX PLAYER-HERO/ground stomp kena monster.mp3"
+var laser_kena_sound = "res://Assets/Sound/SFX PLAYER-HERO/laser hero kena monster batu.mp3"
 
 func _physics_process(delta):
 	if move: 
@@ -39,11 +41,13 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_crack_area_entered(area: Area2D) -> void:
 	if area.name == "BossBodyHitbox":
 		var boss = area.get_parent().get_parent()
+		player.play_sound(load(crack_kena_sound))
 		boss.take_damage(crack_dmg)
 
 func _on_laser_area_entered(area: Area2D) -> void:
 	if area.name == "BossBodyHitbox":
 		var boss = area.get_parent().get_parent()
+		player.play_sound(load(laser_kena_sound))
 		boss.take_damage(laser_dmg)
 
 func _on_animated_sprite_2d_animation_finished() -> void:

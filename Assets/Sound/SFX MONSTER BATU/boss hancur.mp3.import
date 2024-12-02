@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ln1dyapg1nnp"
+path="res://.godot/imported/boss hancur.mp3-e5c71b02c3e32228241f20e9a3d8c2be.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/SFX MONSTER BATU/boss hancur.mp3"
+dest_files=["res://.godot/imported/boss hancur.mp3-e5c71b02c3e32228241f20e9a3d8c2be.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

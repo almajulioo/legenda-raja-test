@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b38drfhd6b03f"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbimllpm0m8lc"]
 
 [ext_resource type="Shader" path="res://Scenes/pause_menu.gdshader" id="1_ik7t6"]
 

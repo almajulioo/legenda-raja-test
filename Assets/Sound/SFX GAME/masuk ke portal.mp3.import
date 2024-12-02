@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8paao7a50odx"
+path="res://.godot/imported/masuk ke portal.mp3-51a9eaaab39241f6f83b2b2b689068cb.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/SFX GAME/masuk ke portal.mp3"
+dest_files=["res://.godot/imported/masuk ke portal.mp3-51a9eaaab39241f6f83b2b2b689068cb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

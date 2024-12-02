@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_m6a65"]
 [ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_lak18"]
 [ext_resource type="PackedScene" uid="uid://bfqo6stej1puk" path="res://Boss/Air/boss_air.tscn" id="4_5a8jx"]
-[ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="5_2a68x"]
+[ext_resource type="PackedScene" uid="uid://cpoxw1t06oygi" path="res://Scenes/pause_menu.tscn" id="5_2a68x"]
 [ext_resource type="AudioStream" uid="uid://cqsnkk1wsrwuw" path="res://Assets/Sound/BGM/bgm boss air.mp3" id="5_jv3kr"]
 
 [sub_resource type="Animation" id="Animation_xxppx"]
@@ -82,6 +82,8 @@ position = Vector2(1257, 285)
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_2a68x")]
 
+[node name="CanvasLayer1" type="CanvasLayer" parent="."]
+
 [node name="Label" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
@@ -104,6 +106,8 @@ vertical_alignment = 1
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_jv3kr")
 autoplay = true
+max_distance = 10000.0
+attenuation = 1.1564e-05
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

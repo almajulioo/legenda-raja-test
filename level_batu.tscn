@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://wekvrtqbsgyr" path="res://Scenes/player.tscn" id="2_0nwmu"]
 [ext_resource type="PackedScene" uid="uid://cwf6l2g5js3t2" path="res://freeze_manager.tscn" id="3_mrpau"]
 [ext_resource type="PackedScene" uid="uid://bkfxssgytv2qs" path="res://Boss/Golem/boss.tscn" id="4_yo8l3"]
-[ext_resource type="PackedScene" uid="uid://bqek38ph7p1x0" path="res://Scenes/pause_menu.tscn" id="5_o1yju"]
+[ext_resource type="PackedScene" uid="uid://cpoxw1t06oygi" path="res://Scenes/pause_menu.tscn" id="5_o1yju"]
+[ext_resource type="AudioStream" uid="uid://kapkmw3g7mlp" path="res://Assets/Sound/BGM/bos batu legenda raja bgm loop 10 s.mp3" id="6_qhaiv"]
 
 [sub_resource type="Animation" id="Animation_xxppx"]
 resource_name = "text_lokasi"
@@ -77,6 +78,16 @@ position = Vector2(1454, 612)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_o1yju")]
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qhaiv")
+autoplay = true
+max_distance = 100000.0
+attenuation = 6.31875e-05
+
+[node name="CanvasLayer1" type="CanvasLayer" parent="."]
+
+[connection signal="finished" from="BGM" to="Player" method="_on_bgm_finished"]
 visible = true
 
 [node name="Label" type="Label" parent="CanvasLayer"]

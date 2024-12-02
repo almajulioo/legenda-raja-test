@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://sib7y0wcdkkx"
+path="res://.godot/imported/laser hero.mp3-4122bde97939873f9c43d163c0503aed.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/SFX PLAYER-HERO/laser hero.mp3"
+dest_files=["res://.godot/imported/laser hero.mp3-4122bde97939873f9c43d163c0503aed.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

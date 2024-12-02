@@ -4,6 +4,7 @@ class_name Skill
 var cooldown : float
 var texture : Texture2D
 var animation_name : String
+var sound : AudioStream
 
 func _init(target) -> void:
 	target.cooldown.max_value = cooldown

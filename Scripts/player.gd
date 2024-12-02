@@ -11,6 +11,14 @@ class_name Player
 @onready var freeze_manager = $"../FreezeManager"
 @export var projectile_node : PackedScene
 
+#SFX
+var hero_kena_dmg = ["res://Assets/Sound/SFX PLAYER-HERO/hero kena dmg no suara kesakitan.mp3",
+					"res://Assets/Sound/SFX PLAYER-HERO/hero kena dmg var 1.mp3",
+					"res://Assets/Sound/SFX PLAYER-HERO/hero kena dmg var 2.mp3"]
+var trisula_sound = "res://Assets/Sound/SFX PLAYER-HERO/laser hero.mp3"
+var dash_sound = "res://Assets/Sound/SFX PLAYER-HERO/new dash.mp3"
+var game_over_sound = "res://Assets/Sound/SFX GAME/pop up menu game over.mp3"
+var audio_player = AudioStreamPlayer2D.new()
 
 var startingHealth = 5
 var DEF_SPEED = 10000
@@ -22,14 +30,16 @@ var idle = true
 var walking = false
 var attacking = false
 var healing = false
-
+var playDeadAnim = false
 
 func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
 	
 	if playerHealth.is_dead():
-		animated_sprite_2d.play_die_animation()
+		if playDeadAnim == false:
+			animated_sprite_2d.play_die_animation()
+			playDeadAnim = true
 	else:
 		if not dashing:
 			direction = Input.get_vector("left", "right", "up", "down").normalized()
@@ -41,6 +51,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = move_toward(velocity.y, 0, SPEED * delta)
 		
 		if not dashing and Input.is_action_just_pressed("dash") and direction != Vector2.ZERO and canDash:
+			play_sound(load(dash_sound))
 			dashing = true
 			canDash = false
 			SPEED = SPEED * 8
@@ -88,6 +99,8 @@ func take_damage(damage : int):
 	if playerHealth.is_dead():
 		return
 	if playerHealth.invulnerable == false:
+		var playSound = randi_range(0,2)
+		play_sound(load(hero_kena_dmg[playSound]))
 		flash_animation.play("flash")
 		animated_sprite_2d.play_hurt_animation()
 		freeze_manager.apply_freeze()
@@ -95,7 +108,6 @@ func take_damage(damage : int):
 			playerHealth.shield -= 1
 		else:
 			playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
-	
 
 func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
@@ -109,18 +121,25 @@ func _on_right_weapon_sprite_animation_finished() -> void:
 	right_collision.disabled = true
 	$CombatSystem/RightWeaponSprite.visible = false
 
-func single_shot(animation_name = "Laser"):
+func single_shot(animation_name = "Laser", 	sound = preload("res://Assets/Sound/SFX PLAYER-HERO/laser hero.mp3")):
 	var projectile = projectile_node.instantiate()
 	
 	projectile.play(animation_name)
-	
+	play_sound(sound)
 	projectile.position = global_position
 	projectile.direction = (get_global_mouse_position() - global_position).normalized()
 	
 	get_tree().current_scene.call_deferred("add_child", projectile)
 
+func play_sound(sound : AudioStream):
+	audio_player.stream = sound
+	audio_player.attenuation = 0
+	audio_player.max_distance = 10000
+	get_tree().current_scene.add_child(audio_player)
+	audio_player.play()
 
-func active_shield():
+func active_shield(sound):
+	play_sound(sound)
 	playerHealth.add_shield()
 
 #func area_shot(animation_name = "GroundCrack"):
@@ -133,9 +152,9 @@ func active_shield():
 	#
 	#get_tree().current_scene.call_deferred("add_child", projectile)
 
-func multi_shot(count: int = 3, delay: float = 0.3, animation_name = "Laser"):
+func multi_shot(count: int = 3, delay: float = 0.3, animation_name = "Laser", sound = preload("res://Assets/Sound/SFX PLAYER-HERO/laser hero.mp3")):
 	for i in range(count):
-		single_shot(animation_name)
+		single_shot(animation_name, sound)
 		await get_tree().create_timer(delay).timeout
 
 func slowed():
@@ -159,7 +178,6 @@ func _on_timer_slowed_timeout() -> void:
 	#for i in range(count):
 		#angled_shot((float(i) / count) * 2.0 * PI)
 
-
 func _on_healing_effect_animation_animation_finished() -> void:
 	healing = false
 	$HealingEffectAnimation.visible = false
@@ -167,15 +185,11 @@ func _on_healing_effect_animation_animation_finished() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "die":
 		var game_over = game_over_scene.instantiate()
-		game_over.position = position
 		$SkillUI.visible = false
 		$HealthSystemUI.visible = false
-		get_tree().current_scene.add_child(game_over)
-
+		for i in range(get_tree().current_scene.get_child_count()):
+			if get_tree().current_scene.get_child(i).name == "CanvasLayer1":
+				get_tree().current_scene.get_child(i).add_child(game_over)
 
 func _on_bgm_finished() -> void:
 	$"../BGM".play()
-
-
-func _on_audio_stream_player_2d_finished() -> void:
-	pass # Replace with function body.

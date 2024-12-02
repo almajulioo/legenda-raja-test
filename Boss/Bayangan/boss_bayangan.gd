@@ -18,6 +18,12 @@ enum BossState {
 @onready var tangan_scene = preload("res://Boss/Bayangan/tangan.tscn")
 @onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
 
+var audio_player = AudioStreamPlayer2D.new()
+var kena_hit_sound = "res://Assets/Sound/MONSTER BAYANG/boss kena hit var.mp3"
+var proyektil_tangan_sound = "res://Assets/Sound/MONSTER BAYANG/proyektil tangan bayang.mp3"
+var dead_sound = "res://Assets/Sound/MONSTER BAYANG/revisi boss bayang mati.mp3"
+var tangan_langit_sound = "res://Assets/Sound/MONSTER BAYANG/tangan gede dari langit ke tanah var 1.mp3"
+
 var isDead: bool = false
 var canTongkat: bool = false
 var canTangan:bool = false
@@ -35,7 +41,6 @@ func _ready() -> void:
 
 func change_state(new_state: BossState) -> void:
 	current_state = new_state
-	
 	
 # Count down the timers and transition states when appropriate
 func _physics_process(delta: float) -> void:
@@ -73,6 +78,7 @@ func _physics_process(delta: float) -> void:
 			if isDead == false:
 				isDead = true
 				animated_sprite_2d.play("dead")
+				play_sound(load(dead_sound))
 				velocity = Vector2.ZERO
 		BossState.Tongkat:
 			velocity = Vector2.ZERO
@@ -91,18 +97,21 @@ func _physics_process(delta: float) -> void:
 		
 func take_damage(damage : int):
 	flash_animation.play("flash")
+	play_sound(load(kena_hit_sound))
 	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
 	healthbar.health = bossHealth.health
 	print("Health = " + str(bossHealth.health))		
 
 func crack_ground():
 	var crack = crack_scene.instantiate()
+	play_sound(load("res://Assets/Sound/SFX PLAYER-HERO/newesrt ground stomp.mp3"))
 	get_parent().add_child(crack)
 	crack.position = position
 	crack.animation_player.play("crack")
 
 func punch_ground():
 	var punch = punch_scene.instantiate()
+	play_sound(load(tangan_langit_sound))
 	get_parent().add_child(punch)
 	punch.position.x = player.position.x
 	punch.position.y = player.position.y + -70
@@ -110,6 +119,7 @@ func punch_ground():
 
 func spawn_tangan():
 	var tangan = tangan_scene.instantiate()  
+	play_sound(load(proyektil_tangan_sound))
 	get_parent().add_child(tangan)
 	if animated_sprite_2d.flip_h == true:
 		tangan.animation_player.flip_h = true
@@ -120,6 +130,13 @@ func spawn_tangan():
 	tangan.animation_player.play("tangan")
 	var dir_to_player = player.position - position 
 	tangan.direction = dir_to_player.normalized()
+
+func play_sound(sound : AudioStream):
+	audio_player.stream = sound
+	audio_player.max_distance = 10000
+	audio_player.attenuation = 0
+	get_tree().current_scene.add_child(audio_player)
+	audio_player.play()
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "tongkat":
