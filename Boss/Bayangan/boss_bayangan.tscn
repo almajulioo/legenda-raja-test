@@ -30,6 +30,32 @@ shader_parameter/flash_value = 0.0
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_m835x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jll0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xmykg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3tctm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_31mhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r31ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b4i5l")
+}],
+"loop": false,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_b4i5l")
 }, {
 "duration": 1.0,
@@ -64,6 +90,32 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b4i5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r31ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_31mhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3tctm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xmykg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jll0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m835x")
+}],
+"loop": false,
+"name": &"teleport",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -313,7 +365,9 @@ material = SubResource("ShaderMaterial_w2mge")
 position = Vector2(10.4166, 39.5833)
 scale = Vector2(2.33586, 2.33586)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"idle"
+animation = &"teleport"
+frame = 6
+frame_progress = 1.0
 offset = Vector2(0, -31)
 script = ExtResource("24_q8h8n")
 
