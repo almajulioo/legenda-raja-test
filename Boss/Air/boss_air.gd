@@ -113,9 +113,9 @@ func _physics_process(delta: float) -> void:
 			BOSS_STATE = BossState.Tornado
 			$CombatSystem/BossBodyHitbox/CollisionShape2D.disabled = true
 			animated_sprite_2d.play("tornado")
-			nav.target_position = player.position
 			direction = (nav.get_next_path_position() - global_position).normalized()
 			if canShootCircle:
+				nav.target_position = player.position
 				shoot_projectile_circle()
 				canShootCircle = false
 				$TimerCanShootCircle.start()
@@ -229,5 +229,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	
 
 #
-#func _on_navigation_agent_2d_navigation_finished() -> void:
-	#nav.target_position = player.position
+func _on_navigation_agent_2d_navigation_finished() -> void:
+	nav.target_position = player.position
