@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://s10de4s11tsq" path="res://Assets/Factions/Bosses/Air/tornado1 (1).png" id="19_47pnw"]
 [ext_resource type="Script" path="res://Scripts/boss_health_system.gd" id="27_jtpjv"]
 [ext_resource type="PackedScene" uid="uid://3b55casibbeg" path="res://Scenes/healthbar.tscn" id="28_y405j"]
-[ext_resource type="Theme" path="res://Resources/main_menu.tres" id="29_kgqd3"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="29_kgqd3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_l3bmx")
@@ -407,9 +407,7 @@ material = SubResource("ShaderMaterial_w2mge")
 position = Vector2(2.08333, 91.6665)
 scale = Vector2(3.45537, 3.45537)
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"roar"
-frame = 2
-frame_progress = 1.0
+animation = &"tornado"
 offset = Vector2(0, -31)
 script = ExtResource("14_l5u6e")
 
@@ -483,7 +481,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="TimerCanShootCircle" type="Timer" parent="."]
-wait_time = 0.7
 one_shot = true
 
 [node name="TimerCanRoar" type="Timer" parent="."]

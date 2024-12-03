@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/boss_animation_controller.gd" id="12_hwnvt"]
 [ext_resource type="Script" path="res://Scripts/boss_health_system.gd" id="17_vruaw"]
 [ext_resource type="PackedScene" uid="uid://3b55casibbeg" path="res://Scenes/healthbar.tscn" id="18_w135q"]
-[ext_resource type="Theme" path="res://Resources/main_menu.tres" id="19_bu3ik"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="19_bu3ik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2mge"]
 shader = ExtResource("2_b444y")
@@ -333,7 +333,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_w2mge")
 sprite_frames = SubResource("SpriteFrames_4pqgq")
-animation = &"attack"
+animation = &"skill1"
 offset = Vector2(0, -86)
 script = ExtResource("12_hwnvt")
 
@@ -346,8 +346,7 @@ libraries = {
 position = Vector2(76, 54)
 scale = Vector2(2.48, 2.48)
 sprite_frames = SubResource("SpriteFrames_obrv0")
-animation = &"bump"
-frame_progress = 0.604919
+animation = &"wall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8.33332, -4.16666)

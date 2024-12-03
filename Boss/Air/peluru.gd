@@ -2,7 +2,8 @@ extends Area2D
 
 @onready var player : Player = get_node("../Player")
 @onready var animation_player = $AnimatedSprite2D
-var speed : float = 400
+var def_speed : float = 400
+var speed : float = def_speed
 var direction : Vector2 
 
 func _physics_process(delta):

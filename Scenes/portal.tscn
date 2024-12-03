@@ -1,0 +1,148 @@
+[gd_scene load_steps=20 format=3 uid="uid://drow45ptcvxtu"]
+
+[ext_resource type="Texture2D" uid="uid://56ewf4vjuv5k" path="res://Assets/Portal/Portal-Tile.png" id="1_egfwq"]
+[ext_resource type="Script" path="res://Scripts/portal.gd" id="1_r1fas"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="2_ls4lf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnwiw"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpdvb"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs5l6"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvkr6"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcevv"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5quyv"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0dcn"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmnmk"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxr5y"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uyn6"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lrpp"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qt14"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqcv3"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rwpv"]
+atlas = ExtResource("1_egfwq")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qj63u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnwiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpdvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs5l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvkr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcevv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5quyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0dcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmnmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxr5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uyn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lrpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qt14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqcv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rwpv")
+}],
+"loop": true,
+"name": &"portal",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3aca"]
+
+[node name="Portal" type="Area2D"]
+physics_interpolation_mode = 1
+collision_layer = 4
+script = ExtResource("1_r1fas")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qj63u")
+animation = &"portal"
+autoplay = "portal"
+frame_progress = 0.851745
+offset = Vector2(0, -26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_f3aca")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, -26)
+polygon = PackedVector2Array(-27, -2, -3, -28, 27, 0, 22, 13, 0, -9, -22, 10)
+disabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -76.0
+offset_right = 48.0
+offset_bottom = -55.0
+theme = ExtResource("2_ls4lf")
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -10,6 +10,9 @@ enum BossState {
 	Tornado,
 	Dead,
 }
+
+static var BOSS_STATE : BossState
+
 @onready var animated_sprite_2d: BossAnimationController = $AnimatedSprite2D
 @onready var player : Player = get_node("../Player")
 @onready var bossHealth : BossHealthSystem = $HealthSystem
@@ -36,7 +39,8 @@ var canRoar: bool = false
 
 var current_state: BossState = BossState.Walking
 var state_change_timer: float = 0.0
-var SPEED = 12000
+var DEFAULT_SPEED = 12000
+var SPEED = DEFAULT_SPEED
 var startingHealth = 50
 var random_move_time = 1 # Time in seconds to pick a new random direction
 var move_timer = 0.0
@@ -54,6 +58,11 @@ func change_state(new_state: BossState) -> void:
 func _physics_process(delta: float) -> void:
 	if freeze_manager.check_if_frozen():
 		return
+	
+	if BOSS_STATE == BossState.Tornado:
+		SPEED = 10000
+	else:
+		SPEED = DEFAULT_SPEED
 	
 	if bossHealth.is_dead():
 		change_state(BossState.Dead)
@@ -78,6 +87,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 	match current_state:
 		BossState.Walking:
+			BOSS_STATE = BossState.Walking
 			animated_sprite_2d.play('idle')
 			if canRoar:
 				change_state(BossState.Roar)
@@ -86,18 +96,21 @@ func _physics_process(delta: float) -> void:
 				canShoot = false
 				$TimerCanShoot.start()
 		BossState.Roar:
+			BOSS_STATE = BossState.Roar
 			velocity = Vector2.ZERO
 			if canRoar:
 				animated_sprite_2d.play("roar")
 				canRoar = false
 				$TimerCanRoar.start()
 		BossState.Transform:
+			BOSS_STATE = BossState.Transform
 			if transformed == false: 
 				animated_sprite_2d.play("transform")
 				play_sound(load(transform_sound))
 			else:
 				animated_sprite_2d.play("transform_back")
 		BossState.Tornado:
+			BOSS_STATE = BossState.Tornado
 			$CombatSystem/BossBodyHitbox/CollisionShape2D.disabled = true
 			animated_sprite_2d.play("tornado")
 			nav.target_position = player.position
@@ -107,6 +120,7 @@ func _physics_process(delta: float) -> void:
 				canShootCircle = false
 				$TimerCanShootCircle.start()
 		BossState.Dead:
+			BOSS_STATE = BossState.Dead
 			if Global.is_boss_air_defeated == false:
 				Global.is_boss_air_defeated = true
 			if isDead == false:
@@ -140,7 +154,7 @@ func shoot_projectile():
 		play_sound(load(proyektil_air_sound))
 		var projectile = projectile_scene.instantiate()  # Create the projectile instance
 		get_parent().add_child(projectile)  # Add the projectile to the scene
-		projectile.position = position + direction * 10  # Shoot from the boss's current position
+		projectile.position = position + direction * 10 # Shoot from the boss's current position
 		var dir_to_player = player.position - position  # Direction to player
 		projectile.direction = dir_to_player.normalized() # Set the projectile's direction
 		await get_tree().create_timer(delay).timeout
