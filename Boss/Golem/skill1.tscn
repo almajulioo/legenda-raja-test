@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b57tyl5lof1m"]
+[gd_scene load_steps=7 format=3 uid="uid://b57tyl5lof1m"]
 
 [ext_resource type="Texture2D" uid="uid://c4qx5ibbb3yad" path="res://Assets/Factions/Bosses/Golem/Attack/se1.png" id="1_hvu6l"]
 [ext_resource type="Script" path="res://Boss/Golem/skill_1.gd" id="1_w75mw"]
@@ -43,9 +43,6 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiilj"]
-size = Vector2(63, 35)
-
 [node name="Skill1" type="Node2D"]
 script = ExtResource("1_w75mw")
 
@@ -57,9 +54,7 @@ animation = &"break"
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(1.43101, 1.24457)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(3.5, 1.5)
-scale = Vector2(1, 1.36)
-shape = SubResource("RectangleShape2D_xiilj")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(30.7475, -19.2838, 27.9523, 5.62443, 26.5547, 17.6768, 19.5666, 20.0873, 11.1809, 21.6942, 6.98807, 20.8908, -6.28926, 20.8908, -27.9523, 20.8908, -3.49404, -0.80349, -3.49404, 5.62443, 8.38569, -5.62443, 11.1809, -4.82094, 11.1809, 3.21396, 13.9761, 1.60698)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
