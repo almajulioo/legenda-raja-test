@@ -6,7 +6,8 @@ enum BossState {
 	Tangan,
 	Walking,
 	Dead,
-	Tongkat
+	Tongkat,
+	Teleport
 }
 @onready var animated_sprite_2d: BossAnimationController = $AnimatedSprite2D
 @onready var player : Player = get_node("../Player")
@@ -30,11 +31,13 @@ var canTangan:bool = false
 
 var current_state: BossState = BossState.Walking
 var state_change_timer: float = 0.0
-var SPEED = 10000
-var startingHealth = 40
+var SPEED = 12000
+var startingHealth = 45
 var direction = Vector2()
 var random_move_time = 1 # Time in seconds to pick a new random direction
 var move_timer = 0.0
+
+var damaged_health = 0
 
 func _ready() -> void:
 	healthbar.init_health(startingHealth)
@@ -75,13 +78,15 @@ func _physics_process(delta: float) -> void:
 		BossState.Dead:
 			if not Global.is_boss_bayangan_defeated:
 				Global.is_boss_bayangan_defeated = true
-			
 			if isDead == false:
 				isDead = true
 				animated_sprite_2d.play("dead")
 				f_visible_on()
 				play_sound(load(dead_sound))
 				velocity = Vector2.ZERO
+		BossState.Teleport:
+			velocity = Vector2.ZERO
+			animated_sprite_2d.play("teleport")
 		BossState.Tongkat:
 			velocity = Vector2.ZERO
 			if canTongkat:
@@ -94,16 +99,24 @@ func _physics_process(delta: float) -> void:
 				$TimerCanTangan.start()
 				canTangan = false
 		
-	if position.distance_to(player.position) > 100 and isDead == false:   
+	if isDead == false:   
 		move_and_slide()
 		
 func take_damage(damage : int):
-	flash_animation.play("flash")
-	play_sound(load(kena_hit_sound))
-	bossHealth.health = clamp(bossHealth.health - damage, 0, bossHealth.max_health)
-	if bossHealth.health > 0:
-		healthbar.health = bossHealth.health
-	print("Health = " + str(bossHealth.health))		
+	if current_state != BossState.Teleport:
+		flash_animation.play("flash")
+		play_sound(load(kena_hit_sound))
+		for i in range(damage):
+			bossHealth.health = clamp(bossHealth.health - 1, 0, bossHealth.max_health)
+			if bossHealth.health > 0:
+				healthbar.health = bossHealth.health
+				
+			if damaged_health == 10:
+				change_state(BossState.Teleport)
+				damaged_health = 0
+			if isDead == false:
+				damaged_health += 1
+		print("Health = " + str(bossHealth.health))		
 
 func f_visible_on():
 	player.press_f_label.visible = true
@@ -114,6 +127,8 @@ func crack_ground():
 	get_parent().add_child(crack)
 	crack.position = position
 	crack.animation_player.play("crack")
+
+	
 
 func punch_ground():
 	var punch = punch_scene.instantiate()
@@ -157,6 +172,16 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		
 	if animated_sprite_2d.animation == "dead":
 		queue_free()
+		
+	if animated_sprite_2d.animation == "teleport":
+		var target_x = randf_range(100.0, 1200)
+		var target_y = randf_range(100.0, 620.0)
+		
+		position = Vector2(target_x, target_y)
+		animated_sprite_2d.play("back")
+	
+	if animated_sprite_2d.animation == "back":
+		change_state(BossState.Walking)
 func _on_timer_can_tongkat_timeout() -> void:
 	canTongkat = true
 

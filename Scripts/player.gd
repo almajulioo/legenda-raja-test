@@ -35,6 +35,8 @@ var healing = false
 var playDeadAnim = false
 
 func _physics_process(delta: float) -> void:
+	set_camera()
+	
 	if freeze_manager.check_if_frozen():
 		return
 	if press_f_label.visible and Input.is_action_just_pressed("goback"):
@@ -48,7 +50,6 @@ func _physics_process(delta: float) -> void:
 		for i in range(get_tree().current_scene.get_child_count()):
 			if get_tree().current_scene.get_child(i).name == "CanvasLayer1":
 				get_tree().current_scene.get_child(i).add_child(ending)
-				
 				
 	if playerHealth.is_dead():
 		if playDeadAnim == false:
@@ -122,6 +123,12 @@ func take_damage(damage : int):
 			playerHealth.shield -= damage
 		else:
 			playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
+
+func set_camera():
+	var mouse_pos = get_global_mouse_position()
+	$Camera2D.offset.x = (mouse_pos.x - global_position.x) / (1920.0 / 2.0) * 100
+	$Camera2D.offset.y = (mouse_pos.y - global_position.y) / (1080.0 / 2.0) * 100
+	
 
 func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
