@@ -36,7 +36,7 @@ var canDash: bool = true
 
 var current_state: BossState = BossState.Chasing
 var state_change_timer: float = 0.0
-var SPEED = 12000
+var SPEED = 14000
 var startingHealth = 70
 
 var punching : int = 0

@@ -8,7 +8,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if $AnimatedSprite2D.flip_h == true:
+		$RightCollision/CollisionPolygon2D.disabled = true
+		$LeftCollision/CollisionPolygon2D.disabled = false
+	else:
+		$RightCollision/CollisionPolygon2D.disabled = false
+		$LeftCollision/CollisionPolygon2D.disabled = true
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

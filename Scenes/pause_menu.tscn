@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cpoxw1t06oygi"]
 
-[ext_resource type="Theme" path="res://Resources/main_menu.tres" id="1_qr86y"]
+[ext_resource type="Theme" uid="uid://r1kql7apbef" path="res://Resources/main_menu.tres" id="1_qr86y"]
 [ext_resource type="Texture2D" uid="uid://d2ios3c2wcqh3" path="res://Assets/UI/Banners/Carved_9Slides.png" id="1_sndhv"]
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="2_spw4c"]
 [ext_resource type="Material" uid="uid://cbimllpm0m8lc" path="res://Resources/pause_menu.tres" id="3_cthl5"]
@@ -155,7 +155,8 @@ text = "Resume"
 
 [node name="Options" type="Button" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "Controls
+"
 
 [node name="Quit" type="Button" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2

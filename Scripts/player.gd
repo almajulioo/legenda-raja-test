@@ -23,7 +23,7 @@ var game_over_sound = "res://Assets/Sound/SFX GAME/pop up menu game over.mp3"
 var audio_player = AudioStreamPlayer2D.new()
 
 var startingHealth = 5
-var DEF_SPEED = 10000
+var DEF_SPEED = 11000
 var SPEED = DEF_SPEED
 var direction : Vector2
 var canDash = true
@@ -33,6 +33,7 @@ var walking = false
 var attacking = false
 var healing = false
 var playDeadAnim = false
+var onPortal = false
 
 func _physics_process(delta: float) -> void:
 	set_camera()
@@ -57,19 +58,22 @@ func _physics_process(delta: float) -> void:
 			playDeadAnim = true
 	else:
 		if not dashing:
-			direction = Input.get_vector("left", "right", "up", "down").normalized()
-			
-		if direction: 
-			velocity = direction * SPEED * delta
+			direction = Input.get_vector("left", "right", "up", "down")
+		
+		if not onPortal:
+			if direction: 
+				velocity = direction * SPEED * delta
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+				velocity.y = move_toward(velocity.y, 0, SPEED * delta)
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
-			velocity.y = move_toward(velocity.y, 0, SPEED * delta)
+			velocity = Vector2(0, 0)
 		
 		if not dashing and Input.is_action_just_pressed("dash") and direction != Vector2.ZERO and canDash:
 			play_sound(load(dash_sound))
 			dashing = true
 			canDash = false
-			SPEED = SPEED * 8
+			SPEED = SPEED * 6
 			animated_sprite_2d.play_dash_animation()
 			$TimerDashing.start(0.1)
 			$TimerCanDash.start(1)
@@ -125,10 +129,17 @@ func take_damage(damage : int):
 			playerHealth.health = clamp(playerHealth.health - damage, 0, playerHealth.max_health)
 
 func set_camera():
+	var viewport_size = get_viewport().get_size()
 	var mouse_pos = get_global_mouse_position()
-	$Camera2D.offset.x = (mouse_pos.x - global_position.x) / (1920.0 / 2.0) * 100
-	$Camera2D.offset.y = (mouse_pos.y - global_position.y) / (1080.0 / 2.0) * 100
-	
+	$Camera2D.offset.x = (mouse_pos.x - global_position.x) / (viewport_size.x / 2.0) * 100
+	$Camera2D.offset.y = (mouse_pos.y - global_position.y) / (viewport_size.y / 2.0) * 100
+
+		#var joystick = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+		#var joystick_mouse_pos_x = viewport_size.x * (joystick.x / viewport_size.x)
+		#var joystick_mouse_pos_y = viewport_size.y * (joystick.y / viewport_size.y)
+		#$Camera2D.offset.x = (joystick_mouse_pos_x - global_position.x) / (viewport_size.x / 2.0) * 100
+		#$Camera2D.offset.y = (joystick_mouse_pos_y - global_position.y) / (viewport_size.y / 2.0) * 100
+ 
 
 func _on_left_weapon_sprite_animation_finished() -> void:
 	attacking = false
